@@ -1,0 +1,20 @@
+namespace WindowsFormsApp3
+{
+    public partial class Form_Argument : Form
+    {
+        public Form_Argument()
+        {
+            InitializeComponent();
+        }
+
+        private void Form_Argument_Load(object sender, EventArgs e)
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            foreach(var _arg in args)
+            {
+                Console.WriteLine(_arg);
+                MessageBox.Show(_arg);
+            }
+        }
+    }
+}

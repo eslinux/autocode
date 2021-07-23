@@ -1,0 +1,18 @@
+'Note: can use "Exit Sub" or "Exit Function" to terminate process
+
+Sub Main()
+
+    Dim a As Integer, b As Integer, ret As Integer
+    a = 1
+    b = 2
+    
+
+    'call sub produce, reference variable
+    Call minus(a, b, ret)
+    Debug.Print "minus : " & ret
+End Sub
+
+'sub produce, reference variable
+Sub minus(a As Integer, b As Integer, sum As Integer)
+    sum = a - b
+End Sub

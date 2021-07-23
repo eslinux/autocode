@@ -1,0 +1,24 @@
+Dim ws As Worksheet
+Set ws = Sheets.add
+ws.Name = "NewSheet1"
+
+'or
+Sheets.add
+ActiveSheet.Name = "NewSheet2"
+
+
+'or
+Sheets.add.Name = "NewSheet3"
+
+
+'or add to 1st
+Sheets.add(Before:=Sheets(1)).Name = "FirstSheet"
+
+'or add to last
+Sheets.add(After:=Sheets(Sheets.Count)).Name = "LastSheet"
+
+'or add to after
+Sheets.add(After:=Sheets("Sheet1")).Name = "NewSheet4"
+
+'or add to before
+Sheets.add(Before:=Sheets("Sheet1")).Name = "NewSheet5"

@@ -1,0 +1,58 @@
+
+'--------------------------------------------------------------
+'ScanFolder: Scan folder and get list files
+'@para path: folder path
+'       "C:\Users\pc\Desktop\VBA articles\Test Folder"
+'       "C:\Users\pc\Desktop\VBA articles\Test Folder\"
+'@para deep: scan deep level 0,1,2,3...
+'          -1: scan all sub folder
+'           0: do not scan sub folder
+'   1,2,3,...: scan sub deep level 1,2,3,...
+'@para fileExt: file extension (txt, xlsx, docs, ...)
+'--------------------------------------------------------------
+Sub ScanFolder(path As String, deep As Integer, fileExt As String, filelist() As Variant)
+    Dim fso As Object
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    Call LoopScanFolder(fso.GetFolder(path), filelist)
+End Sub
+Function LoopScanFolder(Folder As Object, filelist() As Variant) As Boolean
+    Dim SubFolder As Object
+    For Each SubFolder In Folder.SubFolders
+'        Debug.Print SubFolder.path
+        Call LoopScanFolder(SubFolder, filelist)
+    Next
+    Dim File  As Object
+    For Each File In Folder.Files
+        If Dir(File.path) <> "" Then 'check file exists or not
+'            Debug.Print File.path
+            Call UpdateListFiles(File.path, filelist)
+        End If
+    Next
+End Function
+Function UpdateListFiles(path As String, filelist() As Variant) As Integer 'return current number of file
+    Dim arrayLen As Integer
+    arrayLen = getArrayLen(filelist)
+    ReDim Preserve filelist(arrayLen)
+    filelist(arrayLen) = path
+End Function
+
+
+
+
+Sub test_scanFolder()
+    Dim path As String
+    path = ActiveWorkbook.path & "\"
+    Dim list() As Variant
+    Call ScanFolder(path, 1, "txt", list)
+    
+    Dim arrayLen As Integer
+    arrayLen = getArrayLen(list)
+    Debug.Print "arrayLen: " & arrayLen
+
+    
+    'list up
+    Dim i As Integer
+    For i = 0 To arrayLen - 1
+        Debug.Print list(i)
+    Next i
+End Sub

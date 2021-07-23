@@ -1,0 +1,12 @@
+Sub if_else()
+    Dim num As Integer
+    num = 5
+    
+    If num = 1 Then
+        Debug.Print "ichi"
+    ElseIf num = 2 Then
+        Debug.Print "ni"
+    Else
+        Debug.Print "not match"
+    End If
+End Sub

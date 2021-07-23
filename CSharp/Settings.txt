@@ -1,0 +1,15 @@
+//define setting in 
+Properties > Settings.settings
+
+
+//read
+double speed = Properties.Settings.Default.speed;
+int nlen = Properties.Settings.Default.nLen;
+string path = Properties.Settings.Default.path;
+
+
+//save
+Properties.Settings.Default.path = "/path/to/myhome";
+Properties.Settings.Default.nLen = 123;
+Properties.Settings.Default.speed = 321.5;
+Properties.Settings.Default.Save();

@@ -1,0 +1,14 @@
+
+Sub SaveFile_dialog()
+    Dim fileSaveName As String
+    fileSaveName = Application.GetSaveAsFilename( _
+    fileFilter:="Text Files, *.txt, All, *.*")
+    
+    If fileSaveName <> "False" Then
+        'OK
+        Debug.Print "Save as " & fileSaveName
+    Else
+        Debug.Print "Cancel"
+    End If
+
+End Sub

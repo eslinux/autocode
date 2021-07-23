@@ -1,0 +1,7 @@
+'vbBlack, vbBlue, vbCyan, vbGreen, vbMagenta, vbRed, vbWhite, vbYellow
+Range("a1").Font.Color = vbRed
+Range("a1").Font.Color = RGB(255,255,0)
+
+Range("a1").Font.Size = 12
+Range("A1").Font.Bold = True
+Range("A1").Font.Name = "Arial"

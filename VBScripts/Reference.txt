@@ -1,0 +1,27 @@
+
+LINK:
+https://www.tutorialspoint.com/vbscript/index.htm
+
+
+NOTE:
+VBScript có cú pháp gần như tương tự với VBA, khác một số điểm như dưới đây:
+1) Khai báo biến
+VBA: Dim myvar as String
+VBScripts: Dim myvar
+-> không có phần khai báo kiểu dữ liệu
+
+2) Ở function của VBScrips không có return giá trị về được
+VBA: có thể dùng "As Double" để return giá trị về
+Function Add(a As Double, b As Double) As Double
+    Add = a + b
+End Function
+
+VBScripts: chỉ có thể dùng reference để return giá trị trả về (mặc định là reference rồi không cần khai báo byref cho "sum" nữa)
+Function Add(a, b, sum)
+    sum = a + b
+End Function
+
+
+
+
+

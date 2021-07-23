@@ -1,0 +1,3 @@
+Application.DisplayAlerts = False
+Worksheets("Sheet3").Delete
+Application.DisplayAlerts = True

@@ -1,0 +1,23 @@
+1. Create new name alias
+
+- Ctrl + F3 to open Name Manager
+
+- Click "New"
+
+- Input "Name" and select "Refers to"
+
+- Click OK, close Name Manager
+
+
+
+2. Insert ComboBox
+
+- Click on cell where will be insert ComboBox
+
+- From menu bar, select "Data / Data Validation"
+
+- In "Settings" tab, select "List" to "Allow" field
+
+- In "Source" field, input below content
+
+    ="defined name alias in step1"

@@ -1,0 +1,21 @@
+'Note: Can use "Exit Do, Exit For to exit For loop and Do loop
+
+
+
+Sub ForEach_loop()
+   'fruits is an array
+   Dim fruits() As Variant
+   Dim Item As Variant
+   
+   ReDim Preserve fruits(3)
+   fruits = Array("apple", "orange", "cherries")
+  
+   'iterating using For each loop.
+   For Each Item In fruits
+      Debug.Print Item
+      
+'     Exit For
+   Next
+
+
+End Sub

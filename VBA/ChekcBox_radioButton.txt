@@ -1,0 +1,13 @@
+'ChekcBox and OptionButton are the same in set/get value
+'set init 
+CheckBox1.Value = False
+        
+'some code
+'...
+
+'get setting
+If CheckBox1.Value = True Then
+	'do something 1
+Else
+	'do something 2
+End If

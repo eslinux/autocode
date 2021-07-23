@@ -1,0 +1,108 @@
+1.  Khai báo chuỗi: c#
+string str ,str1,str2; // khai báo danh sách chuỗi
+str="hàm xử lý, xữ lý chuỗi c#"; //gán giá trị chuỗi
+str1="xử lý chuỗi 1";
+str2="xử lý chuỗi 2";
+ 
+
+2. Lấy chiều dài chuỗi: 
+str.Length
+ 
+
+3. So sánh 2 chuỗi:
+String.Compare(str1, str2, true)
+So sánh hai chuỗi không phân biệt hoa thường, str1 bằng, nhỏ hơn, lớn hơn str2
+
+VD: Kiểm tra xem 2 chuỗi có giống nhau hay không
+
+if (String.Compare(str1, str2, true) == 0)
+{
+    Console.Write("Giống nhau, không phân biệt hoa thường");
+}
+else if (String.Compare(str1, str2, true) < 0)
+{
+    Console.Write("str1 nhỏ hơn str2, không phân biệt hoa thường");
+}
+String.Compare(str1, str2, false)
+Giống như trên, nhưng phân biệt chữ hoa và chữ thường.
+
+ 
+
+4. Kiểm tra sự tồn tại của chuỗi 1 (Str1) trong chuỗi 2 (Str2): 
+Str1.Contains(Str2)
+ 
+
+5. Tìm vị trí hiển thị của chuỗi:
+Str1.IndexOf("chuỗi")
+Hàm trả về vị trí xuất hiện đầu tiên của ký tự “chuỗi” trong Str1.
+Trả về -1 nếu trong Str1 không có ký tự “chuỗi”.
+
+ 
+
+6. Tìm vị trí xuất hiện cuối cùng của chuỗi:
+Str1.LastIndexOf("chuỗi")
+Hàm trả về vị trí xuất hiện cuối cùng của ký tự “chuỗi” trong Str1.
+Trả về -1 nếu trong Str1 không có ký tự “chuỗi”.
+
+ 
+
+7. Kiểm tra xem chuỗi 1 (Str1) có bắt bầu bằng ký tự trong chuỗi 2 (Str2) không:
+Str1.StartsWith(Str2)
+ 
+
+8. Thay thế chuỗi:
+Str = Str.Replace(",",".")
+Thay thế dấu ‘,’ thành dấu ‘.’ trong chuỗi Str.
+
+Str = Str.Replace("xử lý","hàm chuỗi")
+Thay thế chuỗi ‘xử lý’ thành chuỗi ”hàm chuỗi’ trong chuỗi Str.
+
+ 
+
+9. Cắt chuỗi con:
+Str1 = Str.SubString(2)
+Tạo chuỗi con từ chuỗi Str bắt đầu từ vị trí 2 đến hết.
+
+Str1 = Str.Substring(0,6)
+Cắt chuỗi từ vị trí đầu tiên(vị trí 0) đến vị trí số 6,  kết quả là ‘hàm xử’.
+
+ 
+
+10. Tách chuỗi:
+.Split
+Vd:
+
+//tách trong chuỗi str trên khi gặp ký tự ‘,’
+
+string[] arrListStr = str.Split(',');
+//kết quả
+
+arrListStr[0] = 'hàm xử lý' và arrListStr[1]='xữ lý chuỗi c#'
+Hoặc:
+
+//tách trong chuỗi str trên khi gặp ký tự ‘,’
+
+string[] arrListStr = str.Split(new char[] { ',' });
+//kết quả
+
+arrListStr[0]='hàm xử lý' và arrListStr[1]='xữ lý chuỗi c#'
+ 
+
+11. Chuyển chữ hoa sang chữ thường và ngược lại:
+Str = Str.Trim()
+Cắt hết khoảng trắng ở đầu và cuối chuỗi
+
+Str = Str.TrimLeft()
+Cắt hết khoảng trắng ở đầu chuỗi
+
+Str = Str.TrimRight()
+Cắt hết khoảng trắng ở cuối chuỗi
+
+ 
+
+13. Xóa chuỗi:
+Str1.Remove(1)
+Xóa chuỗi Str1 từ vị trí 1 đến hết.
+
+Str.Remove(1,5)
+Xóa 1 chuỗi con trong Str1 có chiều dài là 5. Từ vị trí 1 đến vị trí 5

@@ -1,0 +1,18 @@
+Sub ErrorResumeNext()
+ 
+    'IF error, do not display error dialog, continue run next line code
+    'It mean that [Some code] will be run continue although error occur
+    On Error Resume Next
+    ActiveSheet.Shapes("Start_Button").Delete
+    
+    If Err.Number <> 0 Then
+        Debug.Print "Error"
+    Else
+        Debug.Print "No error"
+    End If
+
+
+    'Some code
+    Debug.Print "do something"
+
+End Sub

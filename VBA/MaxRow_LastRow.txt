@@ -1,0 +1,28 @@
+Sub worksheet_EndxlDown()
+'   Neu Cells(startRow, "B") co data thi End(xlDown) se tra ve cell cuoi cung co data (cell tiep theo se la mot empty cell)
+'      maxrow > startRow
+'
+'   Neu Cells(startRow, "B") la empty cell thi End(xlDown) se tra ve cell dau tien co data tinh startRow
+'      maxrow > startRow
+'
+'NOTE:
+'   - vi tri cell tra ve cung tren column "B" (duyet theo column B)
+
+    Dim startRow As Long, maxrow As Long
+    startRow = 1
+    
+    maxrow = Cells(startRow, "B").End(xlDown).Row
+    Debug.Print maxrow
+End Sub
+Sub worksheet_EndxlUp()
+'   nguyen tac giong voi xlDown, chi khac la chieu tu duoi len tren
+'   maxrow < startRow
+    
+    Dim startRow As Long, LastRow  As Long
+    startRow = 65000
+'    startRow = ActiveSheet.Rows.Count  'dung de xac dinh cell cuoi cung co data tren B column
+    
+    LastRow = Cells(startRow, "B").End(xlUp).Row
+    Debug.Print maxrow
+
+End Sub

@@ -1,0 +1,36 @@
+Option Explicit
+
+Private Const TYPE_FORM_CONTROL As Integer = 8      'Forms controls
+Private Const TYPE_ACTIVEX_CONTROL As Integer = 12  'ActiveX control (control toolbox) or a linked or embedded OLE object.
+Private Const TYPE_PICTURE As Integer = 13          'Picture
+
+
+Sub Delete_specific_Shapes()
+    Dim myshape As Shape
+    For Each myshape In ActiveSheet.Shapes
+ 
+        Debug.Print "-----"
+        Debug.Print "myshape.Type/Name", myshape.Type, myshape.Name
+        Debug.Print "", myshape.TopLeftCell.Address, myshape.BottomRightCell.Address
+        
+ 
+        If myshape.Type = TYPE_FORM_CONTROL Then
+            myshape.Delete
+            
+        
+        
+        ElseIf myshape.Type = TYPE_ACTIVEX_CONTROL Then
+'            myshape.Delete
+
+        
+        ElseIf myshape.Type = TYPE_PICTURE Then
+'            myshape.Delete
+
+        
+        End If
+        
+
+        ' You can also use  myshape.Visible = False
+ 
+    Next myshape
+End Sub

@@ -1,0 +1,35 @@
+Sub array_type()
+    Dim a7() As Variant 'array
+    ReDim a7(0) 're-size array loss data
+    ReDim Preserve a7(3)  're-size array without loss data
+
+    'set value
+    a7(0) = 1
+    a7(1) = 2
+    a7(2) = 3
+    a7(3) = 4
+    
+    'array lengh
+    Dim arrayLen As Integer
+    arrayLen = getArrayLen(a7)
+    
+    'list up
+    Dim i As Integer
+    For i = 0 To arrayLen - 1
+        Debug.Print a7(i)
+    Next i
+End Sub
+Public Function getArrayLen(arr() As Variant) As Integer
+    Dim isInitialised As Boolean
+    isInitialised = False
+    On Error Resume Next
+    isInitialised = IsNumeric(UBound(arr))
+    On Error GoTo 0
+    
+    If isInitialised = True Then
+        getArrayLen = UBound(arr) - LBound(arr) + 1
+    Else
+        getArrayLen = 0
+    End If
+'    Debug.Print "getArrayLen: " & getArrayLen
+End Function

@@ -1,0 +1,696 @@
+{
+	"root": [
+		{
+			"language": "CSharp",
+			"functions":[
+				{
+					"text":"Debug, log",
+					"value":[
+						{
+							"text":"WriteLine",
+							"value":"WriteLineHelper.txt"
+						}
+					]
+				},
+				{
+					"text":"Class",
+					"value":[
+						{
+							"text":"String",
+							"value":"string_function.txt"
+						},
+						{
+							"text":"Convert, parse",
+							"value":"Convert_parse.txt"
+						},
+						{
+							"text":"Instance delegate",
+							"value":"InstanceDelegate.txt"
+						},
+						{
+							"text":"Function delegate",
+							"value":"FunctionDelegate.txt"
+						},
+						{
+							"text":"Argument parse",
+							"value":"Argument.txt"
+						},
+						{
+							"text":"Open app",
+							"value":"OpenApp.txt"
+						},
+						{
+							"text":"Draw bitmap",
+							"value":"DrawBitmap.txt"
+						},
+						{
+							"text":"SendMessage, Shared Memory",
+							"value":"SendMessage_SharedMemory.txt"
+						},
+						{
+							"text":"Socket",
+							"value":"Socket.txt"
+						},
+						{
+							"text":"Json",
+							"value":"json.txt"
+						},
+						{
+							"text":"Excel",
+							"value":"excel.txt"
+						},
+						{
+							"text":"XML",
+							"value":"XML.txt"
+						}
+					]
+				},
+				{
+					"text":"Toolbox",
+					"value":[
+						{
+							"text":"UserControl",
+							"value":"UserControl.txt"
+						},
+						{
+							"text":"DataGridView",
+							"value":"DataGridView.txt"
+						},
+						{
+							"text":"PictureBox",
+							"value":"PictureBox.txt"
+						}
+					]
+				},
+				{
+					"text":"Multithreading, asynchronous",
+					"value":[
+						{
+							"text":"Task",
+							"value":"Task.txt"
+						},
+						{
+							"text":"BackgroundWorker",
+							"value":"BackgroundWorker.txt"
+						}
+					]
+				},
+				{
+					"text":"Properties",
+					"value":[
+						{
+							"text":"Settings",
+							"value":"Settings.txt"
+						},
+						{
+							"text":"Hide window form",
+							"value":"WinForm.txt"
+						}
+					]
+				},
+				{
+					"text":"Reference",
+					"value":"Reference.txt"
+				}
+				
+			]
+		},
+		
+		{
+			"language": "C++CLI",
+			"functions":[
+				{
+					"text":"Class",
+					"value":[
+						{
+							"text":"DataType",
+							"value":"DataType.txt"
+						},
+						{
+							"text":"Class and Structure",
+							"value":"classes_and_structures.txt"
+						}, 
+						{
+							"text":"Pointers and references",
+							"value":"pointers_and_references.txt"
+						},
+						{
+							"text":"Delegate",
+							"value":"delegate.txt"
+						},
+						{
+							"text":"Socket",
+							"value":"Socket.txt"
+						},
+						{
+							"text":"Multithreading",
+							"value":"Multithreading.txt"
+						},
+						{
+							"text":"Time counter",
+							"value":"TimeCounter.txt"
+						},
+						{
+							"text":"XML",
+							"value":"XML.txt"
+						},
+						{
+							"text":"Connect with java",
+							"value":"JavaConnection.txt"
+						}
+					]
+				},
+				{
+					"text":"JNA DLL",
+					"value":[
+						{
+							"text":"PointerByReference - char ** (in/out)",
+							"value":"JNA_PointerByReference.txt"
+						}
+					]
+				},
+				{
+					"text":"Tutorial",
+					"value":"Tutorial.txt"
+				}
+			]
+		},
+		
+		{
+			"language": "VBA",
+			"functions":[
+				{
+					"text":"Debug",
+					"value":[
+						{
+							"text":"Debug print",
+							"value":"Debug.txt"
+						}
+					]
+				},
+				{
+					"text":"Application",
+					"value":[
+						{
+							"text":"DisplayAlerts",
+							"value":"DisplayAlerts.txt"
+						},
+						{
+							"text":"InputTextBox",
+							"value":"InputTextBox.txt"
+						},
+						{
+							"text":"ScreenUpdate",
+							"value":"ScreenUpdate.txt"
+						},
+						{
+							"text":"Statusbar",
+							"value":"Statusbar.txt"
+						},
+						{
+							"text":"Wait",
+							"value":"Wait.txt"
+						}
+					]
+				},
+				{
+					"text":"Data type",
+					"value":[
+						{
+							"text":"Basic Type",
+							"value":"BasicType.txt"
+						},
+						{
+							"text":"Const",
+							"value":"Const.txt"
+						},
+						{
+							"text":"String",
+							"value":"String.txt"
+						},
+						{
+							"text":"Enum",
+							"value":"Enum.txt"
+						},
+						{
+							"text":"Struct",
+							"value":"Struct.txt"
+						},
+						{
+							"text":"Array",
+							"value":"Array.txt"
+						},
+						{
+							"text":"ArrayList",
+							"value":"ArrayList.txt"
+						},
+						{
+							"text":"Dictionary",
+							"value":"Dictionary.txt"
+						},
+						{
+							"text":"Queue",
+							"value":"Queue.txt"
+						}
+					]
+				},
+				{
+					"text":"If else, switch",
+					"value":[
+						{
+							"text":"If else",
+							"value":"IfElse.txt"
+						},
+						{
+							"text":"Switch",
+							"value":"Select_case.txt"
+						}
+					]
+				},
+				{
+					"text":"Environment.txt",
+					"value":[
+						{
+							"text":"Get Environment",
+							"value":"Environment.txt"
+						}
+					]
+				},
+				{
+					"text":"File, folder",
+					"value":[
+						{
+							"text":"Current Dir",
+							"value":"CurrentDir.txt"
+						},
+						{
+							"text":"Default Dir",
+							"value":"DefaultDir.txt"
+						},
+						{
+							"text":"Check File Exists",
+							"value":"CheckFileExists.txt"
+						},
+						{
+							"text":"Check Folder Exists",
+							"value":"CheckFolderExists.txt"
+						},
+						{
+							"text":"ScanFolder",
+							"value":"ScanFolder.txt"
+						}
+					]
+				},
+				{
+					"text":"Dialog",
+					"value":[
+						{
+							"text":"Select File Dialog",
+							"value":"SelectFileDialog.txt"
+						},
+						{
+							"text":"Save File Dialog",
+							"value":"SaveFileDialog.txt"
+						},
+						{
+							"text":"SelectFolderDialog.txt",
+							"value":"SelectFolderDialog.txt"
+						}
+					]
+				},
+				{
+					"text":"File read, write",
+					"value":[
+						{
+							"text":"Read file",
+							"value":"read_file.txt"
+						},
+						{
+							"text":"Write file",
+							"value":"write_file.txt"
+						},
+						{
+							"text":"XML",
+							"value":"XML.txt"
+						}
+					]
+				},
+				{
+					"text":"Goto, label",
+					"value":[
+						{
+							"text":"Goto, label",
+							"value":"Goto_lable.txt"
+						}
+					]
+				},
+				{
+					"text":"Loop",
+					"value":[
+						{
+							"text":"For",
+							"value":"For_loop.txt"
+						},
+						{
+							"text":"For each",
+							"value":"ForEach_loop.txt"
+						},
+						{
+							"text":"While",
+							"value":"While_loop.txt"
+						},
+						{
+							"text":"Do While",
+							"value":"DoWhile_loop.txt"
+						},
+						{
+							"text":"Do Until",
+							"value":"DoUntil_loop.txt"
+						}
+					]
+				},
+				{
+					"text":"Sub, function",
+					"value":[
+						{
+							"text":"Sub",
+							"value":"Sub.txt"
+						},
+						{
+							"text":"Function",
+							"value":"Function.txt"
+						}
+					]
+				},
+				{
+					"text":"With",
+					"value":[
+						{
+							"text":"With tag",
+							"value":"With.txt"
+						}
+					]
+				},
+				{
+					"text":"Workbook",
+					"value":[
+						{
+							"text":"Note",
+							"value":"workbook.txt"
+						},
+						{
+							"text":"Add new",
+							"value":"workbook_add.txt"
+						},
+						{
+							"text":"Open, save",
+							"value":"Workbook_open_save.txt"
+						},
+						{
+							"text":"Active",
+							"value":"workbook_active.txt"
+						},
+						{
+							"text":"List up",
+							"value":"workbook_listall.txt"
+						}
+					]
+				},
+				{
+					"text":"Worksheet",
+					"value":[
+						{
+							"text":"Note",
+							"value":"worksheet.txt"
+						},
+						{
+							"text":"Add new",
+							"value":"Worksheet_add.txt"
+						},
+						{
+							"text":"Delete",
+							"value":"worksheet_delete.txt"
+						},
+						{
+							"text":"Active",
+							"value":"worksheet_active.txt"
+						},
+						{
+							"text":"Move",
+							"value":"worksheet_move.txt"
+						},
+						{
+							"text":"Copy",
+							"value":"worksheet_Copy.txt"
+						},
+						{
+							"text":"List up",
+							"value":"worksheet_listAll.txt"
+						}
+					]
+				},
+				{
+					"text":"Range, cell",
+					"value":[
+						{
+							"text":"Select",
+							"value":"Selection_row_col_cell_range.txt"
+						},
+						{
+							"text":"Max, last row",
+							"value":"MaxRow_LastRow.txt"
+						},
+						{
+							"text":"Find text",
+							"value":"worksheet_findText.txt"
+						},
+						{
+							"text":"Merge",
+							"value":"merge_test.txt"
+						},
+						{
+							"text":"Clear",
+							"value":"range_Clear.txt"
+						},
+						{
+							"text":"Text font, color",
+							"value":"text_font_color.txt"
+						},
+						{
+							"text":"Bacground color",
+							"value":"background_color.txt"
+						}
+					]
+				},
+				{
+					"text":"Shell script",
+					"value":[
+						{
+							"text":"WScrips Shell",
+							"value":"WScript_Shell.txt"
+						},
+						{
+							"text":"Return Code",
+							"value":"WScript_Shell_ReturnCode.txt"
+						},
+						{
+							"text":"Stream Ouput",
+							"value":"WScript_Shell_StreamOuput.txt"
+						}
+					]
+				},
+				{
+					"text":"UserForm",
+					"value":[
+						{
+							"text":"Show, hide, unload",
+							"value":"UserForm_show_hide_unload.txt"
+						},
+						{
+							"text":"Command button",
+							"value":"CommandButton.txt"
+						},
+						{
+							"text":"Label",
+							"value":"Label.txt"
+						},
+						{
+							"text":"TextBox",
+							"value":"TextBox.txt"
+						},
+						{
+							"text":"ListBox",
+							"value":"ListBox.txt"
+						},
+						{
+							"text":"ComboBox.txt",
+							"value":"ComboBox.txt"
+						},
+						{
+							"text":"ChekcBox, radio button",
+							"value":"ChekcBox_radioButton.txt"
+						},
+						{
+							"text":"Progress dialog",
+							"value":"UserForm_progress_dialog.txt"
+						}
+					]
+				},
+				{
+					"text":"Access",
+					"value":[
+						{
+							"text":"Window Registry",
+							"value":[
+								{
+									"text":"Read",
+									"value":"Read_Registry.txt"
+								},
+								{
+									"text":"Check exist",
+									"value":"RegKeyExists.txt"
+								},
+								{
+									"text":"Save",
+									"value":"RegKeySave.txt"
+								},
+								{
+									"text":"Delete",
+									"value":"RegKeyDelete.txt"
+								}
+							]
+						},
+						{
+							"text":"SQL",
+							"value":[
+								{
+									"text":"Read",
+									"value":"SQL_read.txt"
+								}
+							]
+						}
+					]
+				},
+				{
+					"text":"On Error",
+					"value":[
+						{
+							"text":"On Error",
+							"value":"On_Error.txt"
+						},
+						{
+							"text":"Resume",
+							"value":"ErrorResumeNext.txt"
+						},
+						{
+							"text":"Goto 0",
+							"value":"ErrorGoTo0.txt"
+						},
+						{
+							"text":"Goto Label",
+							"value":"ErrGoToLabel.txt"
+						}
+					]
+				},
+				{
+					"text":"Excel",
+					"value":[
+						{
+							"text":"ComboBox",
+							"value":"Excel_combobox.txt"
+						},
+						{
+							"text":"ActiveX Controls",
+							"value":[
+								{
+									"text":"Set/get value",
+									"value":"Excel_ActiveX_set_get.txt"
+								},
+								{
+									"text":"Get type",
+									"value":"Excel_ActiveX_get_type.txt"
+								}
+							
+							]
+						},
+						{
+							"text":"Shapes",
+							"value":[
+								{
+									"text":"Type of shapes",
+									"value":"Excel_Shapes_type.txt"
+								},
+								{
+									"text":"Delete",
+									"value":[
+										{
+											"text":"All",
+											"value":"Excel_Shapes_delete_alls.txt"
+										},
+										{
+											"text":"Specific",
+											"value":"Excel_Shapes_delete_specific.txt"
+										}
+									
+									]
+								}
+							
+							]
+						}
+						
+					]
+				},
+				{
+					"text":"Utility",
+					"value":[
+						{
+							"text":"Create index number",
+							"value":"create_index_number.txt"
+						}
+					]
+				},
+				{
+					"text":"Reference",
+					"value":"Excel_Reference.txt"
+				}
+				
+			]
+		},
+		{
+			"language": "WindowsShell",
+			"functions":[
+				{
+					"text":"Command",
+					"value":[
+						{
+							"text":"xcopy",
+							"value":"xcopy.txt"
+						},
+						{
+							"text":"robocopy",
+							"value":"robocopy.txt"
+						}
+					]
+				}
+			]
+		},
+		{
+			"language": "VBScripts",
+			"functions":[
+				{
+					"text":"Dialog",
+					"value":[
+						{
+							"text":"Progress bar",
+							"value":"progress.vbs"
+						}
+					]
+				},
+				{
+					"text":"Reference",
+					"value":"Reference.txt"
+				}
+			]
+		}
+	]
+}

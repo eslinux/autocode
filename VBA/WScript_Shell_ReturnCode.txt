@@ -1,0 +1,28 @@
+
+Sub test_compare_getReturnCode()
+    Dim cmd As String
+    cmd = "fc /lb2 /b C:\Users\pc\Downloads\vba\cmp\as.exe C:\Users\pc\Downloads\vba\cmp\ash.exe > NUL"
+    
+    
+    Dim ret As Integer
+    ret = ShellRunGetReturnCode(cmd)
+    Select Case ret
+        Case 0
+            Debug.Print "two File are the same"
+        Case Else
+            Debug.Print "two File are not the same"
+    End Select
+End Sub
+
+
+'---API start---
+Public Function ShellRunGetReturnCode(ByVal sCmd As String) As Integer
+    ShellRunGetReturnCode = -1
+    
+    sCmd = "cmd /c " & sCmd
+
+    Dim oShell As Object
+    Set oShell = CreateObject("WScript.Shell")
+    
+    ShellRunGetReturnCode = oShell.Run(sCmd, 0, True) 'set 0 to hiden window, 1 to show window
+End Function

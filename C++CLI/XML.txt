@@ -1,0 +1,146 @@
+
+
+using namespace System::Xml;
+void createXML() {
+	try {
+		//Create XML document
+		XmlDocument^ doc = gcnew XmlDocument;
+		doc->LoadXml("<a1></a1>");
+		//doc->Load("/path/to/file.xml");
+
+		//root element
+		XmlElement ^root = doc->DocumentElement;
+
+		//create new element and append to root
+		XmlElement^ newElem = doc->CreateElement("value");
+		newElem->InnerText = "105";
+		root->AppendChild(newElem);
+
+		//Set Attribute
+		newElem->SetAttribute("id", "123");
+		
+		newElem = doc->CreateElement("hotkey");
+		newElem->InnerText = "2";
+		root->AppendChild(newElem);
+
+		newElem = doc->CreateElement("enable");
+		newElem->InnerText = "0";
+		root->AppendChild(newElem);
+
+		Console::WriteLine("createXML a1: " + doc->InnerXml);
+		//<a1><value id="123">105</value><hotkey>2</hotkey><enable>0</enable></a1>
+		
+		
+		//doc->Save("test.xml");
+		
+		
+		
+		//----- add sttribute to XmlNode ^node-----
+		XmlAttribute ^attr = doc->CreateAttribute("attributeName");
+		attr->Value = "valueOfTheAttribute";
+		node->Attributes->Append (attr);
+
+	}
+	catch (...) {
+
+
+	}
+}
+
+
+void createXML() {
+	try {
+		//<musiccollection>
+		//	<album>
+		//		<shelfnumber>FJ - 7264 < / shelfnumber >
+		//		<title>Symphony - Bantu< / title>
+		//		<artist>Vincent Nguini< / artist>
+		//		< copyrightyear>1994 < / copyrightyear >
+		//		<publisher>Mesa Records< / publisher>
+		//	< / album>
+		//	<album>
+		//		<shelfnumber>MR - 2947 < / shelfnumber >
+		//		<title>None< / title>
+		//		<artist>Debbie Gibson< / artist>
+		//		< copyrightyear>1990 < / copyrightyear >
+		//		<publisher>Atlantic< / publisher>
+		//	< / album>
+		//< / musiccollection>
+
+
+		XmlDocument^ doc = gcnew XmlDocument;
+		doc->LoadXml(L"<musiccollection><album id = \"1\">"
+					L"<shelfnumber>FJ-7264</shelfnumber>"
+					L"<title>Symphony-Bantu</title>"
+					L"<artist>Vincent Nguini</artist>"
+					L"<copyrightyear>1994</copyrightyear>"
+					L"<publisher>Mesa Records</publisher></album>"
+					L"<album  id = \"2\"><shelfnumber>MR-2947</shelfnumber>"
+					L"<title>None</title><artist>Debbie Gibson</artist>"
+					L"<copyrightyear>1990</copyrightyear>"
+					L"<publisher>Atlantic</publisher>"
+					L"</album></musiccollection>");
+
+		//root element
+		XmlElement ^root = doc->DocumentElement;
+
+		XmlNode ^node;
+		XmlNodeList ^node_list = root->SelectNodes("//album");
+		for each(XmlNode ^node in node_list) {
+			XmlElement^ elm = safe_cast<XmlElement^>(node);
+
+			Console::WriteLine("node: " + node->Name + ", " + elm->GetAttribute("id"));
+
+			for each(XmlNode ^nodeChild in node->ChildNodes) {
+				Console::WriteLine("    nodeChild: " + nodeChild->Name + ", " + nodeChild->InnerText);
+			}
+		}
+
+		//node: album, 1
+		//	nodeChild: shelfnumber, FJ-7264
+		//	nodeChild: title, Symphony-Bantu
+		//	nodeChild: artist, Vincent Nguini
+		//	nodeChild: copyrightyear, 1994
+		//	nodeChild: publisher, Mesa Records
+		//node: album, 2
+		//	nodeChild: shelfnumber, MR-2947
+		//	nodeChild: title, None
+		//	nodeChild: artist, Debbie Gibson
+		//	nodeChild: copyrightyear, 1990
+		//	nodeChild: publisher, Atlantic
+	
+	}
+	catch (...) {
+
+
+	}
+}
+
+
+void TestAttribute() {
+	//Create XML document
+	XmlDocument^ doc = gcnew XmlDocument;
+	...	
+		
+	//---element get----
+	XmlElement^ elm = ...
+	String ^id = elm->GetAttribute("id");
+	
+	//---element set----
+	XmlElement^ elm = ...
+	elm->SetAttribute("id", "123");
+	
+	
+	//---node get----
+	XmlNode^ node = ...
+	XmlElement^ elm = safe_cast<XmlElement^>(node);
+	String ^id = elm->GetAttribute("id");
+	
+	//---node set----
+	XmlAttribute ^attr = doc->CreateAttribute("attributeName");
+	attr->Value = "valueOfTheAttribute";
+	node->Attributes->Append (attr);
+}
+
+
+

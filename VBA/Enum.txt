@@ -1,0 +1,10 @@
+'define EUM
+Enum EMessages
+  Welcome = 1
+  Error = 2
+  Warning = 3
+End Enum
+
+Sub enum_type()
+  Debug.Print EMessages.Welcome
+End Sub

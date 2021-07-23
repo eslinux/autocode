@@ -1,0 +1,18 @@
+
+'--------------------------------------------------------------
+'CheckFileExists: check file exists o not
+'path: file path
+'      "C:\Users\Nikola\Desktop\VBA articles\Test File Exists.xlsx"
+'--------------------------------------------------------------
+Function CheckFileExists(path As String) As Boolean
+    CheckFileExists = False
+    If path = "" Then
+        Exit Function
+    End If
+    
+    Dim strExists As String
+    strExists = Dir(path)
+    If strExists <> "" Then
+        CheckFileExists = True
+    End If
+End Function

@@ -1,0 +1,11 @@
+Sub clear_test()
+
+    Range("a1").Clear               'Everything
+    Range("a1").ClearComments       'Comments
+    Range("a1").ClearContents       'Contents
+    Range("a1").ClearFormats        'Formats
+    Range("a1").ClearHyperlinks     'Hyperlinks
+    Range("a1").ClearNotes          'Notes
+    Range("a1").ClearOutline        'Outline
+
+End Sub

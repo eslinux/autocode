@@ -1,0 +1,10 @@
+'Struct: workbook.worksheet.Cell/Range
+'Select workbook:  Workbooks("workbookName")
+'NOTE:
+'      ThisWorkbook: this vba source code owner workbook
+'      ActiveWorkbook: in case mutiple workbook are opened, ActiveWorkbook which is selected(focus)
+'                      Worksheet RUN ON ActiveWorkbook
+'                      -> ActiveWorkbook.ActiveSheet.Cell/Range
+'                      -> BE CAREFUL WHEN OPENED MULTIPLE WORKBOOK AT THE SAME TIME
+'Select worksheet: by name Worksheets("worksheetName") or by index  Worksheets(1), Worksheets(2)
+'Select current worksheet: ActiveSheet

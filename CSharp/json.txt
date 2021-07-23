@@ -1,0 +1,87 @@
+using System.Json; //add from NUGET
+
+
+private void button1_Click(object sender, EventArgs e)
+{
+
+
+
+	String JSON_DATA = "{"
+					   + "  \"geodata\": ["
+					   + "    {"
+					   + "      \"id\": \"1\","
+					   + "      \"name\": \"Julie Sherman\","
+					   + "      \"gender\" : \"female\","
+					   + "      \"latitude\" : \"37.33774833333334\","
+					   + "      \"longitude\" : \"-121.88670166666667\""
+					   + "    },"
+					   + "    {"
+					   + "      \"id\": \"2\","
+					   + "      \"name\": \"Johnny Depp\","
+					   + "      \"gender\" : \"male\","
+					   + "      \"latitude\" : \"37.336453\","
+					   + "      \"longitude\" : \"-121.884985\""
+					   + "    }"
+					   + "  ]"
+					   + "}";
+
+	//String json = "{\"table\":\"Data\",\"params\": [{\"row\": 1,\"column\": \"col1\"},{\"row\": 2,\"column\": \"col2\"}]}";
+	String json = "{"
+			+ " \"table\":\"test\","
+			+ " \"params\": ["
+			+ "			{"
+			+ "				\"row\": 1,"
+			+ "				\"column\": \"col1\""
+			+ "			},"
+			+ "			{"
+			+ "				\"row\": 2,"
+			+ "				\"column\": \"col2\""
+			+ "			}"
+			+ "		]"
+			+ "}";
+
+	
+	JsonValue rootValue= JsonObject.Parse(json);
+
+
+	//Console.WriteLine(rootValue.ContainsKey("table1"));
+	//Console.WriteLine(rootValue.ContainsKey("params"));
+	JsonValue val_table = rootValue["table"];
+	JsonValue val_params = rootValue["params"];
+
+	switch (val_params.JsonType)
+	{
+		case JsonType.Array:
+			Console.WriteLine("Array len: " + val_params.Count);
+			break;
+	}
+
+
+	//foreach (JsonValue item in val_params)
+	//{
+	//    item["row"] = 3;
+	//}
+
+
+	foreach (JsonValue item in val_params)
+	{
+		Console.WriteLine(item["row"].ToString());
+		Console.WriteLine(item["column"].ToString() + "\n\n");
+	}
+
+
+
+	Console.WriteLine(rootValue.ToString());
+
+
+	//Console.WriteLine(val_table.JsonType);
+	//Console.WriteLine(val_params.JsonType);
+
+
+	
+
+	//Console.WriteLine(jsonObject["someKey"].ToString());
+
+	//Console.WriteLine(jsonObject.ToString());
+
+}

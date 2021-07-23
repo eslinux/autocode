@@ -1,0 +1,114 @@
+NOTE:
+backgroundWorker khong bi block boi Thread.Sleep
+
+
+// 
+// backgroundWorker1 (co the khai bao tu tab Properties > Event)
+// 
+this.backgroundWorker1.WorkerReportsProgress = true;
+this.backgroundWorker1.WorkerSupportsCancellation = true;
+this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+
+
+
+private void button_openExcel_Click(object sender, EventArgs e)//Load excel data
+{
+   
+	if (backgroundWorker1.IsBusy)
+	{
+		backgroundWorker1.CancelAsync();
+	}
+	else
+	{
+		int value = 10;
+		backgroundWorker1.RunWorkerAsync(value);
+		//backgroundWorker1.RunWorkerAsync();
+		
+		//myprogressbar = new Progressbar();
+		DialogResult result = myprogressbar.ShowDialog(this);
+		if (result == DialogResult.Cancel)
+		{
+			//MessageBox.Show("Canced");
+		}
+		else if (result == DialogResult.Abort)
+		{
+
+			//MessageBox.Show("Error");
+		}
+		else if (result == DialogResult.OK)
+		{
+
+			//MessageBox.Show("OK ");
+		}
+
+		//myprogressbar.Dispose();
+	
+	} 
+}
+
+
+private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+{
+	//************************************************************
+	// ---the 'argument' parameter resurfaces here
+	//int value = (int)e.Argument;   
+	//backgroundWorker1.ReportProgress((int)(i / length * 100));
+	//backgroundWorker1.ReportProgress(100);
+	//throw new Exception("BOOM");
+	// ---and to transport a result back to the main thread
+	//double result = 0.1 * value;
+	//e.Result = result;
+	//************************************************************
+
+	//do somethings long time, can not update UI here
+	e.Result = (int)RET_OK;
+	
+}
+
+private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+{//invoke by "backgroundWorker1.ReportProgress(100);"
+ // use it on the UI thread
+
+	if (!backgroundWorker1.CancellationPending)
+	{
+		Console.WriteLine("backgroundWorker1_ProgressChanged: " + e.ProgressPercentage);
+	}
+}
+
+private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+{// use it on the UI thread
+
+	// check error, check cancel, then use result
+	if (e.Error != null)
+	{
+		// handle the error by "throw new Exception"
+		Console.WriteLine("backgroundWorker1_RunWorkerCompleted: Error");
+	}
+	else if (e.Cancelled)
+	{
+		// handle cancellation invoke by "e.Cancel = true; backgroundWorker1.CancelAsync();"
+		Console.WriteLine("backgroundWorker1_RunWorkerCompleted: cancellation" );
+		
+	}
+	else
+	{
+		//Console.WriteLine("backgroundWorker1_RunWorkerCompleted: normal " );
+		if ((int)e.Result == (int)RET_OK)
+		{
+			//do something
+		}else if ((int)e.Result == (int)RET_NG)
+		{
+			//do something
+		}
+		else
+		{
+			//do something
+
+		}
+	}
+	// general cleanup code, runs when there was an error or not.
+	myprogressbar.Close();
+
+}

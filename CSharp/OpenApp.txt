@@ -1,0 +1,63 @@
+public void RunProcess(string arg1, string arg2)
+{
+
+    string arg1 = "\"" + arg1 + "\"";
+    string arg2 = "\"" + arg2 + "\"";
+
+    System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+    pProcess.StartInfo.FileName = Directory.GetCurrentDirectory()+ "\\" + Application.ProductName;
+    pProcess.StartInfo.Arguments = arg1 + " " + arg2;
+    pProcess.Start();
+    //pProcess.WaitForExit();
+    //pProcess.Close();
+}
+
+
+
+public static /*async*/ void OpenImage(string imagePath)
+{
+    var exePathReturnValue = new StringBuilder();
+    FindExecutable(Path.GetFileName(imagePath), Path.GetDirectoryName(imagePath), exePathReturnValue);
+    var exePath = exePathReturnValue.ToString();
+    var arguments = "\"" + imagePath + "\"";
+
+    Console.WriteLine("exePath: " + exePath);
+
+
+
+    //Handle cases where the default application is photoviewer.dll.
+    if (Path.GetFileName(exePath).Equals("photoviewer.dll", StringComparison.InvariantCultureIgnoreCase))
+    {
+        arguments = "\"" + exePath + "\", ImageView_Fullscreen " + imagePath;
+        exePath = "rundll32";
+
+        var process = new Process();
+        process.StartInfo.FileName = exePath;
+        process.StartInfo.Arguments = arguments;
+
+        process.Start();
+
+        //await Task.Delay(time);
+
+        //process.Kill();
+        //process.Close();
+    }
+}
+
+
+
+
+//open any file by windows default application
+public static void OpenFile(string filePath)
+{
+
+    var arguments = "\"" + filePath + "\"";
+    System.Diagnostics.Process.Start(arguments);
+
+}
+
+
+
+
+
+

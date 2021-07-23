@@ -1,0 +1,64 @@
+Sub dictionary_type()
+
+    'Declare
+    Dim dict As Object
+    Set dict = CreateObject("Scripting.Dictionary")
+    
+    Dim child As Object
+    Set child = CreateObject("Scripting.Dictionary")
+    
+    
+    'Set value
+    child("a") = "aa"
+    child("b") = "bb"
+    child("c") = "cc"
+    
+    dict("mot") = 1
+    dict("hai") = 2
+    dict("ba") = 3
+    Set dict("child") = child
+
+'---Add item (key must not already exist)
+'dict.Add Key, Value
+'e.g.dict.Add "Apples", 50
+    
+      
+    
+    'list up
+    Dim key As Variant
+    For Each key In dict.Keys
+        If key = "child" Then
+            Dim tmpobj As Object
+            Dim tmpkey As Variant
+            
+            Set tmpobj = dict(key)
+            For Each tmpkey In tmpobj.Keys
+                Debug.Print key, tmpkey, tmpobj(tmpkey)
+            Next tmpkey
+        Else
+            Debug.Print key, dict(key)
+        End If
+    Next key
+    
+'---Check if key exists
+'dict.Exists (key)
+'e.g. If dict.Exists("Apples") Then
+'
+'---Remove Item
+'dict.Remove key
+'e.g.dict.Remove "Apples"
+'
+'
+'---Remove all items
+'dict.RemoveAll
+
+'---Get the number of items
+'dict.Count
+'
+
+
+    'destructure at the end
+    Set child = Nothing
+    Set dict = Nothing
+
+End Sub

@@ -1,0 +1,87 @@
+//*************************************************************************************
+Speed up display of Datagridview:
+1. Enable "DoubleBuffered"
+2. Disable re-draw when add columns and add rows
+//*************************************************************************************
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
+namespace WindowsFormsApp3
+{
+    public partial class Form_Spliter : Form
+    {
+
+        // *** API Declarations ***
+        [DllImport("user32.dll")]
+        private static extern int SendMessage(IntPtr hWnd, Int32 wMsg, bool wParam, Int32 lParam);
+        private const int WM_SETREDRAW = 11;
+
+
+        public Form_Spliter()
+        {
+            InitializeComponent();
+        }
+
+        private void Form_Spliter_Load(object sender, EventArgs e)
+        {
+
+            //Disable re-draw
+            SendMessage(dataGridView1.Handle, WM_SETREDRAW, false, 0);
+
+            //add column and rows
+            for (int i = 1; i < 15; i++)
+            {
+                dataGridView1.Columns.Add(i.ToString(), "Col" + i.ToString());
+            }
+
+            for (int i = 1; i < 30; i++)
+            {
+                string[] rarr = new string[dataGridView1.ColumnCount];
+                for(int j = 0; j < dataGridView1.ColumnCount; j++)
+                {
+                    rarr[j] = j.ToString();
+                }
+                dataGridView1.Rows.Add(rarr);
+            }
+
+            //set column width
+            for (int i = 1; i < 15; i++)
+            {
+                dataGridView1.Columns[i.ToString()].Width = 20 + i;
+            }
+
+            //enable re-draw
+            SendMessage(dataGridView1.Handle, WM_SETREDRAW, true, 0);
+            dataGridView1.Refresh();
+
+            //enable to speed up datagridview when resize
+            if (!System.Windows.Forms.SystemInformation.TerminalServerSession)
+            {
+                Type dgvType = dataGridView1.GetType();
+                PropertyInfo pi = dgvType.GetProperty("DoubleBuffered",
+                  BindingFlags.Instance | BindingFlags.NonPublic);
+                pi.SetValue(dataGridView1, true, null);
+            }
+
+        }
+
+    }
+}
+
+
+//-----------Custom Datagridview cell------------------
+https://stackoverflow.com/questions/22045297/how-to-add-ellipse-button-and-textbox-in-current-cell-of-datagridview-in-winform/22046114
+
+https://docs.microsoft.com/en-us/dotnet/desktop/winforms/controls/how-to-host-controls-in-windows-forms-datagridview-cells?view=netframeworkdesktop-4.8

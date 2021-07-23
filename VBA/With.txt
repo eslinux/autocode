@@ -1,0 +1,33 @@
+'with use to set atribute or run method of instance
+'
+'
+
+Sub with_produce()
+    
+    ' child with
+    With Worksheets("Sheet1")
+        With .Range("A1") ' Sheet1.Range("A1")
+            .Value = "Tips"              ' Sheet1.Range("A1").Value
+            .Font.Color = RGB(255, 0, 0) ' Sheet1.Range("A1").Font.Color
+        End With
+    End With
+    
+    ' or
+    With Worksheets("Sheet1").Range("A1")
+        .Value = "Tips"                  ' Sheet1.Range("A1").Value
+        .Font.Color = RGB(255, 0, 0)
+        .Interior.Color = RGB(255, 255, 0)
+    End With
+
+
+    'open workbook -> edit -> close(save)
+    With Workbooks.Open(ThisWorkbook.path & "\data\test.xlsx")
+        With .Worksheets(1)
+            'edit sheet1 here
+            
+            
+        End With
+        .Close
+    End With
+    
+End Sub

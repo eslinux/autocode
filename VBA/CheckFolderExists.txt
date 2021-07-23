@@ -1,0 +1,18 @@
+
+'--------------------------------------------------------------
+'CheckFolderExists: check folder exists o not
+'path: folder path
+'      "C:\Users\Nikola\Desktop\VBA articles\Test Folder\"
+'--------------------------------------------------------------
+Function CheckFolderExists(path As String)
+    CheckFolderExists = False
+    If path = "" Then
+        Exit Function
+    End If
+
+    Dim strExists As String
+    strExists = Dir(path, vbDirectory)
+    If strExists <> "" Then
+        CheckFolderExists = True
+    End If
+End Function

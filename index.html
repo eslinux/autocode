@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Autocode</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+//function isObject(obj)
+//{
+//    return obj !== undefined && obj !== null && obj.constructor == Object;
+//}
+
+function isArray(obj)
+{
+    return obj !== undefined && obj !== null && obj.constructor == Array;
+}
+
+//function isBoolean(obj)
+//{
+//    return obj !== undefined && obj !== null && obj.constructor == Boolean;
+//}
+//
+//function isFunction(obj)
+//{
+//    return obj !== undefined && obj !== null && obj.constructor == Function;
+//}
+//
+//function isNumber(obj)
+//{
+//    return obj !== undefined && obj !== null && obj.constructor == Number;
+//}
+//
+//function isString(obj)
+//{
+//    return obj !== undefined && obj !== null && obj.constructor == String;
+//}
+//
+//function isInstanced(obj)
+//{
+//    if(obj === undefined || obj === null) { return false; }
+//
+//    if(isArray(obj)) { return false; }
+//    if(isBoolean(obj)) { return false; }
+//    if(isFunction(obj)) { return false; }
+//    if(isNumber(obj)) { return false; }
+//    if(isObject(obj)) { return false; }
+//    if(isString(obj)) { return false; }
+//
+//    return true;
+//}
+
+
+
+
+function addSpanNode(obj, value_link)
+{
+	var ret_li = '<li > \n';
+	ret_li = ret_li + '<span class="caret">' + obj.text + '</span> \n'
+	ret_li = ret_li + '<ul class="nested"> \n'
+	
+	for (i in obj.value) {//array
+		
+		if(isArray(obj.value[i].value)) { 
+				//have child node
+				//console.log("value is array: " + obj.value[i].text);
+				ret_li = ret_li + addSpanNode(obj.value[i], value_link);
+		}else{
+			ret_li = ret_li + '<li class="autocode_item"  value="' + value_link + obj.value[i].value + '" >' +  obj.value[i].text  + '</li> \n' 
+		}
+	}
+	
+	ret_li = ret_li + '</ul> \n'
+	ret_li = ret_li + '</li> \n'
+	
+	//		  <li >
+	//			<span class="caret">Green Tea</span>
+	//			<ul class="nested">
+	//			  <li class="autocode_item"  value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f1 </li>
+	//			  <li class="autocode_item"  value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f2</li>
+	//			  <li class="autocode_item"  value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f3</li>
+	//			  <li class="autocode_item"  value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f4</li>
+	//			</ul>
+	//		  </li>
+
+	return ret_li;
+}
+
+
+function createLanguageList(jobj)
+{
+	var opt = "";
+	for (i in jobj) {
+		opt = opt + '<option >' +  jobj[i].language + '</option> \n'
+	}
+	//console.log("createLanguageList: " + opt);
+	$("select").html(opt);
+}
+
+function setLanguage(i_language){
+	
+	$.get(getHostURL()+ '/database.json',function(jdata) {
+		
+		
+		
+		
+		if(i_language == ""){
+			//default first language
+			createLanguageList(jdata.root);
+			createFunctionList(jdata.root[0]);
+		}else{
+			for (i in jdata.root) {
+				if(jdata.root[i].language == i_language){
+					createFunctionList(jdata.root[i]);
+					break;
+				}
+			}	
+		}	
+	});
+	
+}
+
+
+function createFunctionList(data)
+{
+	var value_link = getHostURL() + '/' + data.language + '/';
+	//data: return json object
+	//console.log(data);
+	$("#language").text("Autocode for " + data.language);
+	
+	
+	//CREATE LEFT BOX (function list)
+	var left_list = "";
+	for (i in data.functions) {
+		//console.log(data.functions[i].text);
+		
+		left_list = left_list + '<ul id="myUL"> \n' 
+		if(isArray(data.functions[i].value)) { 
+			//have child node
+			left_list = left_list + addSpanNode(data.functions[i], value_link);
+		}else{
+			left_list = left_list + '<li class="autocode_item"  value="' + value_link + data.functions[i].value + '" >' +  data.functions[i].text  + '</li> \n' 
+			//console.log("value link: " + data.functions[i].value);
+		}
+		left_list = left_list + '</ul> \n' 
+	}
+	$(".left").html(left_list);
+	
+	
+	
+	//<ul id="myUL">
+	//  <li>
+	//	<span class="caret">m1</span>
+	//	<ul class="nested">
+	//	  <li class="autocode_item" value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f1</li>
+	//	  <li class="autocode_item" value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f2</li>
+	//	  <li>
+	//		<span class="caret">m1-1</span>
+	//		<ul class="nested">
+	//		  <li class="autocode_item"  value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f3</li>
+	//		  <li class="autocode_item"  value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f4</li>
+	//		  <li >
+	//			<span class="caret">m1-1-1</span>
+	//			<ul class="nested">
+	//			  <li class="autocode_item"  value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f5 </li>
+	//			  <li class="autocode_item"  value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f6</li>
+	//			  <li class="autocode_item"  value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f7</li>
+	//			  <li class="autocode_item"  value="https://eslinux.github.io/autocode/CSharp/Task.txt" >f8</li>
+	//			</ul>
+	//		  </li>
+	//		</ul>
+	//	  </li>  
+	//	</ul>
+	//  </li>
+	//</ul>
+
+	
+	
+	//<!-- LEFT BOX START-->
+	var toggler = document.getElementsByClassName("caret");
+	for (var i = 0; i < toggler.length; i++) {
+	  toggler[i].addEventListener("click", function() {
+		//console.log("toggler");
+		
+		this.parentElement.querySelector(".nested").classList.toggle("active");
+		this.classList.toggle("caret-down");
+	  });
+	}
+
+
+	$(".autocode_item").click(function ()
+	{      
+		//console.log("autocode_item clicked " + $(this).text());
+		var fname = $(this).text();
+		var i_url = $(this).attr("value");
+		$.get(i_url,function(data) {
+		
+			var retdata = "//---------------------------------------\n"  + "//         " +  fname  + "\n"  + "//---------------------------------------\n"
+			retdata = retdata + data  + "\n\n\n\n\n" +  $(".right").text();
+		   $(".right").text(retdata);
+		});
+	});
+}
+
+function getHostURL() {
+	//alert("The URL of this page is: " + window.location.href);
+	var local_link = window.location.href;
+	var n = local_link.lastIndexOf("/");
+	return local_link.substring(0, n) ;
+	
+	//return "https://eslinux.github.io/autocode";
+}
+	
+
+//Load page ready
+$(document).ready(function() {
+
+	//Get function database
+	setLanguage("");
+	
+	//Change language event
+	$( "select" ).change(function() {
+	  //alert( "Change language to " + $(':selected').text());
+	  setLanguage($(':selected').text());
+	});
+
+	//<!-- Clean code button-->
+	$("#clean_autocode_editor").click(function ()
+	{      
+		$(".right").text("");
+	});
+	
+	
+	$("#copy_to_clipboard").click(function ()
+	{      
+		$(".right").select();
+		document.execCommand("copy");
+	});
+}); 
+  
+</script>
+
+
+<style>
+body {
+  background-image: url('https://img.wallpapersafari.com/desktop/1920/1080/30/51/pcJu9j.jpg');
+}
+
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.caret-down::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */'
+  transform: rotate(90deg);  
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+
+
+.split {
+  height: 500px; /* only for demonstration, should be removed */
+  background: white;
+  padding: 20px;
+  overflow: auto;
+  
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px white;
+}
+
+.left {
+  width: 30%;
+  float: left;
+}
+
+
+.right {
+  width: 60%;
+  float: right;
+  resize: none;
+}
+
+#clean_autocode_editor{
+  float: right;
+  padding: 10px;
+  margin-top: 25px;
+}
+
+#copy_to_clipboard{
+  float: right;
+  padding: 10px;
+  margin-top: 25px;
+}
+
+</style>
+</head>
+
+
+
+
+<body>
+
+<div>
+<h2 id="language" >Autocode</h2>
+<select></select>
+</div>
+
+
+<!-- LEFT BOX -->
+<div class="split left"></div> 
+
+<!-- RIGHT BOX -->
+<textarea class="split right" readonly ></textarea>
+
+<!-- Copy/Clean code button -->
+<div>
+<button type="button" id="clean_autocode_editor" >Clean code</button>
+<button type="button" id="copy_to_clipboard" >Copy to clipboard</button>
+</div>
+
+
+
+</body>
+</html>
+
+

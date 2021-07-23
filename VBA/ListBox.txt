@@ -1,0 +1,12 @@
+'Empty ListBox1
+ListBox1.Clear
+
+'Fill ListBox1
+With ListBox1
+    .AddItem "San Francisco"
+    .AddItem "Oakland"
+    .AddItem "Richmond"
+End With
+
+'get ListBox1
+Cells(emptyRow, 3).Value = ListBox1.Value

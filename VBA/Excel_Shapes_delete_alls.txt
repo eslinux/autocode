@@ -1,0 +1,12 @@
+Sub Delete_All_Shapes()
+    'Delete all Objects except Comments
+    On Error Resume Next
+    
+    ActiveSheet.DrawingObjects.Visible = True
+    ActiveSheet.DrawingObjects.Delete
+    
+    On Error GoTo 0
+End Sub
+
+
+

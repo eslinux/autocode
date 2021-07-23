@@ -1,0 +1,34 @@
+
+Sub test_compare_getOutput()
+    Dim cmd As String
+    cmd = "fc /b C:\Users\NinhLD\Downloads\vba\cmp\excel_VBA.txt C:\Users\NinhLD\Downloads\vba\cmp\excel_VBA2.txt"
+
+    Debug.Print ShellRunGetOutput(cmd)
+End Sub
+
+
+
+Public Function ShellRunGetOutput(sCmd As String) As String
+
+    'Run a shell command, returning the output as a string
+
+    Dim oShell As Object
+    Set oShell = CreateObject("WScript.Shell")
+
+    'run command
+    Dim oExec As Object
+    Dim oOutput As Object
+    Set oExec = oShell.Exec(sCmd)
+    Set oOutput = oExec.StdOut
+
+    'handle the results as they are written to and read from the StdOut object
+    Dim s As String
+    Dim sLine As String
+    While Not oOutput.AtEndOfStream
+        sLine = oOutput.ReadLine
+        If sLine <> "" Then s = s & sLine & vbCrLf
+    Wend
+
+    ShellRunGetOutput = s
+
+End Function

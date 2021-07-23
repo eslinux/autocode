@@ -1,0 +1,67 @@
+・Rows
+
+    Rows(123)  'row 123 only
+
+    Rows("2:5")  'range of rows from row 2 to 5
+
+・Columns
+
+    Columns(123)  /  Columns("B")    '1 comlumn only
+
+    Columns("B:D")    'range of columns form column B to D
+
+・Cells
+
+    Cells(2, 4) / Cells(2, "D")
+
+・Range
+
+    Range("A2")              'Cell A2 only
+
+    Range("A2:B10")      'Cell from A2 to B10
+
+    Range("A:A")    'Column A
+
+    Range("A:D")    'Column A to column D
+
+    Range("2:2")      'Row 2
+
+    Range("2:4")      'Row 2 to row 4
+	
+	
+
+
+
+Private Const NAME_COL As String = "B"
+Private Const AGE_COL As String = "C"
+Private Const START_ROW As Integer = 2
+
+
+Sub range_select()
+    Dim sColum As Range, sRow As Range
+    Set sColum = Columns("B")
+    Set sRow = Rows(2)
+    
+    
+
+End Sub
+
+
+Sub cell_scan_column()
+    
+    Dim i As Integer
+
+    With ThisWorkbook.Worksheets("cell_scan")
+        For i = START_ROW To 10
+            If .Cells(i, NAME_COL).Value <> "" Then
+                'by Cells
+                Debug.Print .Cells(i, NAME_COL).Value, .Cells(i, AGE_COL).Value
+                
+                'or by Range
+                Debug.Print .Range(NAME_COL & i).Value, .Range(AGE_COL & i).Value
+            Else
+                Exit For
+            End If
+        Next
+    End With
+End Sub

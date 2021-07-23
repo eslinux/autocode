@@ -1,0 +1,10 @@
+
+Private Sub DoUntil_loop()
+    Dim i As Integer
+   i = 10
+   Do Until i > 15 'Condition is False.Hence loop will be executed
+      i = i + 1
+      Debug.Print ("The value of i is : " & i)
+      'Exit Do
+   Loop
+End Sub

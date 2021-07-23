@@ -1,0 +1,9 @@
+
+'Create new blank workbook
+Sub workbook_add()
+    Dim NewBook As Workbook
+    Set NewBook = Workbooks.add
+    Debug.Print "NewBook name: " & NewBook.Name
+    
+    
+End Sub

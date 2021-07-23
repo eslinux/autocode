@@ -1,0 +1,23 @@
+VBA Runtime Errors:
+
+・Referencing a non-existent workbook, worksheet, or other object
+
+・Invalid data ex. referencing an Excel cell containing an error
+
+・Attempting to divide by zero
+
+
+
+VBA On Error Statement:
+
+・On Error GoTo 0
+
+    IF error, program is stop, display default error dialog
+
+・On Error Resume Next
+
+    IF error, do not display error dialog, continue run next line code
+
+・On Error GoTo Label
+
+    IF error, goto user defined label

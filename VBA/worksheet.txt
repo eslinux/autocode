@@ -1,0 +1,3 @@
+'Struct: workbook.worksheet.Cell/Range
+'Select worksheet: by name Worksheets("worksheetName") or by index  Worksheets(1), Worksheets(2)
+'Select current worksheet: ActiveSheet

@@ -1,0 +1,8 @@
+
+Sub workbook_active()
+
+    Workbooks("book.xlsx").Activate
+    
+    ThisWorkbook.Activate
+    
+End Sub

@@ -1,0 +1,121 @@
+Option Explicit
+
+'//===============================================================================
+'// Tao so index tu tren xuong duoi
+'// step1: Click chon cell, nhap gia tri bat dau, neu khong nhap thi mac dinh bat dau la 1
+'// step2: Danh dau nhung cell se duoc dien bao so index bang cach tao ra border canh tren (edgeTop)
+'// step3: Menus > Developer > Macros > Run
+'//       Neu so bat dau la 1 thi so tiep theo la 2
+'//       Neu so bat dau la 1.1 thi so tiep theo la 1.2 (phan truoc dau cham ko doi, chi tang phan phia sau dau cham)
+'//===============================================================================
+Sub indexing_row()
+
+    Dim cur_selection As Range
+    
+    Dim index As Long
+    Dim index_before As String
+    
+    Dim is_have_dot As Boolean
+    Dim i As Long
+    Dim last_row As Long
+    Dim pos As Integer
+    
+
+    Set cur_selection = Selection
+    
+    pos = InStrRev(cur_selection.Value, ".")
+    
+    Debug.Print InStr(cur_selection.Value, ".")
+    
+    is_have_dot = False
+    index_before = ""
+    index = 1
+    If cur_selection.Value = "" Then
+        index = 1
+    
+    ElseIf (pos > 0) Then
+        is_have_dot = True
+        
+        index_before = Left(cur_selection.Value, pos)
+        index = CLng(Right(cur_selection.Value, Len(cur_selection.Value) - pos))
+        
+        'Debug.Print index_before
+        'Debug.Print index
+        
+    Else
+        index = CLng(cur_selection.Value)
+    End If
+    
+    
+    cur_selection.Value = "'" & index_before & index 'first indexing
+    
+    last_row = cur_selection.Row + ActiveSheet.UsedRange.Rows.Count + 10
+    For i = cur_selection.Row + 1 To last_row
+        If Cells(i, cur_selection.Column).Borders(xlEdgeTop).LineStyle <> xlLineStyleNone Then
+            index = index + 1
+            Cells(i, cur_selection.Column).Value = "'" & index_before & index
+        
+        Else
+            'Cells(i, cur_selection.Column).Value = ""
+        End If
+    Next
+End Sub
+
+
+
+'//===============================================================================
+'// Tao so index tu trai qua phai
+'// cach dung giongs voi macro indexing_row
+'//===============================================================================
+Sub indexing_col()
+
+    Dim cur_selection As Range
+    
+    Dim index As Long
+    Dim index_before As String
+    
+    Dim is_have_dot As Boolean
+    Dim i As Long
+    Dim last_col As Long
+    Dim pos As Integer
+    
+
+    Set cur_selection = Selection
+    
+    pos = InStrRev(cur_selection.Value, ".")
+    
+    Debug.Print InStr(cur_selection.Value, ".")
+    
+    is_have_dot = False
+    index_before = ""
+    index = 1
+    If cur_selection.Value = "" Then
+        index = 1
+    
+    ElseIf (pos > 0) Then
+        is_have_dot = True
+        
+        index_before = Left(cur_selection.Value, pos)
+        index = CLng(Right(cur_selection.Value, Len(cur_selection.Value) - pos))
+        
+        'Debug.Print index_before
+        'Debug.Print index
+        
+    Else
+        index = CLng(cur_selection.Value)
+    End If
+    
+    
+    cur_selection.Value = "'" & index_before & index 'first indexing
+    
+    last_col = cur_selection.Column + ActiveSheet.UsedRange.Columns.Count + 10
+    For i = cur_selection.Column + 1 To last_col
+        If Cells(cur_selection.Row, i).Borders(xlEdgeLeft).LineStyle <> xlLineStyleNone Then
+            index = index + 1
+            Cells(cur_selection.Row, i).Value = "'" & index_before & index
+        Else
+            'Cells(cur_selection.Row, i).Value = ""
+        End If
+    Next
+End Sub
+

@@ -1,0 +1,20 @@
+Attribute VB_Name = "registry"
+
+Sub readRegistry()
+    Dim regkey As String
+    regkey = "HKEY_LOCAL_MACHINE\SOFTWARE\7-Zip\Path"
+    Debug.Print RegKeyRead(regkey)
+End Sub
+
+
+'reads the value for the registry key i_RegKey
+'if the key cannot be found, the return value is ""
+Function RegKeyRead(i_RegKey As String) As String
+Dim myWS As Object
+
+  On Error Resume Next
+  'access Windows scripting
+  Set myWS = CreateObject("WScript.Shell")
+  'read key from registry
+  RegKeyRead = myWS.RegRead(i_RegKey)
+End Function

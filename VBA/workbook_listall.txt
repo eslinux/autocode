@@ -1,0 +1,10 @@
+
+Sub workbook_listall()
+    Debug.Print "Number of opened workbook: " & Workbooks.Count
+    
+    Dim Item As Workbook
+    For Each Item In Workbooks
+      Debug.Print "Workbook item: " & Item.Name
+    Next
+    
+End Sub

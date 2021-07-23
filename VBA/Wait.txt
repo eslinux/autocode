@@ -1,0 +1,5 @@
+Sub wait_test()
+    If Application.Wait(Now + TimeValue("0:00:03")) Then 'wait 3 seconds
+        Debug.Print "Time expired"
+    End If
+End Sub

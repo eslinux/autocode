@@ -1,0 +1,9 @@
+Sub Goto_lable()
+
+    GoTo Label1         
+    Debug.Print ("GoTo")
+
+Label1:
+    Debug.Print ("Label")
+  
+End Sub

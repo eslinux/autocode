@@ -1,0 +1,64 @@
+Sub Environ_produce()
+
+    
+    Debug.Print Environ("OS")
+    Debug.Print Environ("PATH")
+
+End Sub
+
+
+
+Sub getEnvironment()
+
+    
+    Dim shell_obj As Object
+    Dim wshSystemEnv As Object
+    Set shell_obj = VBA.CreateObject("WScript.Shell")
+
+'     This one does not include the path to the Rscript'
+'    Debug.Print shell_obj.ExpandEnvironmentStrings("%USERPROFILE%")
+
+    Set wshSystemEnv = shell_obj.Environment("SYSTEM") 'Group
+    Debug.Print wshSystemEnv("PROCESSOR_ARCHITECTURE") 'Environment variable in Group
+
+
+
+
+
+
+'    Dim WshShell As Object
+'    Dim wshsysEnv As Object
+'    Dim s As Variant
+'
+'    Set WshShell = CreateObject("WScript.Shell")
+'
+'    Debug.Print "-------------"
+'    Set wshsysEnv = WshShell.Environment("SYSTEM")
+'    Debug.Print "System"
+'    For Each s In wshsysEnv
+'        Debug.Print s
+'    Next
+'    Debug.Print "-------------"
+'
+'    Set wshsysEnv = WshShell.Environment("Volatile")
+'    Debug.Print "Volatile"
+'    For Each s In wshsysEnv
+'        Debug.Print s
+'    Next
+'    Debug.Print "-------------"
+'
+'    Set wshsysEnv = WshShell.Environment("User")
+'    Debug.Print "User"
+'    For Each s In wshsysEnv
+'        Debug.Print s
+'    Next
+'    Debug.Print "-------------"
+'
+'    Set wshsysEnv = WshShell.Environment("Process")
+'    Debug.Print "Process"
+'    For Each s In wshsysEnv
+'        Debug.Print s
+'    Next
+'    Debug.Print "-------------"
+
+End Sub

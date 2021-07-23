@@ -1,0 +1,77 @@
+https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.run?view=net-5.0#System_Threading_Tasks_Task_Run_System_Action_
+
+//----------------async------------------------
+private async void button_startTask_Click(object sender, EventArgs e)
+{
+	Console.WriteLine("Thead Vs Async/Await");
+	var watch = new System.Diagnostics.Stopwatch();
+	watch.Start();
+
+
+
+	var task_one = TaskOne();
+	var task_two = TaskTwo("Task");
+
+	progress.ShowDialog(this);
+
+
+	var results = await Task.WhenAll(task_one, task_two);
+	Console.WriteLine($"Data task one: {results[0]}");
+	Console.WriteLine($"Data task two: {results[1]}");
+	
+
+	Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
+}
+private  async Task<string> TaskOne()
+{
+	
+	//await Task.Delay(5000);
+	await Task.Run(() => ShowThreadInfo("Task"));
+	Console.WriteLine("TaskOne finished");
+	progress.Close();
+	return "TaskOne";
+}
+
+private  async Task<string> TaskTwo(string name)
+{
+	//await Task.Delay(2000);
+	await Task.Run(() => ShowThreadInfo("Task"));
+	Console.WriteLine("TaskTwo finished");
+	return "Hello " + name;
+}
+
+
+
+//---------------------Task----------------------
+
+private void button_start_run_Click(object sender, EventArgs e)
+{
+    var t = Task.Run(() => ShowThreadInfo("Task"));
+    //t.Wait();
+
+}
+
+private void button_task_start_Click(object sender, EventArgs e)
+{
+    var t = new Task(() => ShowThreadInfo("start"));
+    t.Start();
+
+    //t.Wait();
+}
+
+
+void ShowThreadInfo(String s)
+{
+    for(int i = 0; i<100; i++)
+    {
+	Console.WriteLine("{0} thread ID: {1} / {2}", s, Thread.CurrentThread.ManagedThreadId, i);
+
+	BeginInvoke((Action)(() =>
+	{//update UI
+	    textBox1.Text = "Thread " + Thread.CurrentThread.ManagedThreadId + ", " + i.ToString();
+
+	}));
+	Thread.Sleep(100);
+    }
+
+}
