@@ -1,0 +1,2 @@
+https://rogerdudler.github.io/git-guide/index.vi.html
+https://backlog.com/git-tutorial/vn/

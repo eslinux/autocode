@@ -1,0 +1,16 @@
+- List all branch
+	git branch
+	
+- Create new branch
+	git checkout -b <new_branch_name> <commit_sha_hash(if need)>
+	
+- Delete branch
+	git branch -d <branch_name>
+	
+- Switch branch
+	git checkout <branch name>
+	or
+	git switch <branch name>
+	
+- Push from a branch to other branch
+	git push -u origin <source branch name>:<destination branch name>
