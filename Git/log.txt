@@ -1,0 +1,3 @@
+
+- Display history line by line
+	git log --pretty=oneline
