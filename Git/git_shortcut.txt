@@ -9,9 +9,14 @@ with alias as below:
 # Git Command Aliases
 # ----------------------
 alias gadd='git add'
-alias grestore='git restore --staged'
+alias grestore_stage='git restore --staged'
 alias glog='git log --pretty=oneline -n 10'
 alias gmerge='git merge --no-commit'
-alias gswitch='git checkout'
+alias gswitch_branch='git checkout'
+alias gbranch_list='git branch'
 alias gpush-u='git push -u origin'
 alias gpush='git push'
+alias gpull='git pull'
+alias gcommit='git commit'
+alias greset='git reset --hard'
+alias grevert='git revert'

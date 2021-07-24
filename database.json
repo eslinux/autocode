@@ -725,6 +725,10 @@
 						{
 							"text":"Add, restore stage",
 							"value":"add_restore.txt"
+						},
+						{
+							"text":"Git shortcut",
+							"value":"git_shortcut.txt"
 						}
 					]
 				},
