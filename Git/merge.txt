@@ -2,5 +2,5 @@ Merge branch A to B
 - swith to destination branch
   git checkout B
 - Merge A to B
-  git merge A
+  git merge --no-commit A
   

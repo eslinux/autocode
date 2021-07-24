@@ -1,0 +1,17 @@
+
+Create .bashrc file 
+	C:\Users\<YourUser>\.bashrc
+
+with alias as below:
+
+
+# ----------------------
+# Git Command Aliases
+# ----------------------
+alias gadd='git add'
+alias grestore='git restore --staged'
+alias glog='git log --pretty=oneline -n 10'
+alias gmerge='git merge --no-commit'
+alias gswitch='git checkout'
+alias gpush-u='git push -u origin'
+alias gpush='git push'
