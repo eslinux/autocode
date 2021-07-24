@@ -709,6 +709,22 @@
 						{
 							"text":"Delete all commit history",
 							"value":"delete_all_commit_history.txt"
+						},
+						{
+							"text":"Log",
+							"value":"log.txt"
+						},
+						{
+							"text":"Merge",
+							"value":"merge.txt"
+						},
+						{
+							"text":"Revert, reset",
+							"value":"revert_reset.txt"
+						},
+						{
+							"text":"Add, restore stage",
+							"value":"add_restore.txt"
 						}
 					]
 				},

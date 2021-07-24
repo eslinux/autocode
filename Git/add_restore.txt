@@ -1,0 +1,4 @@
+- Update file to stage
+	$ git add <folder or file path>
+- Unstage added file
+	$ git restore --staged <file>
