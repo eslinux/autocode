@@ -691,6 +691,41 @@
 					"value":"Reference.txt"
 				}
 			]
+		},
+		{
+			"language": "Git",
+			"functions":[
+				{
+					"text":"Command",
+					"value":[
+						{
+							"text":"Branch",
+							"value":"branch.txt"
+						},
+						{
+							"text":"Checkout particular commit",
+							"value":"checkout_particular_commit.txt"
+						},
+						{
+							"text":"Delete all commit history",
+							"value":"delete_all_commit_history.txt"
+						}
+					]
+				},
+				{
+					"text":"Setting",
+					"value":[
+						{
+							"text":"Change author name and email",
+							"value":"change_author_mail.txt"
+						}
+					]
+				},
+				{
+					"text":"Reference",
+					"value":"Reference.txt"
+				}
+			]
 		}
 	]
 }
