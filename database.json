@@ -669,6 +669,18 @@
 						{
 							"text":"robocopy",
 							"value":"robocopy.txt"
+						},
+						{
+							"text":"Date time",
+							"value":"date_time.txt"
+						},
+						{
+							"text":"make_release.bat",
+							"value":"make_release.bat"
+						},
+						{
+							"text":"make_clean.bat",
+							"value":"make_clean.bat"
 						}
 					]
 				}
@@ -709,26 +721,6 @@
 						{
 							"text":"Delete all commit history",
 							"value":"delete_all_commit_history.txt"
-						},
-						{
-							"text":"Log",
-							"value":"log.txt"
-						},
-						{
-							"text":"Merge",
-							"value":"merge.txt"
-						},
-						{
-							"text":"Revert, reset",
-							"value":"revert_reset.txt"
-						},
-						{
-							"text":"Add, restore stage",
-							"value":"add_restore.txt"
-						},
-						{
-							"text":"Git shortcut",
-							"value":"git_shortcut.txt"
 						}
 					]
 				},
