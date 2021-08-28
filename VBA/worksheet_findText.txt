@@ -1,0 +1,51 @@
+Sub worksheet_findText()
+    
+'Note: other option
+'   LookIn:=xlValues -> looks at the cell values
+'   LookAt:=xlWhole  -> full match or xlPart means the search value only has to match part of the cell
+'   SearchDirection:=xlNext or xlPrevious
+'   After:=Range("A2")  -> tim kiem tu vi tri cell tiep theo A3
+    
+
+    Dim cell As Range
+    Dim Addr As String
+    
+'---------------------------------------------------------------------
+'   tim kiem trong khoang A1:B6, tu vi tri cell A3 (After:=Range("A2") )
+'   NOTE: After cell phai trong pham vi Range("A1:B6")
+    Set cell = Range("A1:B6").Find("Drucilla", After:=Range("A2"))
+    If cell Is Nothing Then
+        Debug.Print "Not found"
+    Else
+
+        Addr = cell.Address
+        Debug.Print "Addr: " & Addr
+    
+    End If
+
+
+'---------------------------------------------------------------------
+'   tim kiem o column A, tu vi tri cell A3 (After:=Range("A2") )
+    Set cell = Columns("A").Find("Drucilla", After:=Range("A2"))
+    
+    If cell Is Nothing Then
+        Debug.Print "Not found"
+    Else
+
+        Addr = cell.Address
+        Debug.Print "Addr: " & Addr
+    
+    End If
+    
+
+'---------------------------------------------------------------------
+'   tim kiem tren toan bo cells
+    Set cell = Cells.Find("Drucilla", After:=Range("A2"))
+    If cell Is Nothing Then
+        Debug.Print "Not found"
+    Else
+
+        Addr = cell.Address
+        Debug.Print "Addr: " & Addr
+    End If
+End Sub

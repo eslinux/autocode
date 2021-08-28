@@ -1,0 +1,19 @@
+
+'returns True if the registry key i_RegKey was found
+'and False if not
+Function RegKeyExists(i_RegKey As String) As Boolean
+Dim myWS As Object
+
+  On Error GoTo ErrorHandler
+  'access Windows scripting
+  Set myWS = CreateObject("WScript.Shell")
+  'try to read the registry key
+  myWS.RegRead i_RegKey
+  'key was found
+  RegKeyExists = True
+  Exit Function
+  
+ErrorHandler:
+  'key was not found
+  RegKeyExists = False
+End Function

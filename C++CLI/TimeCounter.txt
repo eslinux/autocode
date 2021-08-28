@@ -1,0 +1,14 @@
+using namespace System::Diagnostics;
+
+
+	Diagnostics::Stopwatch^ sw = gcnew Diagnostics::Stopwatch();
+	sw->Start();
+	
+	
+	//...
+	
+	
+	sw->Stop();
+	Console::WriteLine("Duration ms: " + sw->ElapsedMilliseconds.ToString());
+		
+		

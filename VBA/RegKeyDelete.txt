@@ -1,0 +1,21 @@
+
+
+'deletes i_RegKey from the registry
+'returns True if the deletion was successful,
+'and False if not (the key couldn't be found)
+Function RegKeyDelete(i_RegKey As String) As Boolean
+Dim myWS As Object
+
+  On Error GoTo ErrorHandler
+  'access Windows scripting
+  Set myWS = CreateObject("WScript.Shell")
+  'delete registry key
+  myWS.RegDelete i_RegKey
+  'deletion was successful
+  RegKeyDelete = True
+  Exit Function
+
+ErrorHandler:
+  'deletion wasn't successful
+  RegKeyDelete = False
+End Function

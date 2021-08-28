@@ -1,0 +1,10 @@
+
+Private Sub DoWhile_loop()
+    Dim i As Integer
+    
+   Do While i < 5
+      i = i + 1
+      Debug.Print "The value of i is : " & i
+      'Exit Do
+   Loop
+End Sub

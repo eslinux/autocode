@@ -1,0 +1,31 @@
+'Note: can use "Exit Sub" or "Exit Function" to terminate process
+
+
+Sub Main()
+
+    Dim a As Integer, b As Integer, ret As Integer
+    a = 1
+    b = 2
+    
+    'call function with reference variable
+    Call add(a, b, ret)
+    Debug.Print "add sum = " & ret
+    
+    'call function by value
+    ret = add2(a, b)
+    Debug.Print "add2 sum = " & ret
+
+End Sub
+
+
+'function with reference variable
+Function add(a As Integer, b As Integer, sum As Integer) As Boolean
+    sum = a + b
+    add = True
+End Function
+
+
+'function by value
+Function add2(ByVal a As Integer, ByVal b As Integer) As Integer
+    add2 = a + b
+End Function

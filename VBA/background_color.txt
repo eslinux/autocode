@@ -1,0 +1,9 @@
+Sub checkBackgroundColor_test()
+
+    Dim i As Integer
+    For i = 1 To 10
+        If Cells(i, "A").Interior.Color <> vbWhite Then
+            Debug.Print "row:", i, Cells(i, "A").Interior.Color
+        End If
+    Next
+End Sub

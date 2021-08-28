@@ -1,0 +1,8 @@
+Sub DisplayAlerts()
+    
+    'Do not display warning dialog when save workbook
+    Application.DisplayAlerts = False
+    Workbooks("BOOK1.XLS").Close SaveChanges:=True
+    Application.DisplayAlerts = True
+
+End Sub

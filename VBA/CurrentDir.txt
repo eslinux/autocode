@@ -1,0 +1,3 @@
+Function GetCurrentDir() As String
+    GetCurrentDir = ThisWorkbook.path  'this vbs source code owner workbook'path
+End Function

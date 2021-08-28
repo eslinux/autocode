@@ -1,0 +1,3 @@
+Function GetDefaultDir() As String
+    GetDefaultDir = Application.DefaultFilePath
+End Function

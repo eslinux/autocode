@@ -1,0 +1,12 @@
+Sub basic_type()
+
+    Dim a1 As Integer
+    Dim a2 As Long
+    Dim a3 As Double
+    Dim a4 As String
+    
+    Dim a5 As Object
+    Set a5 = CreateObject("Scripting.FileSystemObject")
+    
+    Dim a6 As Variant
+End Sub

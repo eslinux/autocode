@@ -1,0 +1,35 @@
+
+Sub Workbook_open_save()
+    Dim filepath As String, filename As String
+    filename = "mywb.xlsx"
+    filepath = "C:\Users\NinhLD\Downloads\vba\workbook\" & filename
+    
+ 
+ 
+    
+    'OPEN WORKBOOK
+    Dim targetWorkbook As Workbook
+    Set targetWorkbook = Workbooks.Open(filepath)
+    
+    Debug.Print "ThisWorkbook.Name: " & ThisWorkbook.Name
+    Debug.Print "targetWorkbook.Name: " & targetWorkbook.Name
+    
+
+  
+    'OPENED WORKBOOK INSTANCE
+    With targetWorkbook
+        'EDIT WORKBOOK
+        .Worksheets("Sheet1").Cells(1, 1).Value = "test text"
+        
+        
+        Application.DisplayAlerts = False
+        .SaveAs filename:=ThisWorkbook.path & "\copbook.xlsx"   'save mywb.xlsx as other copbook.xlsx
+        .Close SaveChanges:=True                                'and CLOSE(SAVE change) mywb.xlsx
+        Application.DisplayAlerts = True
+        
+    End With
+    
+    'NOTE close without saving
+    'Workbooks("BOOK1.XLS").Close SaveChanges:=False
+    
+End Sub

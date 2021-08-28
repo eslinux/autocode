@@ -1,0 +1,128 @@
+
+
+//--------- JNA interface (to DLL)------------
+public interface JNA_CppCLIInterface extends Library {
+	@SuppressWarnings("deprecation")
+	final JNA_CppCLIInterface INSTANCE = (JNA_CppCLIInterface) Native.loadLibrary("ClassLibrary_CLI.dll",
+			JNA_CppCLIInterface.class);
+			
+	int get_params(int id, PointerByReference  value);
+
+}
+
+//--------- Java app > click button event ------------
+JButton btn_setget = new JButton("set/get");
+btn_setget.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		
+		long start = System.nanoTime();
+		
+		
+		
+		for(int i = 0; i < 100000; i++) {
+			final PointerByReference gvalue = new PointerByReference();
+
+			
+			//set value to dll
+			Memory memory = new Memory(123);
+			memory.setString(0, "msg to DLL");
+			gvalue.setValue(memory);
+			
+			//call if
+			JNA_CppCLIInterface.INSTANCE.get_params(123, gvalue);
+			
+			//get value from dll
+			final String val = gvalue.getValue().getString(0);
+			System.out.println(i + " msg from DLL: " + val);
+		}
+		
+		
+		// Time counter
+		long finish = System.nanoTime();
+		long timeElapsed = finish - start;
+		System.out.println("Total time duration: " + timeElapsed);
+	}
+});
+
+
+//--------- DLL interface ------------
+
+using namespace System;
+using namespace System::Threading;
+using namespace System::IO;
+using namespace System::Text;
+using namespace System::Collections;
+using namespace System::Diagnostics;
+using namespace System::Reflection;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+	#include <assert.h>
+	#include <stdlib.h>
+	#include <stdio.h>
+	#include <string.h>
+	#define EXTERN_DLL_EXPORT __declspec(dllexport)
+
+	bool isswitch = false;
+	char *strtojava = NULL;
+		
+	EXTERN_DLL_EXPORT int get_params(int id, char **value)
+	{
+
+		Console::WriteLine("get_params: id/value: " + id + "/" + gcnew String(*value));
+
+		String ^recvmsg;
+		if (isswitch) {
+			isswitch = false;
+			recvmsg = "wwwwwwwww";
+		}
+		else {
+			isswitch = true;
+			recvmsg = "bbbbbdddddddddddddddddddddddddd"
+				+ "bbbbbdddddddddddddddddddddddddd"
+				+ "bbbbbdddddddddddddddddddddddddd"
+				+ "bbbbbdddddddddddddddddddddddddd"
+				+ "bbbbbdddddddddddddddddddddddddd"
+				+ "bbbbbdddddddddddddddddddddddddd"
+				+ "bbbbbdddddddddddddddddddddddddd999";
+		}
+
+
+		try {
+			//Convert String^ to char*
+			IntPtr p = Marshal::StringToHGlobalAnsi(recvmsg);
+			char *desstr = static_cast<char*>(p.ToPointer());
+			
+			//malloc memory buffer
+			if (strtojava) free(strtojava);
+			strtojava = (char*)malloc(sizeof(char*) * recvmsg->Length + 1);
+			
+			//Copy to *value
+			strcpy(strtojava, desstr);
+			*value = strtojava;
+		
+			//Free
+			Marshal::FreeHGlobal(p);
+
+		}
+		catch(...){
+			Console::WriteLine("get_params Exception !");
+			*value = "";
+		}
+
+		return 0;
+	}
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+
+
+
+
+		
+		

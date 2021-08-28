@@ -1,0 +1,15 @@
+
+Sub worksheet_listAll()
+    '---list all sheet---
+    Dim i As Integer
+    For i = 1 To ThisWorkbook.Sheets.Count
+        Debug.Print "By index: " & ThisWorkbook.Sheets(i).Name
+    Next i
+    
+    Dim Item As Worksheet
+    For Each Item In ThisWorkbook.Worksheets
+      Debug.Print "by worksheet item: " & Item.Name
+    Next
+    
+
+End Sub

@@ -1,0 +1,33 @@
+
+
+
+namespace ClassLibraryCLI {
+	public ref class Class1
+	{
+    private :
+      static Class1 ^_instance = nullptr;
+    public:
+      //delegate instance
+      static Class1 ^Instance()
+      {
+        if (_instance == nullptr) {
+          _instance = gcnew  Class1();
+          Console::WriteLine("Create instance");
+        }
+
+        return _instance;
+      };
+
+
+
+      float Add(float a, float b);
+            return (a + b);
+      }
+}
+
+
+
+//-------------how to call--------------
+Class1 ^instance = Class1::Instance();
+instance->Add(a,b);
+    

@@ -1,0 +1,9 @@
+Private Sub While_loop()
+   Dim Counter As Integer
+   Counter = 10
+   
+   While Counter < 15     ' Test value of Counter.
+      Counter = Counter + 1   ' Increment Counter.
+      Debug.Print "The Current Value of the Counter is : " & Counter
+   Wend   ' While loop exits if Counter Value becomes 15.
+End Sub

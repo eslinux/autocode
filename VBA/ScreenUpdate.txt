@@ -1,0 +1,5 @@
+Application.ScreenUpdating = False
+
+'do something: open/close workbook, edit sheet, ...
+
+Application.ScreenUpdating = True

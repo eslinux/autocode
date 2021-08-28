@@ -1,0 +1,92 @@
+
+1) int.Parse(string s)
+Simply, int.Parse (string s) method converts the string to integer. 
+If string s is null, then it will throw ArgumentNullException. 
+If string s is other than integer value, then it will throw FormatException. 
+If string s represents out of integer ranges, then it will throw OverflowException.
+
+//
+// int.Parse(string s)
+//
+class Program
+{
+    static void Main(string[] args)
+    {
+        string str1="9009";
+        string str2=null;
+        string str3="9009.9090800";
+        string str4="90909809099090909900900909090909"; 
+        int finalResult;
+        finalResult = int.Parse(str1); //success
+        finalResult = int.Parse(str2); // ArgumentNullException
+        finalResult = int.Parse(str3); //FormatException
+        finalResult = int.Parse(str4); //OverflowException 
+    }
+} 
+
+
+
+
+
+2) Convert.ToInt32(string s)
+Simply, Convert.ToInt32(string s) method converts the string to integer. 
+If string s is null, then it will return 0 rather than throw ArgumentNullException. 
+If string s is other than integer value, then it will throw FormatException. 
+If string s represents out of integer ranges, then it will throw OverflowException.
+
+
+//
+// Convert.ToInt32(string s)
+//
+class Program
+{
+    static void Main(string[] args)
+    {
+        string str1="9009";
+        string str2=null;
+        string str3="9009.9090800";
+        string str4="90909809099090909900900909090909"; 
+        int finalResult;
+        finalResult = Convert.ToInt32(str1); // 9009
+        finalResult = Convert.ToInt32(str2); // 0
+        finalResult = Convert.ToInt32(str3); //FormatException
+        finalResult = Convert.ToInt32(str4); //OverflowException 
+    }
+}
+
+
+
+
+
+3) int.TryParse(string s, out result)
+Simply int.TryParse(string s,out int) method converts the string to integer out variable and returns true if successfully parsed, otherwise false. 
+If string s is null, then the out variable has 0 rather than throw ArgumentNullException. 
+If string s is other than integer value, then the out variable will have 0 rather than FormatException. 
+If string s represents out of integer ranges, then the out variable will have 0 rather than throw OverflowException.
+
+
+//
+// int.TryParse(string s, out result)
+//
+class Program
+{
+    static void Main(string[] args)
+    {
+        string str1="9009";
+        string str2=null;
+        string str3="9009.9090800";
+        string str4="90909809099090909900900909090909"; 
+        int finalResult;
+        bool output;
+        output = int.TryParse(str1,out finalResult); // 9009
+        output = int.TryParse(str2,out finalResult); // 0
+        output = int.TryParse(str3,out finalResult); // 0
+        output = int.TryParse(str4, out finalResult); // 0 
+    }
+}
+
+Finally, among all these methods, it is better to use int.TryParse(string s, out int) as this method is the best forever.
+
+Points of Interest
+This is very useful. Finally, I recommend you use int.TryParse(string s, out int).
+

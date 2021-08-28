@@ -1,0 +1,47 @@
+Sub QueueTest()
+'※https://vbabeginner.net/net-framework-queue/
+'    Dim q       As Queue                '// System.Collections.Queue
+    Dim q       As Object 'As mscorlib.Queue       '// System.Collections.Queue
+    Dim sDeq    As String               '// Dequeue結果
+    
+    '// インスタンス生成
+'    Set q = New Queue
+    Set q = CreateObject("System.Collections.Queue")
+
+    '// データを４つ追加
+    Call q.Enqueue("1")
+    Call q.Enqueue("2")
+    Call q.Enqueue("3")
+    Call q.Enqueue("4")
+    
+    '// 4を出力
+    Debug.Print q.Count
+    
+    '// 1つ取り出し＋削除（"1"を削除）
+    sDeq = q.Dequeue
+    
+    '// 取り出した"1"を出力
+    Debug.Print sDeq
+    
+    '// 3を出力
+    Debug.Print q.Count
+    
+    '// キューに値が含まれる場合
+    If (q.Contains("3") = True) Then
+        Debug.Print q.Contains("3")
+    End If
+    
+    '// キューに値が含まれない場合
+    If (q.Contains("AAA") = False) Then
+        Debug.Print q.Contains("AAA")
+    End If
+    
+    '// 1つ取り出し＋削除はしない
+    sDeq = q.Peek()
+    
+    '// 取り出した"2"を出力
+    Debug.Print sDeq
+    
+    '// 3を出力
+    Debug.Print q.Count
+End Sub

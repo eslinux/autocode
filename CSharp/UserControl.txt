@@ -1,0 +1,96 @@
+
+
+//*********************************************************************************
+// UserControl
+//*********************************************************************************
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp3
+{
+    public partial class UserControl1 : UserControl
+    {
+        //call parent event handle function
+        public event EventHandler InnerButtonClick;
+
+        //delegate
+        private static UserControl1 _instance = null;
+        public static UserControl1 Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new UserControl1();
+                return _instance;
+            }
+        }
+
+
+        public UserControl1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("UserControl1.button1_Click");
+            if (InnerButtonClick != null)
+            {
+                InnerButtonClick(this, e); // or possibly InnerButtonClick(innerButton, e); depending on what you want the sender to be
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("UserControl1.textBox1_TextChanged : " + textBox1.Text);
+        }
+    }
+}
+
+
+//*********************************************************************************
+// Main form
+//*********************************************************************************
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp3
+{
+    public partial class Form_panel : Form
+    {
+        public Form_panel()
+        {
+            InitializeComponent();
+        }
+
+        private void Form_panel_Load(object sender, EventArgs e)
+        {
+
+            this.Controls.Add(UserControl1.Instance);
+            UserControl1.Instance.InnerButtonClick += UserControl_button1_Click;
+        }
+
+        //event will be call when click button on UserControl
+        private void UserControl_button1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("UserControl_button1_Click.button1_Click");
+            
+        }
+    }
+}
+
+

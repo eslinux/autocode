@@ -1,0 +1,15 @@
+'define Struct
+Type SMyType
+   SomeString As String
+   SomeLong As Long
+End Type
+
+Sub struct_type()
+  Dim t As SMyType
+  t.SomeString = "Hello"
+  t.SomeLong = 10
+  
+  Debug.Print t.SomeString
+  Debug.Print t.SomeLong
+  
+End Sub

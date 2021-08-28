@@ -1,0 +1,98 @@
+using namespace System;
+using namespace System::Threading;
+using namespace ClassLibrary_Csharp;
+using namespace System::IO;
+using namespace System::Net;
+using namespace System::Net::Sockets;
+using namespace System::Text;
+using namespace System::Collections;
+
+
+namespace ClassLibraryCLI {
+  public ref class SocketClient
+	{
+		int target = 0;
+
+	public:
+		//multi thread
+		void StartExecThread(int target_i) {
+			target = target_i;
+
+			ThreadStart^ start = gcnew ThreadStart(this, &SocketClient::ExecThread);
+			Thread^ thread = gcnew Thread(start);
+			thread->Start();
+		}
+		void ExecThread() {
+			int counter = 0;
+			while (counter < 100)
+			{
+				createSocketClient(target);
+
+				Thread::Sleep(100);
+				counter++;
+			}
+		}
+
+
+
+		void createSocketClient(int target) {
+			int serverPort = 11111;
+			//IPAddress^ ipAddr;
+			if (target == 1) {
+				serverPort = 11111;
+			}
+			else {
+				serverPort = 11112;
+			}
+
+			IPAddress^ ipAddr = IPAddress::Parse("127.0.0.1");
+			IPEndPoint^ localEndPoint = gcnew IPEndPoint(ipAddr, serverPort);
+			//IPEndPoint^ localEndPoint = gcnew IPEndPoint(IPAddress::Any, serverPort);
+
+
+			//IPHostEntry ^ipHost = Dns::GetHostEntry(Dns::GetHostName());
+			//IPAddress ^ipAddr = ipHost->AddressList[0];
+			//IPEndPoint ^localEndPoint = gcnew IPEndPoint(ipAddr, 11111);
+
+			Socket ^sender = gcnew Socket(ipAddr->AddressFamily, SocketType::Stream, ProtocolType::Tcp);
+
+
+			try {
+				// Connect Socket to the remote 
+				// endpoint using method Connect()
+				sender->Connect(localEndPoint);
+
+				// We print EndPoint information 
+				// that we are connected
+				Console::WriteLine("Socket connected to -> {0} ", sender->RemoteEndPoint->ToString());
+				
+				// Creation of messagge that
+				// we will send to Server
+				array<Byte> ^messageSent = Encoding::ASCII->GetBytes("Test Client<EOF>");
+				int byteSent = sender->Send(messageSent);
+
+				// Data buffer
+				array<Byte> ^ messageReceived = gcnew array< Byte >(1024);
+
+				// We receive the messagge using 
+				// the method Receive(). This 
+				// method returns number of bytes
+				// received, that we'll use to 
+				// convert them to string
+				int byteRecv = sender->Receive(messageReceived);
+				String ^recvmsg = Encoding::ASCII->GetString(messageReceived, 0, byteRecv);
+
+				Console::WriteLine("Message from Server -> {0}", recvmsg);
+
+				// Close Socket using 
+				// the method Close()
+				sender->Shutdown(SocketShutdown::Both);
+				sender->Close();
+
+			}
+			catch(Exception ^e){
+				Console::WriteLine("Exception !!");
+			}
+		}
+  };
+}

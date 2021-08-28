@@ -1,0 +1,99 @@
+
+//****************************************************************************************
+//UserControl
+//****************************************************************************************
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp3
+{
+    public partial class UserControl1 : UserControl
+    {
+        //call parent function using delegate
+        public delegate string MyDelegate(string s1, string s2);
+        public MyDelegate _testdelegate = null;
+
+        //Instance
+        private static UserControl1 _instance = null;
+        public static UserControl1 Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new UserControl1();
+                return _instance;
+            }
+        }
+
+
+        public UserControl1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("UserControl1.button1_Click");
+            if(_testdelegate != null)
+            {
+                string ret = _testdelegate("haha", "hihi");
+                Console.WriteLine("UserControl1." + ret);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("UserControl1.textBox1_TextChanged : " + textBox1.Text);
+        }
+    }
+}
+
+
+//****************************************************************************************
+//Main form
+//****************************************************************************************
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp3
+{
+    public partial class Form_panel : Form
+    {
+        public Form_panel()
+        {
+            InitializeComponent();
+        }
+
+        private void Form_panel_Load(object sender, EventArgs e)
+        {
+
+            this.Controls.Add(UserControl1.Instance);
+
+            //UserControl1.Instance._testdelegate = new UserControl1.MyDelegate(ParentMyDelegate);
+            //or
+            UserControl1.Instance._testdelegate += ParentMyDelegate;
+
+        }
+
+        public string ParentMyDelegate(string s1, string s2){
+            Console.WriteLine("ParentMyDelegate: " + s1 + "/" + s2);
+            return s1 + "/" + s2;
+        }
+    }
+}
+
+

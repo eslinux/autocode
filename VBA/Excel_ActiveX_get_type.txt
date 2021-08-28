@@ -1,0 +1,13 @@
+Sub getTypeControl()
+    Dim ws As Worksheet
+    Dim oleob As OLEObject
+    Set ws = ActiveSheet
+    
+    For Each oleob In ws.OLEObjects
+        If TypeName(oleob.Object) = "TextBox" Then 'if type: TextBox
+        
+            oleob.Object.Value = "hihi haha"
+
+        End If
+    Next
+End Sub

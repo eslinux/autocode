@@ -1,0 +1,10 @@
+Private Sub For_loop()
+   Dim a As Integer, i As Integer
+   a = 10
+   
+   For i = 0 To a Step 2
+      Debug.Print "The value is i is : " & i
+      
+'      Exit For
+   Next
+End Sub

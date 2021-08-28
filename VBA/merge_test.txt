@@ -1,0 +1,31 @@
+Sub merge_test()
+    
+    Dim i As Long, k As Long
+    Dim tmpStr As String
+    Dim edgeTop As Long, edgeBottom As Long
+    
+    
+    For i = 1 To 10
+        If Cells(i, "B").MergeCells Then
+            Debug.Print i, Range("B" & Range(Cells(i, "B").MergeArea.Address).Row).Value
+        Else
+            'find edgeTop and edgeBottom
+            edgeTop = i
+            While Cells(edgeTop, "B").Borders(xlEdgeTop).LineStyle = xlNone
+                edgeTop = edgeTop - 1
+            Wend
+            edgeBottom = i
+            While Cells(edgeBottom, "B").Borders(xlEdgeBottom).LineStyle = xlNone
+                edgeBottom = edgeBottom + 1
+            Wend
+            
+            tmpStr = ""
+            For k = edgeTop To edgeBottom
+                If Trim(Cells(k, "B").Value) <> "" Then
+                    tmpStr = tmpStr & " " & Cells(k, "B").Value
+                End If
+            Next
+            Debug.Print i, tmpStr
+        End If
+    Next
+End Sub

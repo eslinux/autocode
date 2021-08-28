@@ -1,0 +1,66 @@
+1. Add Panel and settings AutoScroll = true
+2. Put PictureBox inside panel
+   pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+3. Enable Doublebuffer for this form
+   this.DoubleBuffered = true;
+
+
+
+
+namespace WindowsFormsApp3
+{
+    public partial class Form_PictureImage : Form
+    {
+
+        Image imgOrg = null;
+
+        public Form_Spliter()
+        {
+            InitializeComponent();
+        }
+
+        private void Form_Spliter_Load(object sender, EventArgs e)
+        {
+            //this form
+            this.DoubleBuffered = true;
+
+            
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+
+        }
+
+        private void button_loadimg_Click(object sender, EventArgs e)
+        {
+            // open file dialog   
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                imgOrg = Image.FromFile(open.FileName);
+                pictureBox1.Load(open.FileName);
+            }
+        }
+
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            if (trackBar1.Value != 0 && imgOrg!=null)
+            {
+                pictureBox1.Image = ZoomPicture(imgOrg, new Size(trackBar1.Value, trackBar1.Value));
+            }
+        }
+
+
+        Image ZoomPicture(Image img, Size size)
+        {
+            int fw = (int)((float)size.Width / 100 * img.Width);
+            int fh = (int)((float)size.Height / 100 * img.Height);
+
+            Bitmap bm = new Bitmap(img, fw, fh);
+            Graphics gpu = Graphics.FromImage(bm);
+            gpu.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            return bm;
+        }
+        
+    }
+}

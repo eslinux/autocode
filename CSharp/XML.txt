@@ -1,0 +1,184 @@
+
+void xmlparse()
+{
+    xmltext = "<Store>                                                  "
+            + "  <Product id=\"123\">                                   "
+            + "    <Product_id>1</Product_id>                           "
+            + "    <Product_name>Product 1</Product_name>               "
+            + "    <Product_price>1000</Product_price>                  "
+            + "  </Product>                                             "
+            + "  <Product>                                              "
+            + "    <Product_id>2</Product_id>                           "
+            + "    <Product_name>Product 2</Product_name>               "
+            + "    <Product_price>2000</Product_price>                  "
+            + "  </Product>                                             "
+            + "  <Product>                                              "
+            + "    <Product_id>3</Product_id>                           "
+            + "    <Product_name>Product 3</Product_name>               "
+            + "    <Product_price>3000</Product_price>                  "
+            + "  </Product>                                             "
+            + "  <Product>                                              "
+            + "    <Product_id>4</Product_id>                           "
+            + "    <Product_name>Product 4</Product_name>               "
+            + "    <Product_price>4000</Product_price>                  "
+            + "  </Product>                                             "
+            + "</Store>                                                 ";
+
+
+
+    XmlDocument doc = new XmlDocument();
+    doc.LoadXml(xmltext);
+
+    XmlElement rootElement = doc.DocumentElement;
+    XmlNodeList nodes = rootElement.SelectNodes("/Store/Product");
+
+    string product_id = "", product_name = "", product_price = "";
+    foreach (XmlNode node in nodes)
+    {
+
+        foreach (XmlAttribute att in node.Attributes)
+        {
+            Console.WriteLine("Attribute/value: " + att.Name + " / " + att.Value);
+        }
+
+        product_id = node.SelectSingleNode("Product_id").InnerText;
+        product_name = node.SelectSingleNode("Product_name").InnerText;
+        product_price = node.SelectSingleNode("Product_price").InnerText;
+        Console.WriteLine(product_id + " " + product_name + " " + product_price);
+    }
+}
+
+
+//-----------XMLRoot------------
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
+
+namespace Simtest
+{
+    public partial class Form2 : Form
+    {
+
+
+
+        // Object -> xml string
+        public string XMLSerializeToString<T>(T value)
+        {
+            var emptyNamespaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+            var serializer = new XmlSerializer(value.GetType());
+            var settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.OmitXmlDeclaration = true;
+
+            using (var stream = new StringWriter())
+            using (var writer = XmlWriter.Create(stream, settings))
+            {
+                serializer.Serialize(writer, value, emptyNamespaces);
+                return stream.ToString();
+            }
+        }
+
+        // Object -> xml file
+        public void XMLSerializeToFile<T>(T value, string path)
+        {
+            string writeout = XMLSerializeToString<T>(value);
+            File.WriteAllText(path, writeout);
+        }
+
+        // xml string -> Object
+        public T XMlDeserializeFromString<T>(string xml)
+        {
+            var serializer = new XmlSerializer(typeof(T));
+            return  (T)serializer.Deserialize(new StringReader(xml));
+        }
+
+        // xml file -> Object
+        public T XMlDeserializeFromFile<T>(string path)
+        {
+            string xml = File.ReadAllText(path);
+            return XMlDeserializeFromString<T>(xml);
+        }
+
+        /*
+         <MyClass class_id = "1">
+           <Student student_id = "1">
+              <TestPoint testname = "math">7</TestPoint>
+              <TestPoint testname = "language">5.5</TestPoint>
+           </Student>
+           <Student student_id = "2">
+              <TestPoint testname = "math">7</TestPoint>
+              <TestPoint testname = "language">5.5</TestPoint>
+           </Student>
+        </MyClass>
+         */
+
+        [XmlRoot("MyClass")]
+        public class MyClass
+        {
+            [XmlAttribute("class_id")] public string class_id { get; set; }
+
+            [XmlElement("Student")]
+            public List<Student> StudentList { get; set; }
+
+        }
+
+        public class Student
+        {
+            [XmlAttribute("student_id")] public string student_id { get; set; }
+
+            [XmlElement("TestPoint")]
+            public List<TestPoint> TestPointList { get; set; }
+
+        }
+
+        public class TestPoint
+        {
+            [XmlAttribute("testname")] public string testname { get; set; }
+
+            [XmlText]
+            public string point { get; set; }
+
+        }
+
+
+
+
+        public Form2()
+        {
+            InitializeComponent();
+
+            String xml = "<MyClass class_id = \"1\">\r\n" +
+                        "   <Student student_id = \"1\">\r\n" +
+                        "      <TestPoint testname = \"math\">7</TestPoint>\r\n" +
+                        "      <TestPoint testname = \"language\">5.5</TestPoint>\r\n" +
+                        "   </Student>\r\n" +
+                        "   <Student student_id = \"2\">\r\n" +
+                        "      <TestPoint testname = \"hoa hoc\">4</TestPoint>\r\n" +
+                        "      <TestPoint testname = \"van hoc\">5.5</TestPoint>\r\n" +
+                        "   </Student>\r\n" +
+                        "</MyClass>";
+
+            //encode
+            MyClass _mclass = (MyClass)XMlDeserializeFromString<MyClass>(xml);
+            foreach (var student in _mclass.StudentList)
+            {
+                Console.WriteLine("studen = " + student.student_id );
+                foreach (var testpoint in student.TestPointList)
+                {
+                    Console.WriteLine("   testname / point = " + testpoint.testname + " / " + testpoint.point);
+                }
+            }
+
+
+
+            //decode
+            string xmlout = XMLSerializeToString<MyClass>(_mclass);
+            Console.WriteLine("xmlout:\n" + xmlout);
+
+        }
+    }
+}
+ 

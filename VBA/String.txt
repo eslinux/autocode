@@ -1,0 +1,66 @@
+
+Sub string_test()
+
+    Dim str As String
+    Dim pos_start As Integer
+    Dim pos_last As Integer
+    Dim strlen As Integer
+    
+    
+    str = "1.23.45"
+    
+    '==============================================================
+    'Tim kiem vi tri xuat hien dau tien cua dau cham (.)
+    '==============================================================
+    pos_start = InStr(str, ".")
+    Debug.Print pos_start
+    'pos_start = 2
+    
+    
+    '==============================================================
+    'Tim kiem vi tri xuat cuoi cung cua dau cham (.)
+    '==============================================================
+    pos_last = InStrRev(str, ".")
+    Debug.Print pos_last
+    'pos_last = 5
+    
+    
+    '==============================================================
+    'Cat chuoi lay phan ben trai 5 ky tu
+    '==============================================================
+    strlen = pos_last
+    Debug.Print Left(str, strlen)
+    'result: 1.23.
+    
+    
+    
+    '==============================================================
+    'Cat chuoi lay phan ben phai 2 ky tu
+    '==============================================================
+    strlen = Len(str) - pos_last
+    Debug.Print Right(str, strlen)
+    'result: 45
+    
+    
+    
+    '==============================================================
+    'Cat chuoi tu vi tri cho trc
+    '==============================================================
+    strlen = pos_last - pos_start - 1
+    Debug.Print Mid(str, pos_start + 1, strlen)
+    'result: 23
+    
+    
+
+    '==============================================================
+    ' Split the string to an array
+    '==============================================================
+    Dim arr() As String
+    arr = Split(str, ".")
+    Dim name As Variant
+    For Each name In arr
+        Debug.Print name
+    Next
+    
+
+End Sub

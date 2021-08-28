@@ -1,0 +1,10 @@
+
+
++ How to hide form at start up (run winform at background process)
+   - Click on form
+   - Set properties 
+		"Opacity" = 0%
+		"ShowInTaskbar" = false   (hiden frm task bar)
+		"WindowState" = "Minimized"
+		"FormBorderStyle" = FixedToolWindow  (hiden frm Alt + Tab)
+		

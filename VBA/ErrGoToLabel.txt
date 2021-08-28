@@ -1,0 +1,11 @@
+Sub ErrGoToLabel()
+    'IF error, goto label nextProc
+    On Error GoTo nextProc
+    ActiveSheet.Shapes("Start_Button").Delete
+    
+    'Some Code 1
+        
+nextProc:
+   'Some Code 2
+   
+End Sub

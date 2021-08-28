@@ -1,0 +1,11 @@
+'Access ActiveX Controls by:
+Worksheet("sheetname").ComponentName
+
+Ex:
+Sub main()
+    Debug.Print ActiveSheet.TextBoxName.Value
+    'or
+    Debug.Print ActiveSheet.OLEObjects("TextBoxName").Object.Value
+End Sub
+
+'For how to set/get component value, reference to UserForm

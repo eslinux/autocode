@@ -1,0 +1,21 @@
+Sub debug_print()
+
+    Debug.Print "mot", "1"
+    Debug.Print "hai", "2"
+    Debug.Print "ba", "3"
+    
+    Debug.Print "-----"
+    
+    Debug.Print "mot"; "1"
+    Debug.Print "hai"; "2"
+    Debug.Print "ba"; "3"
+    
+End Sub
+
+'mot    1
+'hai    2
+'ba     3
+'-----
+'mot1
+'hai2
+'ba3

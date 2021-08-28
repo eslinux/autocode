@@ -1,0 +1,7 @@
+Application.ScreenUpdating = True
+progressCounter = progressCounter + 1
+UserForm1.Label_progress.Caption = "test msg"
+UserForm1.Label_filename.Caption = "test msg"
+Application.Wait (Now + TimeValue("0:00:01"))
+DoEvents
+Application.ScreenUpdating = False

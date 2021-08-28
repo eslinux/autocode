@@ -1,0 +1,12 @@
++ C#
+https://www.geeksforgeeks.org/csharp-programming-language/?ref=ghm
+
++ WPF
+https://www.howkteam.vn/course/lap-trinh-wpf-co-ban-30
+https://www.wpf-tutorial.com/
+
+Other:
+1.Creating a Control Assembly
+https://docs.microsoft.com/en-us/previous-versions/aspnet/az5kdaz0(v=vs.100)
+
+

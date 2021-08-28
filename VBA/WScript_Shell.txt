@@ -1,0 +1,14 @@
+- Run: wait to command finish and return exit code only
+- Exec: get output stream of command
+
+Note: Ví dụ cách tạo command
+Dim cmd as String 
+Dim copySrc as String
+Dim copyDes as String
+
+copySrc = "C:\Users\PC\Desktop\Autocode\VBScripts"
+copyDes = "C:\Users\PC\Desktop\Autocode\backup"
+cmd = "xcopy " & """" & copySrc & """" & " " & """" & copyDes & """"
+
+-> Ket qua la cmd = xcopy "C:\Users\PC\Desktop\Autocode\VBScripts" "C:\Users\PC\Desktop\Autocode\backup"
+-> Tạo đấu ngoặc kep bằng cách dùng: """"

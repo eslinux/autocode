@@ -1,0 +1,22 @@
+
+Sub write_file()
+
+
+    Dim path As String
+    path = Application.DefaultFilePath & "\testwrite.txt"
+    
+'    'write from begin
+    Open path For Output As #1
+        Write #1, "abc"
+        Write #1, "ade"
+        Write #1, "ghi"
+    Close #1
+    
+    'write append to the end
+    Open path For Append As #1
+        Write #1, "123"
+        Write #1, "456"
+        Write #1, "789"
+    Close #1
+    
+End Sub

@@ -1,0 +1,3 @@
+Private Const TYPE_FORM_CONTROL As Integer = 8      'Forms controls
+Private Const TYPE_ACTIVEX_CONTROL As Integer = 12  'ActiveX control (control toolbox) or a linked or embedded OLE object.
+Private Const TYPE_PICTURE As Integer = 13          'Picture

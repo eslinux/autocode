@@ -1,0 +1,12 @@
+Sub read_file()
+
+    Dim path As String, textline As String, text As String
+    path = "C:\Users\NinhLD\Downloads\vba\cmp\excel_VBA.txt"
+    
+    Open path For Input As #1
+        Do Until EOF(1)
+            Line Input #1, textline
+            Debug.Print textline
+        Loop
+    Close #1
+End Sub

@@ -1,0 +1,32 @@
+'https://www.excel-easy.com/vba/userform.html
+
+・UserForm1.Show
+
+    Display userform
+
+・UserForm1.Hide
+
+    Do not display userform, form's data are remain
+
+・Unload UserForm1
+
+    Destroy userform (userform do not display and all form'data also not exist)
+	
+	
+
+Sub main()
+    With UserForm1
+        'Display form dialog
+        .Show
+
+
+        'Some code
+        Debug.Print "Some code"
+
+
+    End With
+
+
+    'Destroy form
+    Unload UserForm1
+End Sub

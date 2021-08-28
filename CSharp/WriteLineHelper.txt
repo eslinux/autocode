@@ -1,0 +1,26 @@
+public static class WriteLineHelper
+{
+    public static void WriteLine(string message,
+        [CallerLineNumber] int lineNumber = 0,
+        [CallerMemberName] string caller = null)
+    {
+        Console.WriteLine(string.Format("[{0}][{1}] : {2}", caller, lineNumber, message));
+    }
+
+    public static void Log(string message,
+            [CallerFilePath] string file = null,
+            [CallerLineNumber] int line = 0)
+    {
+        Console.WriteLine("{0} ({1}): {2}", Path.GetFileName(file), line, message);
+    }
+
+
+    public static void Trace(
+        [CallerFilePath] string file = null,
+        [CallerMemberName] string caller = null,
+        [CallerLineNumber] int lineNumber = 0)
+    {
+        Console.WriteLine(string.Format("[{0}][{1}] : {2}", Path.GetFileName(file), caller, lineNumber));
+    }
+
+}

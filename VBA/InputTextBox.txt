@@ -1,0 +1,19 @@
+Sub InputTextBox_()
+    Dim Target As String
+    
+    Target = Application.InputBox("Tu ma ban muon tim kiem:", "Tim kiem", Type:=2)
+    Debug.Print Target
+    If Target = "False" Then Exit Sub
+    
+    
+'Type
+'Value Description
+'0   a Formula
+'1   a Number
+'2   Text (a string)
+'4   A logical value (True or False)
+'8   A cell reference, as a Range object
+'16  An error value, such as #N/A
+'64  An array of values
+
+End Sub

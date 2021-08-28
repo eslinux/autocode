@@ -1,0 +1,3 @@
+
+- Display history line by line (10 lines newest)
+	git log --pretty=oneline -n 10

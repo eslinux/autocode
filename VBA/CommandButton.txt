@@ -1,0 +1,10 @@
+Private Sub CommandButton_CANCEL_Click()
+'    Unload Me
+    Hide
+End Sub
+
+Private Sub CommandButton_OK_Click()
+    'some code
+    
+    Hide
+End Sub

@@ -1,0 +1,16 @@
+
+Sub ErrorGoTo0()
+ 
+    On Error Resume Next
+    ActiveSheet.Shapes("Start_Button").Delete
+    
+    'From here IF error, program is stop, display default error dialog
+    'It mean that [Some code] do not run if error occur
+    On Error GoTo 0
+    ActiveSheet.Shapes("Start_Button").Delete
+     
+    'Some code
+    Debug.Print "do something"
+    
+ 
+End Sub

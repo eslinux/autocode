@@ -1,0 +1,1 @@
+https://eslinuxprogramming.blogspot.com/2021/05/java-use-cc-dll-from-java-with-jna.html

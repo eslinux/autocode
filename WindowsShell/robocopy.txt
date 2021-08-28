@@ -1,0 +1,103 @@
+ROBOCOPY source destination [file [file]…] [options]
+
+/s	Copy thư mục con không bao gồm các thư mục rỗng.
+/e	Copy thư mục con  bao gồm các thư mục trống.
+/lev:	Copy chỉ N mức của cây thư mục nguồn.
+/z	Copy các tập tin trong chế độ khởi động lại.
+/b	Copy các tập tin trong chế độ sao lưu.
+/zb	Sử dụng chế độ khởi động lại. Nếu truy cập bị từ chối, tùy chọn này sử dụng chế độ sao lưu.
+/efsraw	Copy tất cả các tập tin được mã hóa ở chế độ EFS RAW
+/copy:	Chỉ định các thuộc tính tập tin được sao chép. Sau đây là các giá trị hợp lệ cho các tùy chọn này:
+D Dữ liệu
+A Thuộc tính
+T Tem thời gian
+S bảng điều khiển truy cập NTFS (ACL)
+O thông tin cá nhân
+U thông tin kiểm toán
+The default value for CopyFlags is DAT (data, attributes, and time stamps).
+/dcopy:T	Copy trực tiếp các tem thời gian.
+/sec	Copy tệp tin kèm theo bảo mật (tương đương với /copy:DAT).
+/copyall	Copy tất cả thông tin của tệp tin (tương đương với /copy:DATSOU).
+/nocopy	Copy không kèm thông tin của tệp tin (hữu ích với /purge).
+/secfix	Sửa chữa tập tin bảo mật trên tất cả các tập tin, kể cả những tập tin đã bỏ qua.
+/timfix	Sửa chữa tập tin thời gian trên tất cả các tập tin, kể cả những tập tin đã bỏ qua.
+/purge	Xóa tập tin đích và các thư mục không còn tồn tại trong nguồn
+/mir	Sao chép một cây thư mục (tương đương với /e plus /purge).
+/mov	Di chuyển các tập tin, và xóa chúng từ nguồn sau khi đã copy.
+/move	Di chuyển các tập tin và thư mục, xóa chúng từ nguồn sau khi đã copy.
+/a+:[RASHCNET]	Bổ sung thêm các thuộc tính quy định cho tập tin sao chép.
+/a-:[RASHCNET]	Loại bỏ các thuộc tính xác định từ tập tin sao chép.
+/create	Tạo ra cây thư mục và các tập tin có độ dài bằng khôgn.
+/fat	Tạo ra các tập tin điểm đến bằng cách sử dụng 8.3 chiều dài ký tự tên tập tin FAT.
+/256	Tắt hỗ trợ cho những đường dẫn dài (dài hơn 256 ký tự).
+/mon:	Theo dõi nguồn, và chạy lại khi có nhiều hon N thay đổi được phát hiện.
+/mot:	Theo dõi nguồn, và chạy lại trong M phút nếu thay đổi được phát hiện.
+/rh:hhmm-hhmm	Chỉ định thời gian chạy khi các lệnh copy được khởi động
+/pf	Kiểm tra thời gian chạy trên một tập tin cơ sở
+/ipg:n	Chỉ định khoảng cách giữa các gói tin tới băng thông miễn phí trên các đường truyền chậm.
+/sl	Copy đường dẫn tượng trưng thay vì mục tiêu.
+Các tùy chọn tập tin chọn lọc :
+
+Tùy chọn	Mô tả
+/a	Chỉ copy các thuộc tính Archive.
+/m	Chỉ copy các thuộc tính Archive, và thiết lập lại các thuộc tính Archive
+/ia:[RASHCNETO]	Bao gồm những tập tin mà bất kỳ thuộc tính quy định được thiết lập.
+/xa:[RASHCNETO]	Không bao gồm các tập tin mà bất kỳ thuộc tính quy định được thiết lập.
+/xf [ …]	Không bao gồm các tập tin phù hợp với tên quy định hoặc đường dẫn. Lưu ý rằng tên có thể bao gồm các ký tự đại diện (*).
+/xd [ …]	Không bao gồm các cây thư mục phù hợp với với tên quy định và đường dẫn.
+/xct	Không bao gồm các tập tin đã thay đổi.
+/xn	Không bao gồm các tập tin mới
+/xo	Không bao gồm các tập tin cũ
+/xx	Không bao gồm các tập tin và cây thư mục được bổ sung
+/xl	Không bao gồm các tập tin và cây thư mục “lonely”
+/is	Bao gồm các tập tin giống nhau
+/it	Bao gồm các tập tin đã được tinh chỉnh
+/max:	Chỉ ra kích thước lớn nhất của tập tin (không bao gồm tập tin lớn hơn N bytes).
+/min:	Chỉ ra kích thước nhỏ nhất của tập tin (không bao gồm tập tin nhỏ hơn N bytes).
+/maxage:	Chỉ ra độ tuổi lớn nhất của tập tin (không bao gồm tập tin cũ hơn N ngày).
+/minage:	Chỉ ra độ tuổi nhỏ nhất của tập tin (không bao gồm tập tin mới hơn N ngày).
+/maxlad:	Chỉ ra tối đa kể từ ngày truy cập cuối cùng (không bao gồm các tập tin không được sử dụng từ khi N).
+/minlad:	Chỉ ra tối thiểu kể từ ngày truy cập cuối cùng (không bao gồm các tập tin được sử dụng từ khi N) Nếu N nhỏ hơn 1900, N chỉ ra số ngày. Nếu không, N chỉ ra ngày với định dạng YYYYMMDD.
+/xj	Không bao gồm các điểm giao nhau, thường bao gồm theo mặc định.
+/fft	Giả định thời gian tập tin FAT (two-second precision).
+/dst	Compensates for one-hour DST time differences.
+/xjd	Không bao gồm các điểm giao nhau cho thư mục.
+/xjf	Không bao gồm các điểm giao nhau cho tập tin.
+Các tùy chọn Retry
+
+Tùy chọn	Mô tả
+/r:	Chỉ định số lần thử lại nếu copy bị lỗi. Giá trị mặc định của N là 1,000,000
+/w:	Chỉ định thời gian đợi giữa các lần thử lại, trên giây. Giá trị mặc định của N là 30 (đợi 30s).
+/reg	Lưu các giá trị chỉ định trong các tùy chọn /r và /w thiết lập mặc định trong thanh ghi
+/tbd	Chỉ định rằng hệ thống sẽ chờ đợi cho tên chia sẻ được xác định (thử lại lỗi 67).
+Các tùy chọn nhật ký
+
+Tùy chọn	Mô tả
+/l	Chỉ định các tập tin được liệt kê (và không được copy, xóa và tem thời gian).
+/x	Báo cáo tất cả các tập tin thêm, không chỉ là những tập tin được lựa chọn.
+/v	Tạo ra đầu ra chi tiết, và hiện tất cả các tập tin bỏ qua.
+/ts	Bao gồm các tem thời gian của tập tin nguồn trong đầu ra.
+/fp	Bao gồm đầy đủ tên các đường dẫn của các tập tin trong đầu ra.
+/bytes	In độ lớn, sử dụng bytes.
+/ns	Chỉ định rằng kích thước tập tin sẽ không được lưu nhật ký.
+/nc	Chỉ định rằng các phân lớp tập tin không được lưu nhật ký.
+/nfl	Chỉ định rằng các tên tập tin sẽ không được lưu nhật ký.
+/ndl	Chỉ định rằng các tên thư mục sẽ không được lưu nhật ký.
+/np	Chỉ định rằng tiến trình của các hoạt động copy (số lượng các tập tin hoặc thư mục được copy cho đến nay) sẽ không được hiển thị.
+/eta	Cho thấy thời gian dự kiến (ETA) của các tập tin copy.
+/log:	Viết các trạng thái đầu ra cho tập tin nhật ký (ghi chèn lên các tập tin nhật ký đã tồn tại).
+/log+:	Viết các trạng thái đầu ra cho tập tin nhật ký (appends the output to the existing log file).
+/unicode	Hiện trạng thái đầu ra như một văn bản Unicode.
+/unilog:	Viết trạng thái đầu ra tới tập tin nhật ký như văn bản Unicode (ghi chèn lên tập tin nhật ký đã tồn tại).
+/unilog+:	Viết trạng thái đầu ra tới tập tin nhật ký như văn bản Unicode (gắn thêm vào tập tin nhật ký đã tồn tại).
+/tee	Viết trạng thái đầu ra tới giao diện điều khiển của window, giống như các tập tin nhật ký.
+/njh	Chỉ định rằng không có tiêu đề công việc.
+/njs	Chỉ định rằng không có tổng hợp công việc.
+Tùy chọn Job
+
+Tùy chọn	Mô tả
+/job:	Chỉ định rằng các thông số sẽ được bắt nguồn từ các tập tin công việc được đặt tên.
+/save:	Chỉ định rằng các thông số được lưu dưới tên tập tin làm việc.
+/quit	Thoát sau khi xử lý dòng lệnh (để xem các thông số).
+/nodd	Chỉ ra rằng không có thư mục đích đã được quy định cụ thể.
+/if	Bao gồm các tập tin đã chỉ định

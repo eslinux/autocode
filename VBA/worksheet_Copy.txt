@@ -1,0 +1,11 @@
+Sub worksheet_Copy()
+
+    'copy to new workbook
+    Debug.Print ActiveWorkbook.Name 'output: vba.xlsx
+    
+    Worksheets(Array("Sheet1", "Sheet2")).Copy
+    Debug.Print ActiveWorkbook.Name 'output: Book1
+    Worksheets("Sheet1").Copy After:=Worksheets("Sheet2") 'copy Sheet1 to after Sheet2 in Book1
+    'NOTE: After copy ActiveWorkbook change to new Book1
+
+End Sub

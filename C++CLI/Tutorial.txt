@@ -1,0 +1,37 @@
+
+
+1. Pro Visual C++/CLI and the .NET 3.5 Platform by Stephen R.G. Fraser (Apress, 2009)
+
+https://github.com/Apress/pro-visual-c-cli-.net-3.5-platform
+
+■ CHAPTER 2 C++/CLI Basics   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 3 Object-Oriented C++/CLI . . . . . . . . . . . . . . . . . . . . . . . . . .
+■ CHAPTER 4 Advanced C++/CLI   . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 5 The .NET Framework Class Library   . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 6 Integrated XML Documentation . . . . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 7 Collections  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 8 Input, Output, and Serialization . . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 9 .NET Configuration File Programming  . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 10 Basic Windows Forms Applications  . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 12 Graphics Using GDI+ . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 13 ADO.NET and Database Development  . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 14 XML  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+■ CHAPTER 15 Windows Services  . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 16 Web Applications  . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 17 Web Services   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+■ CHAPTER 18 Multithreaded Programming   . . . . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 19 Network Programming . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+■ CHAPTER 20 Assembly Programming . . . . . . . . . . . . . . . . . . . . . . . . . . .
+■ CHAPTER 21 Security   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+
+2. C++/CLI Tutorial
+https://asawicki.info/news_1472_ccli_tutorial
+
+
+3.Object-Oriented Programming
+https://www.visualcplusdotnet.com/visualcplusdotnet14.html
+
+
+4. C++/CLI Cheat Sheet
+https://manski.net/2011/04/cpp-cli-cheat-sheet/

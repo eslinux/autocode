@@ -1,0 +1,54 @@
+
+- Git reset
+	Git reset được dùng để quay về một điểm commit nào đó, đồng thời xóa lịch sử của các commit sau nó.
+	Cùng xét ví dụ dưới đây để hiểu rõ hơn về git reset:
+	
+		A  -> B -> C -> D
+                        ↑
+                       HEAD						
+	
+	Giả sử, lịch sử commit của bạn có các điểm commit như trên (A, B, C ,D) 
+	tương ứng với các commit_id phía trên.
+	A , B là các commit đang hoạt động bình thường, và C, D là các commit gặp vấn đề. 
+	Lúc này bạn có thể quay trở về commit B bằng câu lệnh:
+		$ git reset --hard <sha commit of B>
+	
+	Sau khi chạy xong câu lệnh trên , ta có kết quả :
+	
+		A  -> B
+			  ↑
+		     HEAD	
+			 
+	Bạn có thể thấy , con trỏ HEAD đang trỏ đến vị trí của commit B, đồng thời lịch sử commit C và D cũng biến mất, giống như bạn chưa từng thực hiện commit bị lỗi nào vậy. Lịch sử commit cũng trông gọn gàng hơn.
+    Tuy nhiên, các thay đổi này mới chỉ diễn ra trên local repository, để cập nhật thay đổi này lên remote repository bạn cần phải thực hiện lệnh:
+		$ git push -f
+
+
+- Git revert
+	Đó là với** git reset**, vậy còn git revert thì sao ?
+	Git revert không làm mất các commit , thay vào đó sẽ tạo thêm commit mới, có nội dung giống hệt với commit bạn muốn quay trở về.
+		
+		A  -> B -> C -> D
+                        ↑
+                       HEAD
+
+	Vẫn với trường hợp như với git reset, điều chúng ta cần thực hiện là revert về commit D, rồi tiếp tục revert về commit C.
+		$ git revert <sha commit of D>
+		$ git revert <sha commit of C>
+	
+	Kết quả sau khi lần lượt chạy 2 lệnh trên: souce code cua C' chinh la cua B
+		A  -> B -> C -> D -> D' -> C'
+								   ↑
+                                  HEAD
+								  
+	Ở đây, chúng ta có thể thấy rằng đã có thêm 2 commit mới D’ và C’ được tạo ra.
+    Như vậy, git reset thì xóa lịch sử commit giúp lịch sử trông gọn gàng hơn, còn git revert sẽ tạo ra thêm commit mới đồng thời giữ lại lịch sử commit trước đó.
+
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   

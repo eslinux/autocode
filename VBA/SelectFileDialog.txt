@@ -1,0 +1,14 @@
+Sub SelectFile_dialog()
+    Dim myFile As String
+    
+'    myFile = Application.GetOpenFilename() 'Or below
+    myFile = Application.GetOpenFilename("CSVファイル,*.csv, All, *.*")  'CSVファイル(*.csv)  OR  All(*.*)
+
+    If myFile <> "False" Then
+        Debug.Print "Open file " & myFile
+    Else
+        Debug.Print "Cancel"
+    End If
+    
+
+End Sub

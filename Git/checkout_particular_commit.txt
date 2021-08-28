@@ -1,0 +1,10 @@
+Use git log to find the revision you want to rollback to, and take note of the commit hash. After that, you have 2 options:
+	- If you plan to commit anything after that revision, I recommend you to checkout to a new branch: 
+	  git checkout -b <new_branch_name> <hash>
+	- f you don't plan to commit anything after that revision, you can simply checkout without a branch: 
+	  git checkout <hash>
+	  NOTE: This will put your repository in a 'detached HEAD' state, which means its currently not attached to any branch
+	  
+How to get back to the latest commit after checking out a previous commit?
+	git checkout -
+	

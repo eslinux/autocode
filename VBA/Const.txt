@@ -1,0 +1,2 @@
+Public Const AGE_COL As String = "B"
+Private Const NAME_COL As String = "B"

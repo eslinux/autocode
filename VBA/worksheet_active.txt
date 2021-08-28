@@ -1,0 +1,25 @@
+
+'Select or active sheet
+Sub worksheet_produce()
+    Dim ws As Worksheet
+    Set ws = Worksheets("Sheet1")
+    
+    '---Select sheet---
+    With Worksheets("Sheet1")
+        'EDIT worksheet "Sheet1"
+        
+        .Cells(1, 1).Value = "here is sheet 1"
+
+    End With
+    
+    With ActiveSheet
+        'EDIT current sheet
+        
+        .Cells(1, 1).Value = "here is current sheet"
+    End With
+    
+    
+    '---Active sheet---
+    Worksheets("Sheet2").Activate
+
+End Sub

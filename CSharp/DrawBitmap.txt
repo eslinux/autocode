@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp3
+{
+    public partial class Form_Draw : Form
+    {
+        Image _img;
+
+        public Form_Draw()
+        {
+            InitializeComponent();
+        }
+
+        private void Form_Draw_Load(object sender, EventArgs e)
+        {
+            //create bitmap
+            _img = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+
+            //Create graphic object for the current form
+            Graphics gs = Graphics.FromImage(_img);
+            gs.Clear(Color.Green);
+
+            //show
+            pictureBox1.Image = (Image)_img.Clone();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //get graphic
+            Graphics gs = Graphics.FromImage(_img);
+
+            //Create brush object
+            Brush br1 = new SolidBrush(Color.Red);
+            Brush br2 = new SolidBrush(Color.CadetBlue);
+
+            //Create pen objects
+            Pen p1 = new Pen(br1);
+            Pen p2 = new Pen(br2);
+
+            //Draw lines
+            gs.DrawLine(p1, new Point(0, 0), new Point(200, 200));
+            gs.DrawLine(p2, new Point(120, 10), new Point(120, 200));
+
+            //show
+            pictureBox1.Image = (Image)_img.Clone();
+        }
+    }
+}

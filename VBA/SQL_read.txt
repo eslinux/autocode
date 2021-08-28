@@ -1,0 +1,76 @@
+Attribute VB_Name = "sqldatabase"
+Option Explicit
+
+
+'----------------------------------------------------------------------------
+'Tool > References and check on Microsoft AciveX Data Object 2.5 Library
+'----------------------------------------------------------------------------
+Sub GetDataFromADO()
+    'database info
+    Dim src As String
+    Dim user_id As String
+    Dim password As String
+    Dim dbname As String 'database name
+    Dim tbname As String 'table name
+    
+    src = "localhost\SQLEXPRESS"
+    user_id = "sa"
+    password = "123456"
+    dbname = "dd"
+    tbname = "[dd].[dbo].[numbertalbe]"
+    
+    'Declare variables'
+    '    Dim objMyRecordset As Object
+    Dim objMyConn As ADODB.Connection 'ADO Connection Object
+    Dim objMyRecordset As ADODB.Recordset 'ADO Recordset Object
+    
+    Set objMyConn = New ADODB.Connection
+    Set objMyRecordset = New ADODB.Recordset
+    Dim strSQL As String
+    
+    'Open Connection'
+    objMyConn.ConnectionString = "Provider=SQLOLEDB;Data Source=" & src & ";Initial Catalog=" & dbname & ";User ID=" & user_id & ";Password=" & password & ";"
+    objMyConn.Open
+    
+    'Set and Excecute SQL Command'
+    strSQL = "select * from " & tbname
+    strSQL = "SELECT * FROM " & tbname
+    
+    'Open Recordset'
+    Set objMyRecordset.ActiveConnection = objMyConn
+    objMyRecordset.Open strSQL
+    
+    'Copy Data to Excel'
+    'ActiveSheet.Range("A1").CopyFromRecordset (objMyRecordset)
+
+
+    'Get data
+    Dim i As Integer
+    Dim recordsre As String
+    
+    Debug.Print "--------"
+    recordsre = ""
+    For i = 0 To objMyRecordset.Fields.Count - 1
+        recordsre = recordsre & CStr(objMyRecordset.Fields(i).Name) & " "  'get collumn
+    Next i
+    Debug.Print recordsre
+    
+    objMyRecordset.MoveFirst
+    Do Until objMyRecordset.EOF
+        recordsre = ""
+        For i = 0 To objMyRecordset.Fields.Count - 1
+            recordsre = recordsre & CStr(objMyRecordset.Fields(i).Value) & " " 'get value
+        Next i
+        Debug.Print recordsre
+        
+        objMyRecordset.MoveNext
+    Loop
+ 
+    
+    objMyRecordset.Close
+    objMyConn.Close
+    
+    Set objMyRecordset = Nothing
+    Set objMyConn = Nothing
+        
+End Sub

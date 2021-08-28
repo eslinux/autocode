@@ -1,0 +1,47 @@
+XCOPY source [destination] [/A | /M] [/D[:date]] [/P] [/S [/E]] [/V] [/W] [/C] [/I] [/Q] [/F] [/L] [/G] [/H] [/R]  [/T] [/U] [/K] [/N] [/O] [/X] [/Y] [/-Y] [/Z] [/B] [/J] [/EXCLUDE:file1[+file2][+file3]…]
+
+source: file hoặc folder cần copy
+destination: Nơi copy tới hoặc copy ra file mới
+/A:  chỉ sao chép files với thiết đặt lưu trữ thuộc tính, không thay đổi thuộc tính
+/M: chỉ sao chép files với thiết đặt lưu trữ thuộc tính, và tắt lưu trữ  thuộc tính
+/D:m-d-y Bản sao các tập tin thay đổi vào hoặc sau ngày được chỉ định. Nếu không có ngày nào, chỉ sao chép những tệp có thời gian nguồn mới hơn thời gian đích.
+/EXCLUDE:exclude1[+exclude2][+exclude3]… các file exclude1,2,3 được dùng để định nghĩa những thứ không copy theo thư mục, theo tên, theo loại file,…
+    Nội dung file: không copy file1.cs, thư mục folder2, tất cả các file có đuôi txt
+    \file1.cs\
+    \folder2\
+    .txt
+
+/P Nhắc bạn trước khi tạo từng tệp đích.
+/S Sao chép thư mục và thư mục con trừ những thư mục trống.
+/E Sao chép thư mục và thư mục con bao gồm những thư mục trống (Same as /S /E. May be used to modify /T.)
+/V Verifies  kích thước của mỗi tệp mới.
+/W Nhắc bạn bấm phím trước khi sao chép.
+/C Tiếp tục copy nếu có lỗi.
+/I Nếu đích không tồn tại và sao chép nhiều hơn một tệp, giả sử đích đó phải là một thư mục.( ví dụ: bạn copy vào D:\folderA, nhưng folderA không có )
+/Q không hiển thị tên file trong quá trình copy.
+/F Hiển thị tên tệp nguồn và đích đầy đủ trong khi sao chép.
+/L Hiển thị tập tin sẽ được sao chép.
+/G Cho phép sao chép các tập tin được mã hóa đến đích không hỗ trợ mã hóa.
+/H Copy file ẩn và file hệ thống.
+/R Ghi đè file có thuộc tính chỉ đọc .
+/T Tạo cấu trúc thư mục, nhưng không sao chép tập tin. Không bao gồm các thư mục trống hoặc thư mục con.(nếu sử dụng kết hợp / T / E  thì sẽ bao gồm các thư mục trống và thư mục con.)
+/U chỉ copy các tập tin đã tồn tại ở đích.
+/K sao chép các thuộc tính. ( bình thường Xcopy sẽ thiết lập lại các thuộc tính chỉ đọc)
+/N Bản sao sử dụng tên ngắn được tạo.
+/O sao chép quyền sở hữu tệp và thông tin ACL
+/X Sao chép cài đặt audit file
+/Y Bỏ qua lời nhắc xác nhận ghi đè nếu đã có .
+/-Y Nguyên nhân nhắc nhở xác nhận bạn muốn ghi đè lên tệp đích hiện có
+/Z Sao chép các tập tin được nối mạng trong chế độ khởi động lại.
+/B Sao chép chính Liên kết tượng trưng so với mục tiêu của liên kết.
+/J Bản sao sử dụng I / O không có bộ đệm. Đề xuất cho các tệp rất lớn.
+
+
+Exam:
+XCOPY ProJect1  ProJect2 /I /E /K /X /O /H /EXCLUDE:do_not_copy_list.txt
+
+Nội dung do_not_copy_list.txt:
+\file1.cs\
+\folder2\
+.txt
+

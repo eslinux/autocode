@@ -1,0 +1,131 @@
+Option Explicit
+
+'Setup
+'VBA Editor > Tool > References ... > Microsoft XML 3.0
+
+
+'<gs_provision version="1">
+'    <item id = "1">
+'        <mac>mac 1</mac>
+'        <config version="1"> config 1</config>
+'    </item>
+'    <item id = "2">
+'        <mac>mac 2</mac>
+'        <config version="1"> config 2</config>
+'    </item>
+'
+'    <item id = "3">
+'        <mac>mac 3</mac>
+'        <config version="1"> config 3</config>
+'    </item>
+'</gs_provision>
+
+
+
+Sub XMLParser()
+ 
+	'Create XML 
+	Dim XMLDocument As MSXML2.DOMDocument
+    Set XMLDocument = New MSXML2.DOMDocument
+
+	'Load from file
+    XMLDocument.Load (ActiveWorkbook.Path & "\filename.xml")
+    XMLDocument.async = False
+	
+	
+	
+    Dim objNodeList As IXMLDOMNodeList
+    Dim objNode As IXMLDOMNode
+    Dim objNode2 As IXMLDOMNode
+    
+    'get item list node
+    Set objNodeList = XMLDocument.SelectNodes("//item")
+    
+    For Each objNode In objNodeList
+        'Loop node item
+         Debug.Print objNode.nodeName, objNode.Attributes.getNamedItem("id").Text 'get attributes
+         
+         For Each objNode2 In objNode.ChildNodes
+            'Loop node mac and config
+            Debug.Print "", objNode2.nodeName, objNode2.Text
+         Next
+    Next
+	
+	
+	
+	'--------debug--------------------
+	'Item 1
+	'              mac           mac 1
+	'              config        config 1
+	'Item 2
+	'              mac           mac 2
+	'              config        config 2
+	'Item 3
+	'              mac           mac 3
+	'              config        config 3
+	'----------------------------------
+	
+	
+	'---------OR use item(index)---------
+	'    Dim oNodeList As IXMLDOMSelection
+	'    Dim curNode As IXMLDOMNode
+	'    Dim i As Long
+	'
+	'    Set oNodeList = XMLDocument.SelectNodes("gs_provision/item")
+	'    For i = 0 To (oNodeList.Length - 1)
+	'        Set curNode = oNodeList.Item(i)
+	'        Debug.Print curNode.nodeName, curNode.Attributes.getNamedItem("id").Text
+	'    Next
+	
+	
+	'-----------get xml string------
+	'XMLDocument.xml
+	
+End Sub
+
+
+
+Sub CreateXML()
+	'Create XML
+    Dim XMLDocument As MSXML2.DOMDocument
+    Set XMLDocument = New MSXML2.DOMDocument
+    Dim att As MSXML2.IXMLDOMAttribute
+
+    'Create root node
+    Dim objNode As IXMLDOMNode
+    Set objNode = XMLDocument.createNode(1, "root", "")
+    
+    'Create childrent node
+    Dim objNodeChil As IXMLDOMNode
+    Set objNodeChil = XMLDocument.createNode(1, "item", "")
+    
+
+    'Set value for child
+    objNodeChil.Text = "item 1"
+    
+    'set attribute for child
+    Set att = XMLDocument.createAttribute("id")
+    att.Value = "1"
+    Call objNodeChil.Attributes.setNamedItem(att)
+    
+    'Add child node to root node
+    Call objNode.appendChild(objNodeChil)
+    
+    'Add root node to XML document
+    Call XMLDocument.appendChild(objNode)
+    
+
+    Debug.Print XMLDocument.XML '<root><item id="1">item 1</item></root>
+    
+    'Save to file
+    XMLDocument.Save (ActiveWorkbook.Path & "\createtest1.xml")
+	
+End Sub
+
+
+
+
+
+
+
+

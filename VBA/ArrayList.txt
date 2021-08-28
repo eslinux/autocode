@@ -1,0 +1,51 @@
+'※https://vbabeginner.net/net-framework-queue/
+Sub DNET_ArrayListTest1()
+    Dim aryList As Object   '// ArrayListオブジェクト
+    Dim s                   '// 戻り値用
+    Dim obj     As Object   '// Clone用
+    Dim i As Long
+    
+    '// .NET FrameworkのArrayListクラスを利用する
+    Set aryList = CreateObject("System.Collections.ArrayList")
+    
+    '// 追加
+    Call aryList.Add("111")
+    Call aryList.Add("222")
+    Call aryList.Add("333")
+    Call aryList.Add("444")
+    
+    '// 書き換え
+    aryList.Item(0) = "AAA"
+    
+    '// 取得
+    s = aryList.Item(0)
+    
+
+    
+    '// 要素数
+    s = aryList.Count
+    For i = 0 To s - 1
+        Debug.Print "Item ", i, aryList.Item(i)
+        'Item           0            AAA
+        'Item           1            222
+        'Item           2            333
+        'Item           3            444
+    Next
+
+    
+    
+    '// 反転
+    Call aryList.Reverse
+    
+    '// ソート
+    Call aryList.Sort
+    
+    '// 指定要素削除
+    Call aryList.Remove("AAA")
+    
+    '// 指定インデックス削除
+    Call aryList.RemoveAt(0)
+    
+    '// 複写
+    Set obj = aryList.Clone
+End Sub

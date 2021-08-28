@@ -1,0 +1,18 @@
+'Empty ComboBox1
+ComboBox1.Clear
+
+'Fill ComboBox1
+With ComboBox1
+    .AddItem "San Francisco"
+    .AddItem "Oakland"
+    .AddItem "Richmond"
+End With
+
+'set defaul item to 1st item  (San Francisco)
+Combobox1.ListIndex=0
+
+'get ComboBox1 by value
+Cells(emptyRow, 3).Value = ComboBox1.Value  'San Francisco because ListIndex=0
+
+'get ComboBox1 by Index
+Cells(emptyRow, 3).Value = ComboBox1.List(1)  'Oakland
