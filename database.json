@@ -737,6 +737,10 @@
 						{
 							"text":"Add, restore stage",
 							"value":"add_restore.txt"
+						},
+						{
+							"text":"Update .gitignore",
+							"value":"gitignore.txt"
 						}
 					]
 				},
