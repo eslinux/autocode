@@ -681,6 +681,10 @@
 						{
 							"text":"make_clean.bat",
 							"value":"make_clean.bat"
+						},
+						{
+							"text":"scan_folder.bat",
+							"value":"scan_folder.bat"
 						}
 					]
 				}
