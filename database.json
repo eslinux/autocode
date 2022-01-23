@@ -685,6 +685,22 @@
 						{
 							"text":"scan_folder.bat",
 							"value":"scan_folder.bat"
+						},
+						{
+							"text":"delete.bat",
+							"value":"delete.bat"
+						},
+						{
+							"text":"virtual_drive.bat",
+							"value":"virtual_drive.bat"
+						},
+						{
+							"text":"variable.bat",
+							"value":"variable.bat"
+						},
+						{
+							"text":"set_environment.bat",
+							"value":"set_environment.bat"
 						}
 					]
 				}
