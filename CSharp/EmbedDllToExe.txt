@@ -1,0 +1,6 @@
+
+1.Costura.Fody
+Add Costura.Fody from Nuget package
+no need to do anything, add will automatic embed to exe when build app
+
+2.ILMerge.exe

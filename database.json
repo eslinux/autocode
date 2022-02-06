@@ -109,6 +109,15 @@
 					]
 				},
 				{
+					"text":"Library",
+					"value":[
+						{
+							"text":"Embedd dll to exe",
+							"value":"EmbedDllToExe.txt"
+						}
+					]
+				},
+				{
 					"text":"Reference",
 					"value":"Reference.txt"
 				}
