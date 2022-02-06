@@ -196,7 +196,8 @@ function createFunctionList(data)
 		$.get(i_url,function(data) {
 		
 			var retdata = "//---------------------------------------\n"  + "//         " +  fname  + "\n"  + "//---------------------------------------\n"
-			retdata = retdata + data  + "\n\n\n\n\n" +  $(".right").text();
+			//retdata = retdata + data  + "\n\n\n\n\n" +  $(".right").text();
+			retdata = retdata + data;
 		   $(".right").text(retdata);
 		});
 	});
