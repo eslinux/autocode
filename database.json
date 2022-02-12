@@ -791,6 +791,10 @@
 					]
 				},
 				{
+					"text":"tortoisegit.org",
+					"value":"tortoisegit.org.txt"
+				},
+				{
 					"text":"Reference",
 					"value":"Reference.txt"
 				}
