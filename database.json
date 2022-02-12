@@ -44,6 +44,10 @@
 							"value":"DrawBitmap.txt"
 						},
 						{
+							"text":"Color",
+							"value":"Color.txt"
+						},
+						{
 							"text":"SendMessage, Shared Memory",
 							"value":"SendMessage_SharedMemory.txt"
 						},

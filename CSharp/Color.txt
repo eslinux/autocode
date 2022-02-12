@@ -1,0 +1,19 @@
+private void Form1_Load(object sender, EventArgs e)
+{
+	//hex code color -> Color object
+	Color myColor = ColorTranslator.FromHtml("#fcba03");
+	button1.BackColor = myColor;
+
+	//Color object -> hex code color
+	string colorHex = ColorTranslator.ToHtml(myColor);
+	Console.WriteLine(colorHex);
+}
+
+//open color dialog and get Color object
+private void button1_Click(object sender, EventArgs e)
+{
+	if (colorDialog1.ShowDialog() == DialogResult.OK)
+	{
+		button1.BackColor = colorDialog1.Color;
+	}
+}
