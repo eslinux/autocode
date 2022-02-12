@@ -1,0 +1,30 @@
+
+
+void testGetEnumDescription()
+{
+	string description = GetEnumDescription(MyEnum.HereIsAnother);
+	Console.WriteLine($"{MyEnum.HereIsAnother}, des = {description}");
+}
+
+public enum MyEnum
+{
+	[Description("My name is")]
+	Name1 = 1,
+
+	[Description("Here is another")]
+	HereIsAnother,
+
+	[Description("Last one")]
+	LastOne
+}
+
+public static string GetEnumDescription(Enum value)
+{
+	FieldInfo fi = value.GetType().GetField(value.ToString());
+	DescriptionAttribute[] attributes = fi.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
+	if (attributes != null && attributes.Any())
+	{
+		return attributes.First().Description;
+	}
+	return value.ToString();
+}
