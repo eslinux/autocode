@@ -1,10 +1,13 @@
-
-
 void testGetEnumDescription()
 {
 	string description = GetEnumDescription(MyEnum.HereIsAnother);
-	Console.WriteLine($"{MyEnum.HereIsAnother}, des = {description}");
+	Console.WriteLine($"Name = {MyEnum.HereIsAnother.ToString()}, des = {description}, value = {(int)MyEnum.HereIsAnother}");
+
+
+	int colIndex = GetEnumValue<MyEnum>("HereIsAnother");
+	Console.WriteLine($"colIndex = {colIndex}");
 }
+
 
 public enum MyEnum
 {
@@ -27,4 +30,15 @@ public static string GetEnumDescription(Enum value)
 		return attributes.First().Description;
 	}
 	return value.ToString();
+}
+
+public static int GetEnumValue<T>(string itemName)
+{
+	Array dgvColList = Enum.GetValues(typeof(T));
+	foreach (var item in dgvColList)
+	{
+		Console.WriteLine($"col name= {item}, value = {(int)item}");
+		if (itemName == item.ToString()) return (int)item;
+	}
+	return -1;
 }
