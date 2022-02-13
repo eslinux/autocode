@@ -6,6 +6,9 @@ void testGetEnumDescription()
 
 	int colIndex = GetEnumValue<MyEnum>("HereIsAnother");
 	Console.WriteLine($"colIndex = {colIndex}");
+	
+	string colName = GetEnumName<MyEnum>(2);
+    Console.WriteLine($"colName = {colName}");
 }
 
 
@@ -41,4 +44,15 @@ public static int GetEnumValue<T>(string itemName)
 		if (itemName == item.ToString()) return (int)item;
 	}
 	return -1;
+}
+
+
+public static string GetEnumName<T>(int itemValue)
+{
+	Array dgvColList = Enum.GetValues(typeof(T));
+	foreach (var item in dgvColList)
+	{
+		if (itemValue == (int)item) return item.ToString();
+	}
+	return string.Empty;
 }
