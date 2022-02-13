@@ -68,8 +68,12 @@
 							"value":"XML.txt"
 						},
 						{
-							"text":"GetEnumDescription",
+							"text":"Enum Description",
 							"value":"GetEnumDescription.txt"
+						},
+						{
+							"text":"Class Properties",
+							"value":"GetClassProperties.txt"
 						}
 					]
 				},

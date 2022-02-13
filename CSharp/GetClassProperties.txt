@@ -1,0 +1,35 @@
+
+
+
+public class Product
+{
+	public int ProductId { get; set; }
+	public string ProductName { get; set; }
+	public decimal UnitPrice { get; set; }
+}
+
+
+
+void testGetClassProperties()
+{
+	Product myitem = new Product()
+	{
+		ProductId = 1,
+		ProductName = "hihi",
+		UnitPrice = 10
+	};
+
+	PropertyInfo[] propertiesList = typeof(Product).GetProperties();
+	foreach (PropertyInfo pInfo in propertiesList)
+	{
+		Console.WriteLine($"properties = {pInfo.Name}, value = {pInfo.GetValue(myitem)}");
+	}
+}
+
+
+output:
+properties = ProductId, value = 1
+properties = ProductName, value = hihi
+properties = UnitPrice, value = 10
+		
+		
