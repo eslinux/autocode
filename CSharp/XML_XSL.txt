@@ -1,0 +1,15 @@
+
+
+
+Convert XML + XSL => html
+XPathDocument myXPathDoc = new XPathDocument("cdcatalog.xml");
+XslCompiledTransform myXslTrans = new XslCompiledTransform();
+myXslTrans.Load("cdcatalog.xsl");
+XmlTextWriter myWriter = new XmlTextWriter("result.html", null);
+myXslTrans.Transform(myXPathDoc, null, myWriter);
+
+OR
+
+var myXslTransdd = new XslCompiledTransform();
+myXslTrans.Load("cdcatalog.xsl");
+myXslTrans.Transform("cdcatalog.xml", "result222.html");

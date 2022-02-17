@@ -68,6 +68,10 @@
 							"value":"XML.txt"
 						},
 						{
+							"text":"XML & XSL",
+							"value":"XML_XSL.txt"
+						},
+						{
 							"text":"Enum Description",
 							"value":"GetEnumDescription.txt"
 						},
