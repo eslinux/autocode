@@ -142,6 +142,15 @@
 					]
 				},
 				{
+					"text":".Net Core",
+					"value":[
+						{
+							"text":"dotnet CLI",
+							"value":"dotnet.txt"
+						}
+					]
+				},
+				{
 					"text":"Reference",
 					"value":"Reference.txt"
 				}

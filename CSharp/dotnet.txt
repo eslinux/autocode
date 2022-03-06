@@ -1,0 +1,9 @@
+
+1.Hello world
+https://code.visualstudio.com/docs/languages/dotnet
+
+2.Command list
+https://docs.microsoft.com/en-us/dotnet/core/tools/
+
+3.Visual studio code
+https://docs.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio-code?pivots=dotnet-6-0
