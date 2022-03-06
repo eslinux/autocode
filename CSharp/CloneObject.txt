@@ -1,0 +1,218 @@
+SOURCE: 
+https://levelup.gitconnected.com/5-ways-to-clone-an-object-in-c-d1374ec28efa
+
+
+5 Ways to Clone An Object in C#
+With the pros and cons of each
+
+The maturity of a software engineer is determined by many factors such as knowledge of algorithms, analytical thinking, big-picture focus, debugging skills etc. In addition, the following two factors are important from my point of view:
+A software engineer knows several approaches to solve the same problem.
+A software engineer chooses an approach based on an analysis of its pros and cons.
+To help you get a little more mature, I’ve put together 5 ways to clone an object in C# and have prepared the pros and cons of each.
+We are going to use two simple classes Person and Address in all the following examples.
+
+public class Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Address Address { get; set; }
+}
+
+public class Address
+{
+    public string City { get; set; }
+    public string Street { get; set; }
+}
+
+
+But before we start, I want to remind you about a shallow and deep copy concepts in .NET. Shallow copy has its own value types, but it shares reference types with the original object. A deep copy has own value and reference types, that is, it is completely disconnected from the original object. A software engineer can create a shallow copy simply by calling MemberwiseClone method, but a deep copy requires some additional custom code to be written.
+
+
+1. ICloneable Interface
+The first way to clone an object is to simply implement the ICloneable interface provided by .NET. This interface has a single Clone method, inside which we should call the MemberwiseClone method of the Object class.
+
+
+public class Person : ICloneable
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Address Address { get; set; }
+
+    public object Clone()
+    {
+        var person = (Person)MemberwiseClone();
+        person.Address = (Address)Address.Clone();
+        return person;
+    }
+}
+
+public class Address : ICloneable
+{
+    public string City { get; set; }
+    public string Street { get; set; }
+
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
+}
+
+
+Pros:
+There is no need to define own interface.
+Full control over what we clone. Imagine that the Person class includes AccountHistory property that is used for auditing purposes. When cloning a Person object, we may need an empty account history. Such a requirement can be expressed in code like this:
+
+public class Person : ICloneable
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Address Address { get; set; }
+    public AccountHistory AccountHistory { get; set; }
+
+    public object Clone()
+    {
+        var person = (Person)MemberwiseClone();
+        person.Address = (Address)Address.Clone();
+        person.AccountHistory = new AccountHistory(); //clear the history
+        return person;
+    }
+}
+
+Cons:
+The method Clone returns Object type. The calling code must cast the object to a specific data type.
+ICloneable interface must be implemented for every class included in the object graph.
+The interface or method names do not tell whether a deep or shallow copy is returned to the caller. A software engineer needs to dive into the implementation details.
+
+2. Custom Interface IPrototype
+Why not create own generic interface instead of using ICloneable? Our custom interface can fix several ICloneable issues.
+Let’s call the custom interface IPrototype and define one CreateDeepCopy method inside.
+
+public interface IPrototype<T>
+{
+    T CreateDeepCopy();
+}
+
+public class Person : IPrototype<Person>
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Address Address { get; set; }
+
+    public Person CreateDeepCopy()
+    {
+        var person = (Person)MemberwiseClone();
+        person.Address = Address.CreateDeepCopy();
+        return person;
+    }
+}
+
+public class Address : IPrototype<Address>
+{
+    public string City { get; set; }
+    public string Street { get; set; }
+
+    public Address CreateDeepCopy()
+    {
+        return (Address)MemberwiseClone();
+    }
+}
+
+
+Pros:
+The method name CreateDeepCopy accurately describes its purpose.
+Consumers of the IPrototype interface no longer need to cast the return type of the CreateDeepCopy method.
+Full control over what we clone like with ICloneable interface.
+Cons:
+An interface must be defined manually by a software engineer.
+An interface must be implemented for every class included in the object graph.
+
+
+3. Binary Serialization
+Binary serialization helps you to clone objects without implementing interfaces. The idea is simple — serialize an object graph into memory and then deserialize it back to an object.
+
+public static class Helper
+{
+    public static T CreateDeepCopy<T>(T obj)
+    {
+        using (var ms = new MemoryStream())
+        {
+            IFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(ms, obj);
+            ms.Seek(0, SeekOrigin.Begin);
+            return (T)formatter.Deserialize(ms);
+        }
+    }
+}
+
+Pros:
+No need to implement interfaces anymore.
+No matter how complex the object is, it will be fully cloned.
+The cloning logic exists in one place.
+Cons:
+Class Person and all related ones need to be marked with [Serializable] attribute.
+There is no choice between shallow and deep copies. Only the deep copy option is available for a software engineer when using serialization.
+
+4.XML Serialization
+XML serialization is an interesting alternative to binary serialization. The following code sample is very similar to the previous one with one single line adjustment:
+
+public static class Helper
+{
+    public static T CreateDeepCopy<T>(T obj)
+    {
+        using (var ms = new MemoryStream())
+        {
+            XmlSerializer serializer = new XmlSerializer(obj.GetType());
+            serializer.Serialize(ms, obj);
+            ms.Seek(0, SeekOrigin.Begin);
+            return (T)serializer.Deserialize(ms);
+        }
+    }
+}
+
+XML serialization does not require [Serializable] attribute, which is good news. However, XML serialization requires each class to have a parameterless constructor. Such a requirement may seem harmless, but it is not always so. Having parameterless constructor in Person class means that an instance can be created without name, surname etc. I prefer to have all the required properties set by the time of object creation to avoid partially initialized objects. So XML serialization would not work for me in many cases.
+
+
+5.Copy Constructor
+A copy constructor is a simple constructor with one parameter of the enclosing class type. Inside the constructor, we just re-initialize the object’s properties one by one.
+
+public class Person
+{
+    public Person(Person person)
+    {
+        Name = person.Name;
+        Age = person.Age;
+        Address = new Address(person.Address);
+    }
+
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Address Address { get; set; }
+}
+
+public class Address
+{
+    public Address(Address address)
+    {
+        City = address.City;
+        Street = address.Street;
+    }
+
+    public string City { get; set; }
+    public string Street { get; set; }
+}
+
+
+Pros:
+Full control over what we clone.
+Cons:
+Copy constructors must be implemented in every class included in the object graph.
+
+
+Final Thoughts
+Interfaces and copy constructors give a software engineer full control over the cloning process. Serialization-based cloning techniques relieve a software engineer the need for adjusting the cloning logic every time the object graph is modified.
+As always, there is no silver bullet, so we software engineers need to carefully analyze each particular case and choose the most appropriate solution, taking into account its pros and cons.
+And now one little task for you, dear reader: what cloning approach did I skip?
+Thanks for reading!
+
+
+

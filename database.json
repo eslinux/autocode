@@ -82,6 +82,10 @@
 						{
 							"text":"Class Properties",
 							"value":"GetClassProperties.txt"
+						},
+						{
+							"text":"Clone Object",
+							"value":"CloneObject.txt"
 						}
 					]
 				},
