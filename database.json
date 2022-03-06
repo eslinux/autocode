@@ -16,6 +16,10 @@
 					"text":"Class",
 					"value":[
 						{
+							"text":"App path",
+							"value":"get_app_filepath.txt"
+						},
+						{
 							"text":"String",
 							"value":"string_function.txt"
 						},

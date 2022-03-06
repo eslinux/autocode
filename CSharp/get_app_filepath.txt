@@ -1,0 +1,3 @@
+string appFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location
+string appFolder = AppDomain.CurrentDomain.BaseDirectory
+        
