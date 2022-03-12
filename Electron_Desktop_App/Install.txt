@@ -1,0 +1,7 @@
+
+1.Window
+https://nodejs.org/en/
+Download and install nodejs (npm)
+
+2.Linux
+Install nodejs from command line

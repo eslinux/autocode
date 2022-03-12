@@ -828,6 +828,23 @@
 					"value":"Reference.txt"
 				}
 			]
+		},
+		{
+			"language": "Electron_Desktop_App",
+			"functions":[
+				{
+					"text":"Install",
+					"value":"Install.txt"
+				},
+				{
+					"text":"Command",
+					"value":"Command.txt"
+				},
+				{
+					"text":"Reference",
+					"value":"Reference.txt"
+				}
+			]
 		}
 	]
 }

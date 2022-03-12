@@ -1,0 +1,29 @@
+
+
+https://www.electronforge.io/
+
+1.Create new electron project
+
+	npx create-electron-app@latest my-app
+				or 
+	npx create-electron-app my-app
+	
+	my-app project folder will be created.
+	
+2.Add library to project
+	npm install <package name>
+	
+	Ex: npm install jquery
+	New package will be stored in my-app\node_modules folder.
+
+3.Run app
+	cd my-app
+	npm start
+	
+4.Building Distributables
+	npm run make
+	
+	my-app/out folder will be created.
+	
+
+	

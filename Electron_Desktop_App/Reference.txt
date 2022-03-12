@@ -1,0 +1,18 @@
+
+
+1.Electron docs
+	https://www.electronjs.org/docs/latest/
+	https://www.electronforge.io/
+	https://www.tutorialspoint.com/electron/index.htm
+	
+2.Node docs
+	https://nodejs.org/dist/latest-v16.x/docs/api/
+
+3.Create GUI library
+	Semantic   https://semantic-ui.com/introduction/getting-started.html
+	Bulma      https://bulma.io/
+	Bootstrap  https://getbootstrap.com/docs/3.4/getting-started/
+	
+	*Find library
+	https://cdnjs.com/
+	
