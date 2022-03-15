@@ -1,0 +1,32 @@
+
+//Main thread
+private async void Button_Click(object sender, RoutedEventArgs e)
+{
+	var task_one = CreateDgv();
+	bool[] results = await Task.WhenAll(task_one);
+
+	MessageBox.Show("Create data finished ");
+	Console.WriteLine($"Data task one: {results[0]}");
+}
+
+private async Task<bool> CreateDgv()
+{
+	await Task.Run(() => ReadDataThread());
+	Console.WriteLine("Task finished");
+	return true;
+}
+
+//read data thread
+private void ReadDataThread()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		Thread.Sleep(1000);
+		Dispatcher.BeginInvoke(new Action(() =>
+		{
+			//update to UI here
+			dgvItemsSource = Employee.GetEmployees(ref dgvItemsSource, CallBackTest);
+			dgvuser.UpdateLayout();
+		}), DispatcherPriority.Background);
+	}
+}
