@@ -858,6 +858,10 @@
 					"value":"GithubReadme.txt"
 				},
 				{
+					"text":"VSCode MarkDown Preview",
+					"value":"VisualStudioCode.txt"
+				},
+				{
 					"text":"Reference",
 					"value":"Reference.txt"
 				}
