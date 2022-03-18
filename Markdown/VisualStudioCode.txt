@@ -1,2 +1,3 @@
 
-Install Docs Preview Extension (docs-preview) that created by microsoft
+1. Install Docs Preview Extension (docs-preview) that created by microsoft
+2. Preview Github style: Markdown Preview Github Styling
