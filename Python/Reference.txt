@@ -5,3 +5,6 @@
 2. Tutorial
 	https://www.tutorialspoint.com/pyqt5/index.htm
 	https://www.geeksforgeeks.org/pyqt5-qtablewidget/?ref=lbp
+	
+	Create Application Tutorial:
+	https://www.youtube.com/watch?v=RxGlB9U64fg
