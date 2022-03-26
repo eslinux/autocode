@@ -1,0 +1,7 @@
+
+1. Install python
+	https://www.python.org/downloads/
+	https://taimienphi.vn/download-qt-creator-33173/-602-phien-ban
+2. Tutorial
+	https://www.tutorialspoint.com/pyqt5/index.htm
+	https://www.geeksforgeeks.org/pyqt5-qtablewidget/?ref=lbp

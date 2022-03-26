@@ -851,6 +851,19 @@
 			]
 		},
 		{
+			"language": "Python",
+			"functions":[
+				{
+					"text":"PyQt5",
+					"value":"PyQT5.txt"
+				},
+				{
+					"text":"Reference",
+					"value":"Reference.txt"
+				}
+			]
+		},
+		{
 			"language": "Markdown",
 			"functions":[
 				{
