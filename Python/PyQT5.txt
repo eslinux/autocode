@@ -33,7 +33,7 @@
 			self.setWindowTitle("Home")
 			self.myButton.clicked.connect(self.say_hello)
 		
-		def say_hello(val1, val2):
+		def say_hello(self):
 			print("hello world !")
 
 	if __name__ == "__main__":
