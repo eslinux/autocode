@@ -10,7 +10,8 @@
 	https://build-system.fman.io/qt-designer-download
 	
 4. Open QT Designer and create GUI file
-   Ex: MainWindow.ui
+   Ex: MainWidget.ui (base QWidget) 
+       MainWindow.ui (base QMainWindow)
    
 5. Create python app
 5.1 Method 1
@@ -24,12 +25,12 @@
 	from PyQt5 import uic
 	from PyQt5.QtWidgets import *
 
-	class MyApp(QWidget):
+	class MyApp(QMainWindow): #or QWidget if load MainWidget.ui
 		def __init__(self):
 			super().__init__()
 			uic.loadUi("MainWindow.ui", self)
 			
-			self.setWindowTitle("Hihi hahah")
+			self.setWindowTitle("Home")
 			self.myButton.clicked.connect(self.say_hello)
 		
 		def say_hello(val1, val2):
