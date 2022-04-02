@@ -29,8 +29,9 @@
 		def __init__(self):
 			super().__init__()
 			uic.loadUi("MainWindow.ui", self)
-			
 			self.setWindowTitle("Home")
+			
+			self.myButton = self.findChild(QPushButton, "myButton")
 			self.myButton.clicked.connect(self.say_hello)
 		
 		def say_hello(self):
