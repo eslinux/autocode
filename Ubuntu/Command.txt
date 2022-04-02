@@ -1,0 +1,35 @@
+
+1. Search package
+	$ apt-cache search <package name>
+
+2. Install
+	$ sudo apt-get install <package name>
+	OR
+	$ sudo apt install <package name>
+	
+3. Uninstall
+	Get the package complete name:
+	$ dpkg --list | grep <package name>
+	
+	Remove the package:
+	$ sudo apt-get remove <package name>
+	
+	Remove all the dependencies:
+	$ sudo apt-get purge <package name>
+	
+	Remove the unneeded packages that were once installed as a dependency:
+	$ sudo apt-get autoremove
+	
+	Remove the retrieved packages from the local cache:
+	$ sudo apt-get autoclean
+	
+	Check that it was completely removed:
+	$ dpkg --list | grep <package name>
+
+
+4. List all installed package
+	$ apt list --installe
+	$ dpkg --list
+	
+5. Update
+	$ sudo apt-get update -y
