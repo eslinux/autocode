@@ -875,6 +875,10 @@
 					"value":"VisualStudioCode.txt"
 				},
 				{
+					"text":"Draw flowchart, sequence ",
+					"value":"Mermaid.txt"
+				},
+				{
 					"text":"Reference",
 					"value":"Reference.txt"
 				}

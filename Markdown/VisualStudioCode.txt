@@ -1,3 +1,5 @@
 
 1. Install Docs Preview Extension (docs-preview) that created by microsoft
 2. Preview Github style: Markdown Preview Github Styling
+3. Preview Mermind draw flowchart, sequence, ...
+   Markdown Preview Mermaid Sup (Adds Mermaid diagram and flowchart support to VS Code's builtin markdown preview)
