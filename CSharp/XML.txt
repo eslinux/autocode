@@ -64,42 +64,42 @@ namespace Simtest
 
 
 
-        // Object -> xml string
-        public string XMLSerializeToString<T>(T value)
+        // Obj to xml
+        public string Obj2XML<T>(T value)
         {
-            var emptyNamespaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
-            var serializer = new XmlSerializer(value.GetType());
-            var settings = new XmlWriterSettings();
-            settings.Indent = true;
-            settings.OmitXmlDeclaration = true;
+            var ns = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+            var xmlserializer = new XmlSerializer(value.GetType());
+            var xmlsettings = new XmlWriterSettings();
+            xmlsettings.Indent = true;
+            xmlsettings.OmitXmlDeclaration = true;
 
             using (var stream = new StringWriter())
-            using (var writer = XmlWriter.Create(stream, settings))
+            using (var writer = XmlWriter.Create(stream, xmlsettings))
             {
-                serializer.Serialize(writer, value, emptyNamespaces);
+                xmlserializer.Serialize(writer, value, ns);
                 return stream.ToString();
             }
         }
 
-        // Object -> xml file
-        public void XMLSerializeToFile<T>(T value, string path)
+        // Obj to xml file
+        public void Obj2XMLFile<T>(T value, string path)
         {
-            string writeout = XMLSerializeToString<T>(value);
-            File.WriteAllText(path, writeout);
+            string output = Obj2XML<T>(value);
+            File.WriteAllText(path, output);
         }
 
-        // xml string -> Object
-        public T XMlDeserializeFromString<T>(string xml)
+        // xml to Obj
+        public T XMl2Obj<T>(string xml)
         {
-            var serializer = new XmlSerializer(typeof(T));
-            return  (T)serializer.Deserialize(new StringReader(xml));
+            var xmlserializer = new XmlSerializer(typeof(T));
+            return  (T)xmlserializer.Deserialize(new StringReader(xml));
         }
 
-        // xml file -> Object
-        public T XMlDeserializeFromFile<T>(string path)
+        // xml file to Obj
+        public T XMlFile2Obj<T>(string path)
         {
             string xml = File.ReadAllText(path);
-            return XMlDeserializeFromString<T>(xml);
+            return XMl2Obj<T>(xml);
         }
 
         /*
@@ -162,7 +162,7 @@ namespace Simtest
                         "</MyClass>";
 
             //encode
-            MyClass _mclass = (MyClass)XMlDeserializeFromString<MyClass>(xml);
+            MyClass _mclass = (MyClass)XML2Obj<MyClass>(xml);
             foreach (var student in _mclass.StudentList)
             {
                 Console.WriteLine("studen = " + student.student_id );
@@ -175,7 +175,7 @@ namespace Simtest
 
 
             //decode
-            string xmlout = XMLSerializeToString<MyClass>(_mclass);
+            string xmlout = Obj2XML<MyClass>(_mclass);
             Console.WriteLine("xmlout:\n" + xmlout);
 
         }
