@@ -1,35 +1,87 @@
 
 
+1. GetProperties
 
-public class Product
-{
-	public int ProductId { get; set; }
-	public string ProductName { get; set; }
-	public decimal UnitPrice { get; set; }
-}
-
-
-
-void testGetClassProperties()
-{
-	Product myitem = new Product()
+	public class Product
 	{
-		ProductId = 1,
-		ProductName = "hihi",
-		UnitPrice = 10
-	};
-
-	PropertyInfo[] propertiesList = typeof(Product).GetProperties();
-	foreach (PropertyInfo pInfo in propertiesList)
-	{
-		Console.WriteLine($"properties = {pInfo.Name}, value = {pInfo.GetValue(myitem)}");
+		public int ProductId { get; set; }
+		public string ProductName { get; set; }
+		public decimal UnitPrice { get; set; }
 	}
-}
+
+	void testGetClassProperties()
+	{
+		Product myitem = new Product()
+		{
+			ProductId = 1,
+			ProductName = "hihi",
+			UnitPrice = 10
+		};
+
+		PropertyInfo[] propertiesList = typeof(Product).GetProperties();
+		foreach (PropertyInfo pInfo in propertiesList)
+		{
+			Console.WriteLine($"properties = {pInfo.Name}, value = {pInfo.GetValue(myitem)}");
+		}
+	}
 
 
-output:
-properties = ProductId, value = 1
-properties = ProductName, value = hihi
-properties = UnitPrice, value = 10
+	output:
+	properties = ProductId, value = 1
+	properties = ProductName, value = hihi
+	properties = UnitPrice, value = 10
+
+
+2. Get description of const properties
+
+    public class ErrorCode
+    {
+        [Description("Error code 1")]
+        public const int Error1 = 1;
+
+        [Description("Error code 2")]
+        public const int Error2 = 2;
+
+        public static string GetSomeInfo<T>(int val)
+        {
+            FieldInfo[] fieldInfos = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+            List<FieldInfo> pList = fieldInfos.Where(fi => fi.IsLiteral && !fi.IsInitOnly).ToList();
+            var foundP = pList.Find(x => (int)x.GetValue(default(T)) == val);
+            if (foundP != null)
+            {
+                Attribute att = foundP.GetCustomAttribute(typeof(DescriptionAttribute));
+                if (att != null)
+                {
+                    return ((DescriptionAttribute)att).Description;
+                }
+            }
+
+            return String.Empty; 
+        }
+    }
+
+    public class ErrorCodeGroupA : ErrorCode
+    {
+        [Description("Error code group A 1")]
+        public const int ErrorA1 = 3;
+    }
+
+	void testGetClassProperties()
+	{
+		var des = ErrorCode.GetSomeInfo<ErrorCodeGroupA>(3);
+		Console.WriteLine($"value 3, des={des}");
+
+		des = ErrorCode.GetSomeInfo<ErrorCode>(2);
+		Console.WriteLine($"value 2, des={des}");
+	}
+	
+	output:
+	value 3, des=Error code group A 1
+	value 2, des=Error code 2
+		
+
+
+
+
 		
 		
