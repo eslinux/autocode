@@ -1,13 +1,13 @@
 void testGetEnumDescription()
 {
-	string description = GetEnumDescription(MyEnum.HereIsAnother);
+	string description = GetDescriptionEnum(MyEnum.HereIsAnother);
 	Console.WriteLine($"Name = {MyEnum.HereIsAnother.ToString()}, des = {description}, value = {(int)MyEnum.HereIsAnother}");
 
 
-	int colIndex = GetEnumValue<MyEnum>("HereIsAnother");
+	int colIndex = GetValueOfEnum<MyEnum>("HereIsAnother");
 	Console.WriteLine($"colIndex = {colIndex}");
 	
-	string colName = GetEnumName<MyEnum>(2);
+	string colName = GetNameOfEnum<MyEnum>(2);
     Console.WriteLine($"colName = {colName}");
 }
 
@@ -24,35 +24,36 @@ public enum MyEnum
 	LastOne
 }
 
-public static string GetEnumDescription(Enum value)
+
+public static string GetDescriptionEnum(Enum val)
 {
-	FieldInfo fi = value.GetType().GetField(value.ToString());
-	DescriptionAttribute[] attributes = fi.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
-	if (attributes != null && attributes.Any())
+	FieldInfo fileInfo = val.GetType().GetField(val.ToString());
+	DescriptionAttribute[] attributesList = fileInfo.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
+	if (attributesList != null && attributesList.Any())
 	{
-		return attributes.First().Description;
+		return attributesList.First().Description;
 	}
-	return value.ToString();
+	return val.ToString();
 }
 
-public static int GetEnumValue<T>(string itemName)
+public static int GetValueOfEnum<T>(string item_Name)
 {
-	Array dgvColList = Enum.GetValues(typeof(T));
-	foreach (var item in dgvColList)
+	Array dgv_Col_List = Enum.GetValues(typeof(T));
+	foreach (var item in dgv_Col_List)
 	{
 		Console.WriteLine($"col name= {item}, value = {(int)item}");
-		if (itemName == item.ToString()) return (int)item;
+		if (item_Name == item.ToString()) return (int)item;
 	}
 	return -1;
 }
 
 
-public static string GetEnumName<T>(int itemValue)
+public static string GetNameOfEnum<T>(int item_Value)
 {
-	Array dgvColList = Enum.GetValues(typeof(T));
-	foreach (var item in dgvColList)
+	Array dgv_Col_List = Enum.GetValues(typeof(T));
+	foreach (var itemCol in dgv_Col_List)
 	{
-		if (itemValue == (int)item) return item.ToString();
+		if (item_Value == (int)itemCol) return itemCol.ToString();
 	}
 	return string.Empty;
 }
