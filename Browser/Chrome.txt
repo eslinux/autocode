@@ -1,0 +1,8 @@
+
+1. Set search engine by language
+
+Setting > Search engine > Manage search engines and site search
+
+Setup:
+- Search engine: https://www.google.com
+- Shortcut: ?lr=lang_en

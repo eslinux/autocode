@@ -892,6 +892,15 @@
 					"value":"Command.txt"
 				}
 			]
+		},
+		{
+			"language": "Browser",
+			"functions":[
+				{
+					"text":"Chrome",
+					"value":"Chrome.txt"
+				}
+			]
 		}
 	]
 }
