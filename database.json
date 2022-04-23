@@ -901,6 +901,15 @@
 					"value":"Chrome.txt"
 				}
 			]
+		},
+		{
+			"language": "Editor",
+			"functions":[
+				{
+					"text":"VisualStudioCode",
+					"value":"VisualStudioCode.txt"
+				}
+			]
 		}
 	]
 }

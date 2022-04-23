@@ -1,0 +1,42 @@
+
+
+https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
+
+● Basic
+	Ctrl+X 				Cut line (empty selection)
+	Ctrl+C 				Copy line (empty selection)
+	Alt+ ↑/↓ 			Move line up/down
+	Shift+Alt + ↓/↑ 	Copy line up/down
+	Ctrl+Shift+K 		Delete line
+	Ctrl+Enter 			Insert line below
+	Ctrl+Shift+Enter 	Insert line above
+	
+	
+● Show all commands
+  Ctrl+Shift+P
+  
+● Search file to open
+  Ctrl+P
+  
+● Search files
+  Ctrl+Shift+P
+  
+● Toggle terminal
+  Ctrl+@
+  
+● Multiple selection 
+1. Use mouse to select text
+2. Ctrl+D => Add selection to next text that match with current selection
+2. Ctrl+Shift+L  or Ctrl+F2 => Select all occurrences of current selection
+
+
+● Multiple cursor at the end line
+1. Use mouse to select mutiple line
+2. Shift+Alt+I => Insert cursor at end of each line selected
+
+
+● Select block text
+Method1: Press Alt+ Click and move up/down mouse to select block text
+Method2: 
+	Click mouse to select start point
+	Shift+Alt + Click end point
