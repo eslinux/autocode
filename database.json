@@ -755,6 +755,10 @@
 						{
 							"text":"filetool console application",
 							"value":"filetool.bat"
+						},
+						{
+							"text":"read text file",
+							"value":"readtextfile.bat"
 						}
 					]
 				}
