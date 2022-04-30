@@ -751,6 +751,10 @@
 						{
 							"text":"set_environment.bat",
 							"value":"set_environment.bat"
+						},
+						{
+							"text":"filetool console application",
+							"value":"filetool.bat"
 						}
 					]
 				}
