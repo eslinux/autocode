@@ -1,8 +1,17 @@
-//*************************************************************************************
+
+1. Wpf DataGrid
+
+Update DataGrid Async
+https://github.com/eslinux/autocode/tree/master/other/GUI
+
+
+
+
+2. Winform dataGridView
+
 Speed up display of Datagridview:
-1. Enable "DoubleBuffered"
-2. Disable re-draw when add columns and add rows
-//*************************************************************************************
+Step 1 Enable "DoubleBuffered"
+Step 2 Disable re-draw when add columns and add rows
 
 
 using System;
