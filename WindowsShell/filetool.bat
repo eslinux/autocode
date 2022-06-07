@@ -202,7 +202,7 @@ set /p confirmyesorno=
 if "%confirmyesorno%"=="yes" (
 	for %subfolder% %%f in (%file_ext%) do (
 		echo Copying... %%f
-		copy %%f %desfolder%
+		copy "%%f" "%desfolder%"
 	)
 	echo Copied !
 ) else (
@@ -349,7 +349,7 @@ set /p confirmyesorno=
 if "%confirmyesorno%"=="yes" (
 	for %subfolder% %%f in (%file_ext%) do (
 		echo Deleting... %%f
-		del /q /f %%f
+		del /q /f "%%f"
 	)
 	echo Deleted !
 ) else (
@@ -396,7 +396,7 @@ set /p confirmyesorno=
 if "%confirmyesorno%"=="yes" (
 	for /d %subfolder% %%x in (%folder_filter%) do (
 		echo Deleting... %%x
-		rmdir /q /s %%x
+		rmdir /q /s "%%x"
 	)
 	echo Deleted !
 ) else (
