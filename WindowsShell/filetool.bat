@@ -1,14 +1,18 @@
 @echo off
+SETLOCAL
 ::Author: ninhld
 ::Create on: 2022/04/30
 
 ::show all input argument 
 ::for %%I IN (%*) DO ECHO %%I
 
+
+
+
 ::------------------------------------------------------
 ::     App info
 ::------------------------------------------------------
-set appversion=1.0.0
+set appversion=1.1.0
 
 ::------------------------------------------------------
 ::     3rd empty
@@ -16,12 +20,33 @@ set appversion=1.0.0
 set app7z="C:\Program Files\7-Zip\7z.exe"
 
 ::------------------------------------------------------
+::     Internal variable
+::------------------------------------------------------
+set /A target_counter=0
+
+::------------------------------------------------------
 ::     Argument parser
 ::------------------------------------------------------
 ::Get main parameter
 set appname=%0
 set cmd=%1
-set subfolder=%2
+
+::read include subfolder setting
+set include_subfolders=/r
+if "%2" == "-ns" (
+	set include_subfolders=
+	SHIFT 
+)
+SHIFT
+
+::read target filter setting
+set target_filter=
+:arg_target_filter_start
+if "%1"=="" (goto :arg_target_filter_end)
+set target_filter=%target_filter% %1
+SHIFT
+goto :arg_target_filter_start
+:arg_target_filter_end
 
 
 ::Switch command
@@ -58,34 +83,34 @@ goto commonexit
 :showhelp
 echo Usage:
 echo   1. List both file and folder
-echo      %appname% ls [/s]
+echo      %appname% ls [-ns]
 echo:
 echo   2. List all file
-echo      %appname% lsf [/s] [file filter (Ex: *test.txt)]
+echo      %appname% lsf [-ns] [file filter (Ex: *test.txt)]
 echo:
 echo   3. List all folder
-echo      %appname% lsd [/s] [folder filter (Ex: *import*)]
+echo      %appname% lsd [-ns] [folder filter (Ex: *import*)]
 echo:
 echo   4. Copy file
-echo      %appname% cpf [/s] [file filter (Ex: *test.txt)]
+echo      %appname% cpf [-ns] [file filter (Ex: *test.txt)]
 echo:
 echo   5. Extract zip or 7zip file
-echo      %appname% exf [/s] [file filter (Ex: *test.7z)]
+echo      %appname% exf [-ns] [file filter (Ex: *test.7z)]
 echo:
 echo   6. Delete all file
-echo      %appname% delf [/s] [file filter (Ex: *test.txt)]
+echo      %appname% delf [-ns] [file filter (Ex: *test.txt)]
 echo:
 echo   7. Delete all folder
-echo      %appname% deld [/s] [folder filter (Ex: *import*)]
-echo:
-echo   8. Install this app to [%appdata%\%appname%] folder
-echo      %appname% install
-echo:
-echo   9. Uninstall this app from [%appdata%\%appname%] folder
-echo      %appname% uninstall
+echo      %appname% deld [-ns] [folder filter (Ex: *import*)]
+::echo:
+::echo   8. Install this app to [%appdata%\%appname%] folder
+::echo      %appname% install
+::echo:
+::echo   9. Uninstall this app from [%appdata%\%appname%] folder
+::echo      %appname% uninstall
 echo:
 echo Parameter descriptions:
-echo 	/s : Include sub-folder
+echo 	-ns : Do not include sub-folder. Option parameter
 echo:
 pause
 goto commonexit
@@ -97,7 +122,10 @@ goto commonexit
 ::     1.List all file & directory
 ::------------------------------------------------------
 :listall
-dir /b %subfolder%
+if "%include_subfolders%" == "/r" set include_subfolders=/s
+echo ------ List of folder and files ------ 
+dir /b %include_subfolders%
+echo --------------------------------------
 goto commonexit
 
 
@@ -107,20 +135,15 @@ goto commonexit
 ::------------------------------------------------------
 :listfile
 ::check input argument
-set file_ext=%3
-if "%subfolder%" == "/s" (
-	set  subfolder=/r
-) else (
-	set  subfolder=
-	set file_ext=%2
-)
-
-if "%file_ext%" == "" set  file_ext=*.*
+if "%target_filter%" == "" set  target_filter=*.*
 
 ::scan
-for %subfolder% %%f in (%file_ext%) do (
+echo ----------- List of files ----------
+for %include_subfolders% %%f in (%target_filter%) do (
+	set /A target_counter=target_counter+1
 	echo %%f
 )
+echo ------------(%target_counter% files)---------------
 goto commonexit
 
 
@@ -129,20 +152,15 @@ goto commonexit
 ::     3.List all directory
 ::------------------------------------------------------
 :listdirectory
-set folder_filter=%3
-if "%subfolder%" == "/s" (
-	set  subfolder=/r
-) else (
-	set  subfolder=
-	set folder_filter=%2
-)
-
-if "%folder_filter%" == "" set  folder_filter=*
+if "%target_filter%" == "" set  target_filter=*
 
 ::scan
-for /d %subfolder% %%x in (%folder_filter%) do (
+echo ----------- List of folder -----------
+for /d %include_subfolders% %%x in (%target_filter%) do (
+	set /A target_counter=target_counter+1
 	echo %%x
 )
+echo ------------(%target_counter% folders)---------------
 goto commonexit
 
 
@@ -152,27 +170,18 @@ goto commonexit
 ::------------------------------------------------------
 :copyfile
 ::check argument
-set file_ext=%3
-if "%subfolder%" == "/s" (
-	set  subfolder=/r
-) else (
-	set  subfolder=
-	set file_ext=%2
-)
-
-if "%file_ext%" == "" set  file_ext=*.*
+if "%target_filter%" == "" set  target_filter=*.*
 
 ::scan file
-set isfileexists=false
 echo ----- List file below will be copied ------
-for %subfolder% %%f in (%file_ext%) do (
+for %include_subfolders% %%f in (%target_filter%) do (
+	set /A target_counter=target_counter+1
 	echo %%f
-	set isfileexists=true
 )
-echo -------------------------------------------
+echo ----------------(%target_counter% files)-----------------
 
 ::check file exists
-if "%isfileexists%" == "false" (
+if "%target_counter%" == "0" (
 	echo Notthing to copy !
 	goto commonexit
 )
@@ -187,10 +196,10 @@ if "%desfolder%" == "" (
 	goto commonexit
 )
 
-if not exist %desfolder%\ (
-	mkdir %desfolder%
+if not exist "%desfolder%"\ (
+	mkdir "%desfolder%"
 )
-if not exist %desfolder%\ (
+if not exist "%desfolder%"\ (
     echo Destination folder not exist !
 	goto commonexit
 ) 
@@ -200,14 +209,14 @@ echo Do you want copy (yes/no): no
 set confirmyesorno=no
 set /p confirmyesorno=
 if "%confirmyesorno%"=="yes" (
-	for %subfolder% %%f in (%file_ext%) do (
-		echo Copying... %%f
+	for %include_subfolders% %%f in (%target_filter%) do (
+		echo Copying... [%%f]
 		copy "%%f" "%desfolder%"
 	)
-	echo Copied !
 ) else (
 	echo Cancel !
 )
+
 goto commonexit
 
 
@@ -227,34 +236,26 @@ if not exist %app7z% (
 
 
 ::check argument
-set file_ext=%3
-if "%subfolder%" == "/s" (
-	set  subfolder=/r
-) else (
-	set  subfolder=
-	set file_ext=%2
-)
-
-if "%file_ext%" == "" set  file_ext=*.7z *.zip
+if "%target_filter%" == "" set  target_filter=*.7z *.zip
 
 ::scan file
-set isfileexists=false
 echo ----- List file below will be extracted ------
-for %subfolder% %%f in (%file_ext%) do (
+for %include_subfolders% %%f in (%target_filter%) do (
+	set /A target_counter=target_counter+1
 	echo %%f
-	set isfileexists=true
 )
-echo -------------------------------------------
+echo -----------------(%target_counter% files)------------------
 
 ::check file exists
-if "%isfileexists%" == "false" (
+if "%target_counter%" == "0" (
 	echo Notthing to extract !
 	goto commonexit
 )
 
+
 :: Enter copy destination folder
-echo Please input extract destination folder:
-set desfolder=
+echo Please input extract destination folder: %cd%
+set desfolder=%cd%
 set /p desfolder=
 
 if "%desfolder%" == "" (
@@ -262,10 +263,10 @@ if "%desfolder%" == "" (
 	goto commonexit
 )
 
-if not exist %desfolder%\ (
-	mkdir %desfolder%
+if not exist "%desfolder%"\ (
+	mkdir "%desfolder%"
 )
-if not exist %desfolder%\ (
+if not exist "%desfolder%"\ (
     echo Destination folder not exist !
 	goto commonexit
 ) 
@@ -293,7 +294,7 @@ echo Do you want start extract (yes/no): no
 set confirmyesorno=no
 set /p confirmyesorno=
 if "%confirmyesorno%"=="yes" (
-	for %subfolder% %%f in (%file_ext%) do (
+	for %include_subfolders% %%f in (%target_filter%) do (
 		echo -------------------------------------------
 		if "%isextractto%" == "yes" (
 			echo Extracting... %app7z% %isextractoverwrite% "%%f" -o"%desfolder%\%%~nf\"
@@ -304,7 +305,6 @@ if "%confirmyesorno%"=="yes" (
 		)
 		echo -------------------------------------------
 	)
-	echo Extacted !
 ) else (
 	echo Cancel !
 )
@@ -317,41 +317,33 @@ goto commonexit
 ::------------------------------------------------------
 :deletefile
 ::check argument
-set file_ext=%3
-if "%subfolder%" == "/s" (
-	set  subfolder=/r
-) else (
-	set  subfolder=
-	set file_ext=%2
-)
+if "%target_filter%" == "" set  target_filter=*.*
 
-if "%file_ext%" == "" set  file_ext=*.*
 
 ::scan file
-set isfileexists=false
-echo ----- List file below will be delete ------
-for %subfolder% %%f in (%file_ext%) do (
+echo ------- List file below will be deleted -------
+for %include_subfolders% %%f in (%target_filter%) do (
+	set /A target_counter=target_counter+1
 	echo %%f
-	set isfileexists=true
 )
-echo -------------------------------------------
+echo -----------------(%target_counter% files)------------------
 
 ::check file exists
-if "%isfileexists%" == "false" (
+if "%target_counter%" == "0" (
 	echo Notthing to delete !
 	goto commonexit
 )
+
 
 ::detete
 echo Do you want delete (yes/no): no
 set confirmyesorno=no
 set /p confirmyesorno=
 if "%confirmyesorno%"=="yes" (
-	for %subfolder% %%f in (%file_ext%) do (
-		echo Deleting... %%f
+	for %include_subfolders% %%f in (%target_filter%) do (
+		echo Deleting... [%%f]
 		del /q /f "%%f"
 	)
-	echo Deleted !
 ) else (
 	echo Cancel !
 )
@@ -364,28 +356,19 @@ goto commonexit
 ::------------------------------------------------------
 :deletedirectory
 ::check argument
-set folder_filter=%3
-if "%subfolder%" == "/s" (
-	set  subfolder=/r
-) else (
-	set  subfolder=
-	set folder_filter=%2
-)
-
-if "%folder_filter%" == "" set  folder_filter=*
+if "%target_filter%" == "" set  target_filter=*
 
 ::scan
-set isfolderexists=false
 echo ----- List folder below will be delete ------
-for /d %subfolder% %%x in (%folder_filter%) do (
+for /d %include_subfolders% %%x in (%target_filter%) do (
+	set /A target_counter=target_counter+1
 	echo %%x
-	set isfolderexists=true
 )
 echo -------------------------------------------
 
 ::check folder exit
-if "%isfolderexists%" == "false" (
-	echo Nothing to delete !
+if "%target_counter%" == "0" (
+	echo Notthing to delete !
 	goto commonexit
 )
 
@@ -394,11 +377,10 @@ echo Do you want delete (yes/no): no
 set confirmyesorno=no
 set /p confirmyesorno=
 if "%confirmyesorno%"=="yes" (
-	for /d %subfolder% %%x in (%folder_filter%) do (
-		echo Deleting... %%x
+	for /d %include_subfolders% %%x in (%target_filter%) do (
+		echo Deleting... [%%x]
 		rmdir /q /s "%%x"
 	)
-	echo Deleted !
 ) else (
 	echo Cancel !
 )
@@ -409,34 +391,34 @@ goto commonexit
 ::------------------------------------------------------
 ::     8.Install this app to %appdata% folder
 ::------------------------------------------------------
-:install
-cd %~dp0
-set install_folder=%appdata%\%appname%
-if not exist %install_folder%\ (
-    echo Creating installation folder: %install_folder%
-	mkdir %install_folder%
-) 
-
-echo Copying [%appname%.bat] to [%install_folder%]
-copy %appname%.bat %install_folder%\%appname%.bat
-
-echo "%PATH%" | findstr "%install_folder%">nul && (
-    echo Update finished !
-) || (
-	setx PATH "%PATH%;%install_folder%\;"
-	echo Install finished !
-)
-goto commonexit
+:::install
+::cd %~dp0
+::set install_folder=%appdata%\%appname%
+::if not exist %install_folder%\ (
+::    echo Creating installation folder: %install_folder%
+::	mkdir %install_folder%
+::) 
+::
+::echo Copying [%appname%.bat] to [%install_folder%]
+::copy %appname%.bat %install_folder%\%appname%.bat
+::
+::echo "%PATH%" | findstr "%install_folder%">nul && (
+::    echo Update finished !
+::) || (
+::	setx PATH "%PATH%;%install_folder%\;"
+::	echo Install finished !
+::)
+::goto commonexit
 
 
 ::------------------------------------------------------
 ::     9.Uninstall this app from %appdata% folder
 ::------------------------------------------------------
-:uninstall
-set install_folder=%appdata%\%appname%
-echo Uninstall %install_folder%\%appname%.bat 
-del %install_folder%\%appname%.bat
-goto commonexit
+:::uninstall
+::set install_folder=%appdata%\%appname%
+::echo Uninstall %install_folder%\%appname%.bat 
+::del %install_folder%\%appname%.bat
+::goto commonexit
 
 
 ::------------------------------------------------------
@@ -445,3 +427,4 @@ goto commonexit
 :commonexit
 echo:
 
+ENDLOCAL
