@@ -59,6 +59,7 @@ IF "%cmd%"=="ls" goto listall
 IF "%cmd%"=="lsf" goto listfile
 IF "%cmd%"=="lsd" goto listdirectory
 IF "%cmd%"=="cpf" goto copyfile
+IF "%cmd%"=="cpfx" goto copyxfile
 IF "%cmd%"=="exf" goto extractfile
 IF "%cmd%"=="delf" goto deletefile
 IF "%cmd%"=="deld" goto deletedirectory
@@ -94,19 +95,22 @@ echo:
 echo   4. Copy file
 echo      %appname% cpf [-ns] [file filter (Ex: *test.txt)]
 echo:
-echo   5. Extract zip or 7zip file
+echo   5. Copy file with folders and subfolders recursively
+echo      %appname% cpfx src_folder\*.log des_folder 
+echo:
+echo   6. Extract zip or 7zip file
 echo      %appname% exf [-ns] [file filter (Ex: *test.7z)]
 echo:
-echo   6. Delete all file
+echo   7. Delete all file
 echo      %appname% delf [-ns] [file filter (Ex: *test.txt)]
 echo:
-echo   7. Delete all folder
+echo   8. Delete all folder
 echo      %appname% deld [-ns] [folder filter (Ex: *import*)]
 ::echo:
-::echo   8. Install this app to [%appdata%\%appname%] folder
+::echo   9. Install this app to [%appdata%\%appname%] folder
 ::echo      %appname% install
 ::echo:
-::echo   9. Uninstall this app from [%appdata%\%appname%] folder
+::echo   10. Uninstall this app from [%appdata%\%appname%] folder
 ::echo      %appname% uninstall
 echo:
 echo Parameter descriptions:
@@ -203,7 +207,7 @@ if not exist "%desfolder%"\ (
     echo Destination folder not exist !
 	goto commonexit
 ) 
-	
+
 ::copy
 echo Do you want copy (yes/no): no
 set confirmyesorno=no
@@ -221,9 +225,16 @@ goto commonexit
 
 
 
+::------------------------------------------------------
+::     5.Copies folders and subfolders recursively excluding the empty one.
+::------------------------------------------------------
+:copyxfile
+XCOPY %target_filter% /S /Y
+goto commonexit
+
 
 ::------------------------------------------------------
-::     5.Extract zip or 7z file
+::     6.Extract zip or 7z file
 ::------------------------------------------------------
 :extractfile
 
@@ -313,7 +324,7 @@ goto commonexit
 
 
 ::------------------------------------------------------
-::     6.Delete all file
+::     7.Delete all file
 ::------------------------------------------------------
 :deletefile
 ::check argument
@@ -352,7 +363,7 @@ goto commonexit
 
 
 ::------------------------------------------------------
-::     7.Delete all directory
+::     8.Delete all directory
 ::------------------------------------------------------
 :deletedirectory
 ::check argument
@@ -389,7 +400,7 @@ goto commonexit
 
 
 ::------------------------------------------------------
-::     8.Install this app to %appdata% folder
+::     9.Install this app to %appdata% folder
 ::------------------------------------------------------
 :::install
 ::cd %~dp0
@@ -412,7 +423,7 @@ goto commonexit
 
 
 ::------------------------------------------------------
-::     9.Uninstall this app from %appdata% folder
+::     10.Uninstall this app from %appdata% folder
 ::------------------------------------------------------
 :::uninstall
 ::set install_folder=%appdata%\%appname%
