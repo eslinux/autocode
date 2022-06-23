@@ -1,6 +1,20 @@
 1.How to Remove Lines Containing a Word or String in a Text File
 https://www.winhelponline.com/blog/remove-lines-containing-word-string-text-file/
 
+1. Ctrl + F to open Find & Relace dialog
+2. Select Replace or Find in Files
+3. Change "Search Mode" to Regular expression
+4. Type in "Find what" text box 
+        .*my love.*\r\n
+		
+	with "my love" is text that you want to search
+5. Leave empty in "Repace with" text box
+6. Click "Repace" button
+   -> All lines that have "my love" will be deleted.
+   
+   Note: If type 
+        .*my love.*
+		in "Find what" text box, all lines that have "my love" will be replaced by empty line.
 
 
 2.How to remove blank lines from a file
