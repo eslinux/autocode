@@ -1,0 +1,14 @@
+1.How to Remove Lines Containing a Word or String in a Text File
+https://www.winhelponline.com/blog/remove-lines-containing-word-string-text-file/
+
+
+
+2.How to remove blank lines from a file
+https://www.computerhope.com/issues/ch000924.htm
+Download Notepad++ if not already installed on the computer.
+Open Notepad++ and the file you want to edit.
+In the file menu, click Search and then Replace.
+In the Replace box, in the Find what section, type ^\r\n (five characters: caret, backslash 'r', and backslash 'n'). 
+Leave the Replace with section blank unless you want to replace a blank line with other text.
+In the Search Mode section, make sure Regular expression is selected.
+Click the Replace All button to replace all blank lines.

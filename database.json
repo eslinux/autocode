@@ -916,6 +916,10 @@
 				{
 					"text":"VisualStudioCode",
 					"value":"VisualStudioCode.txt"
+				},
+				{
+					"text":"Notepad++",
+					"value":"Notepad++.txt"
 				}
 			]
 		}
