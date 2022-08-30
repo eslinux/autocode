@@ -1,0 +1,27 @@
+
+1. Search
+	shift + shift     : search all
+	shift + F         : search in current file
+	shift + ctrl + F  : search in project/module
+
+2. Line code
+	ctrl + D         : double line code
+	alt + shift + ↑↓ : move line code up/down
+	shift + Del      : delete line code
+
+3. Goto
+	ctrl + B : jump to declare
+	ctrl + G : jump to line
+	alt + ↑↓ : jump to previous/next method
+	
+4. Generate code
+	alt + insert : generate code (getters, setters, constructors, hashCode/equals, toString, new file, new class)
+
+5. Format code
+	ctrl + alt + L  : reformat code
+	ctrl + /        : comment toggle
+
+
+Link:
+・https://developer.android.com/studio/intro/keyboard-shortcuts
+・https://medium.com/@gotoark/most-useful-shortcut-keys-for-android-studio-with-bonus-plugins-bf95c85427f0
