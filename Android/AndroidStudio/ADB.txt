@@ -1,0 +1,25 @@
+
+Export bug report (developer options is enabled):
+	adb bugreport mybug.zip
+	
+Export all log:  	
+	adb logcat -b all > test.log
+
+Export Warning and Error, Falta log:
+	adb logcat *:W > warning.log
+
+List up all service:
+	adb shell service list
+
+To dump all services
+	adb shell dumpsys > mydumpsys.log
+only list services, do not dump them
+	adb shell dumpsys -l
+Get Android device battery info
+	adb shell dumpsys battery
+	adb shell dumpsys meminfo
+	adb shell dumpsys meminfo com.android.phone
+Other: 
+	adb shell dumpsys | grep myapp | grep "Application Error" 
+	adb shell dumpsys | grep myapp | grep Error
+	

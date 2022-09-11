@@ -813,12 +813,32 @@
 							"value":"revert_reset.txt"
 						},
 						{
-							"text":"Add, restore stage",
-							"value":"add_restore.txt"
+							"text":"Restore stage",
+							"value":"restore.txt"
 						},
 						{
 							"text":"Update .gitignore",
 							"value":"gitignore.txt"
+						},
+						{
+							"text":"Log",
+							"value":"log.txt"
+						},
+						{
+							"text":"Clean",
+							"value":"clean.txt"
+						},
+						{
+							"text":"List up all file",
+							"value":"ls-files.txt"
+						},
+						{
+							"text":"Status",
+							"value":"status.txt"
+						},
+						{
+							"text":"Stash",
+							"value":"stash.txt"
 						}
 					]
 				},
@@ -920,6 +940,24 @@
 				{
 					"text":"Notepad++",
 					"value":"Notepad++.txt"
+				}
+			]
+		},
+		{
+			"language": "Android",
+			"functions":[
+				{
+					"text":"Android Studio",
+					"value":[
+						{
+							"text":"Shortcut",
+							"value":"AndroidStudio/shortcut.txt"
+						},
+						{
+							"text":"ADB",
+							"value":"AndroidStudio/ADB.txt"
+						}
+					]
 				}
 			]
 		}
