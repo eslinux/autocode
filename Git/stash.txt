@@ -1,0 +1,45 @@
+
+
+#process to backup all changed and restore to original state
+1. add untrack file to staged
+	git add .
+	
+2. stash
+	git stash save "try function ABC"
+	
+→After step 2, all chaned was backup to stash. 
+ And all source code are restored to original state.
+
+
+#show list of stash
+	git stash list
+	
+	→list as below will be list-up
+	stash@{0}: On master: try function ABC
+	stash@{1}: WIP on master: aa89cc7 remove .gitignore
+	stash@{2}: WIP on master: aa89cc7 remove .gitignore
+	stash@{3}: WIP on master: aa89cc7 remove .gitignore
+	
+#show detail in stash
+	git stash show <stash id>
+	
+	Ex: 
+	git stash show stash@{0}
+	
+	→list as below will be list-up
+	 app/src/main/java/com/example/mobileapp2/FirstFragment.java | 2 +-
+	 www.bat                                                     | 0
+	 2 files changed, 1 insertion(+), 1 deletion(-)
+
+
+#apply stash to current environment
+	git stash pop <stash id>
+	
+	Ex:
+	git stash pop stash@{0}
+	
+#remove stash
+	git stash drop <stash id>
+	
+	Ex:
+	git stash drop stash@{0}

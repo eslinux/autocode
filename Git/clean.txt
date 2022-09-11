@@ -1,0 +1,12 @@
+
+#Show untracked files will be remmove
+git clean -n
+
+#Show untracked file & folder will be remmove
+git clean -dn
+
+#Remove untracked files
+git clean -f
+
+#Remove untracked files & folder
+git clean -df

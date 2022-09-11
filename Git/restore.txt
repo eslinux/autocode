@@ -1,0 +1,11 @@
+
+- Unstage added file
+	$ git restore --staged <file>
+	
+- Discard all changed for all unstaged files:
+	git restore .
+	git restore path/to/file/to/revert
+	
+	★Before Git 2.23
+	　　　git checkout -- .
+	　　　git checkout -- path/to/file/to/revert

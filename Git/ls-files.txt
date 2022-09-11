@@ -1,0 +1,4 @@
+
+
+#show all file in git
+git ls-files

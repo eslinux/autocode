@@ -1,0 +1,9 @@
+
+git status
+git status --untracked-files
+
+#show file as list file
+git status -s
+
+#do not show untracked files
+git status --untracked-files=no
