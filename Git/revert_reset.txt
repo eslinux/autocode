@@ -1,5 +1,16 @@
 
 - Git reset
+        "reset to here"
+              ↓
+		A  -> B -> C -> D
+                        ↑
+                       HEAD
+					   
+	git reset --hard  <sha commit of B>    -> all souce code of C & D are DELETED
+	git reset --mixed <sha commit of B>    -> all souce code of C & D in status UN-STAGE
+	git reset --soft  <sha commit of B>    -> all souce code of C & D in status STAGED
+
+	-------------------------------- Detail -----------------------------
 	Git reset được dùng để quay về một điểm commit nào đó, đồng thời xóa lịch sử của các commit sau nó.
 	Cùng xét ví dụ dưới đây để hiểu rõ hơn về git reset:
 	
@@ -22,6 +33,7 @@
 	Bạn có thể thấy , con trỏ HEAD đang trỏ đến vị trí của commit B, đồng thời lịch sử commit C và D cũng biến mất, giống như bạn chưa từng thực hiện commit bị lỗi nào vậy. Lịch sử commit cũng trông gọn gàng hơn.
     Tuy nhiên, các thay đổi này mới chỉ diễn ra trên local repository, để cập nhật thay đổi này lên remote repository bạn cần phải thực hiện lệnh:
 		$ git push -f
+	----------------------------------------------------------------------
 
 
 - Git revert
