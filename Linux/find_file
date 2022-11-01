@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo Find file: "$1" 
+find . -type f -iname "$1"

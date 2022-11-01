@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo Find directory: "$1" 
+find . -type d -iname "$1"
