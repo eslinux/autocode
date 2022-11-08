@@ -1,0 +1,4 @@
+
+1.Convert MOV to MP4
+	ffmpeg -i "INPUT.MOV"  -vcodec libx265 -crf 28 "OUTPUT.mp4"
+	
