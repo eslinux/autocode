@@ -1,4 +1,36 @@
 
-1.Convert MOV to MP4
-	ffmpeg -i "INPUT.MOV"  -vcodec libx265 -crf 28 "OUTPUT.mp4"
+●MOV →　MP4
+	ffmpeg -vcodec libx265 -crf 28 -i "INPUT.MOV" "OUTPUT.mp4"
 	
+●YUV → MP4
+	ffmpeg -f rawvideo -s:v 636x476 -r 30 -c:v libx264 -i "input.yuv" "output.mp4"
+	
+	with:
+		-s:v : size width & height of video
+		-r   : fps
+	
+●Sequence of images -> video
+	#video big size
+	ffmpeg -c:v libx264 -crf 0 -r 30 -i "cap%4d.png" "output_fps30.mp4"
+
+	#video small size
+	ffmpeg -f image2 -r 30 -i "cap%4d.png" "output_fps30.mp4"
+
+	with:
+		-r : fps
+		-i : list of images
+			  cap0001.png
+			  cap0002.png
+			  capxxxx.png
+
+●Video -> sequence of images
+	ffmpeg -i input.mp4 -vf fps=30 out%4d.png
+
+
+●Trim video
+	ffmpeg -i "input.mp4" -ss 00:00:25 -t 00:10:00 -c:v copy -c:a copy "output.mp4"
+	
+	with: 
+		-ss : start timestamp
+		-t  : time duration
+
