@@ -1,6 +1,6 @@
 
 ●MOV →　MP4
-	ffmpeg -vcodec libx265 -crf 28 -i "INPUT.MOV" "OUTPUT.mp4"
+	ffmpeg -i "INPUT.MOV" -vcodec libx265 -crf 28 "OUTPUT.mp4"
 	
 ●YUV → MP4
 	ffmpeg -f rawvideo -s:v 636x476 -r 30 -c:v libx264 -i "input.yuv" "output.mp4"
@@ -34,3 +34,6 @@
 		-ss : start timestamp
 		-t  : time duration
 
+
+
+ffmpeg -i input.mov -c:v copy -c:a copy  output.mp4 
