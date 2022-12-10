@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+#===================this command use to upload file to nextcloud server===============================
+#https://nextcloud.mycloud.com/nextcloud/index.php/apps/files/?dir=/path/to/folder&fileid=123456
+#↓
+#curl -X PUT -u "myaccount123":"mypassword123" "https://nextcloud.mycloud.com/nextcloud/remote.php/webdav/path/to/folder/myfile.7z" -T "myfile.7z"
+#======================================================================================================
+echo ------------------------------------
+echo Usage:
+echo curl -X PUT -u "myaccount123":"mypassword123" "nextcloud-folder-path" "upload-file-name"
+echo Ex:
+echo   nextcloud "'https://nextcloud.mycloud.com/nextcloud/index.php/apps/files/?dir=/path/to/folder&fileid=123456'" 'myfile.7z'
+echo ------------------------------------
+myaccount="myaccount123"
+mypassword="mypassword123"
+
+
+input_nextcloud_path="$1"
+input_upload_file_name="$2"
+
+
+find_pattern="index.php/apps/files/?dir="
+replace_pattern="remote.php/webdav"
+search_fileid="&fileid="
+
+nextcloud_path="${input_nextcloud_path/${find_pattern}/${replace_pattern}}" 
+nextcloud_path=${nextcloud_path%%$search_fileid*}
+nextcloud_path="$nextcloud_path/$input_upload_file_name"
+#echo nextcloud_path: "$nextcloud_path" 
+
+nextcloud_cmd="curl -X PUT -u "$myaccount":"$mypassword" "$nextcloud_path" -T "$input_upload_file_name""
+echo nextcloud_cmd: $nextcloud_cmd
+$nextcloud_cmd
