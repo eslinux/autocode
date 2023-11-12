@@ -35,5 +35,10 @@
 		-t  : time duration
 
 
+●Convert and scale resolution
+ffmpeg -i input.mov -vf "scale=iw/2:ih/2" output.mp4				
+ffmpeg -i input.mov -vf "scale=iw*2:ih*2" output.mp4
+ffmpeg -i input.mov -vf "scale=680:480" output-680-480.mp4
+ffmpeg -i input.mov -vf "scale=680:-2" output-680-480.mp4	-> tu dong dieu chinh height cho phu hop ty le nhu file goc			
+				
 
-ffmpeg -i input.mov -c:v copy -c:a copy  output.mp4 

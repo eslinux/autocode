@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Git command directory: $( dirname -- "$0"; )";
-echo "Working directory: $( pwd; )";
-
-ls -l $(dirname -- "$0"; )

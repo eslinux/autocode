@@ -1,0 +1,60 @@
+
+::Python tutorial
+	https://www.w3schools.com/python/default.asp
+
+
+::Install Python3 from home page or Microsoft Store
+	https://www.python.org/
+	Check version:
+		python -V
+		python --version
+		
+	
+
+
+::Install pip (package manager)
+		curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+		python get-pip.py
+	
+	Check version:
+		pip -V
+		pip --version
+		
+	Install package:
+		pip install <package name>
+		
+	Install packages from file:
+		pip install -r .\requirements.txt
+
+		requirements.txt is list-up library need to install as below:
+			requests>=2.31.0
+			beautifulsoup4>=4.12.2
+			selenium>=4.15.2
+		
+	Uninstall installed package:
+		pip uninstall <package name>
+	
+	List-up installed package:
+		pip list
+
+
+::Create virtual environment with name ".venv"
+		python -m venv .venv
+
+	Active created venv in default command prompt (not PowerShell)
+		.\.venv\Scripts\activate.bat
+	
+		AFTER that you can to install pip package to this virtual environment
+
+	Deactivate virtual environment:
+		.\.venv\Scripts\deactivate.bat
+		
+::Some pip package
+	csv       		-> CSV
+	openpyxl  		-> Excel
+	requests  		-> http
+	beautifulsoup4  -> crawl data from html content
+	selenium        -> automation web test (control browser)
+	...
+	
+	
