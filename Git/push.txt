@@ -1,0 +1,6 @@
+
+git push -u origin <branch-name>
+
+Ex: 
+git push -u origin master
+git push -u origin bug-fixes
