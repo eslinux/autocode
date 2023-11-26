@@ -2,19 +2,21 @@
 @echo off
 SETLOCAL
 
+echo Rotate mode:
 echo 1: right-90
 echo 2: left-90
 echo 3: right-180
 echo 4: left-90-flipped vertically 
 echo 5: right-90-flipped vertically
-echo Input rotate mode: 1
+echo Input rotate mode (default): 1
 
+call mydatetime.cmd
 
 set mode=1
 set /p mode=
 
 set infile=%1
-set outfile=%infile%-rot-%mode%.mp4
+set outfile=%infile%-rot-%mode%_%today%.mp4
 
 ::right-90
 IF "%mode%" == "1" (
