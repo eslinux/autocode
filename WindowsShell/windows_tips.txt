@@ -1,0 +1,16 @@
+
+
+1.If you have Excel in your task bar and if you have several open excel files:
+	When you hover the Excel icon in task bar you will see the open excel files in either of 2 ways:
+	- Rectangles displayed horizontally.
+	- Vertical list of open files.
+	I want #2, but somehow am seeing #1.  It makes me crazy when I have 30+ excel files open at the same time!
+	
+	https://www.tenforums.com/tutorials/20989-change-taskbar-thumbnail-threshold-show-list-windows-10-a.html
+		1. Press the Win + R keys to open the Run dialog, type regedit into Run, and click/tap on OK to open Registry Editor.
+		2. Navigate to the key below in the left pane of the Registry Editor. (see screenshot below)
+			HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband
+		3. If you don't have a NumThumbnails DWORD, then right click or press and hold on an empty area in the right pane of the Taskband key, click/tap on New and DWORD (32-bit) Value, type NumThumbnails, and press Enter.
+			Select (dot) Decimal, type 0 for vertical list, click/tap on OK
+		4. Close Registry Editor.
+		5. Restart explorer process, or sign out and sign in to apply.
