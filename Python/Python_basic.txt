@@ -38,7 +38,8 @@
 		pip list
 
 
-::Create virtual environment with name ".venv"
+::Create virtual environment 
+   In windows:
 		python -m venv .venv
 
 	Active created venv in default command prompt (not PowerShell)
@@ -48,6 +49,14 @@
 
 	Deactivate virtual environment:
 		.\.venv\Scripts\deactivate.bat
+
+   In linux:
+                sudo apt install python3-virtualenv
+
+        Active:
+                source virtualenv_name/bin/activate
+        Deactive:
+                deactivate
 		
 ::Some pip package
 	csv       		-> CSV
