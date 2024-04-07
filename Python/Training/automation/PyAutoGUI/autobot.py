@@ -1,19 +1,10 @@
-import pyautogui
-import threading
+import pyautogui as pg
 
-print(pyautogui.size())
-pyautogui.moveTo(500, 500) 
-pyautogui.click()
-pyautogui.click("fb.png")
+print(pg.size())
 
-count=0
-for count in range(1,10):
-    print(count)
-    pyautogui.sleep(2)
-    pyautogui.scroll(-100, 500, 500)
-    pyautogui.click()
-    pyautogui.write("hello")
-    pyautogui.press("enter")
-    
-
-# pyautogui.click("fb.png")
+try:
+    loc=pg.locateCenterOnScreen(image="search.png", region=(100, 900, 200, 200)) #left, top, width, height
+    print(loc)
+    pg.click(loc)
+except pg.ImageNotFoundException:
+    print("not found")
