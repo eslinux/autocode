@@ -9,7 +9,7 @@ def test_writer():
         writer = csv.DictWriter(csv_file, fieldnames=header)
         
         writer.writeheader()
-        writer.writerow({'first': 'Jack ,cata lin, hh', 'last': 'Hill'})
+        writer.writerow({'first': 'Jack', 'last': 'Hill'})
         writer.writerow({'first': 'James', 'last': 'Mitch'})
 
 def test_reader():

@@ -1,9 +1,11 @@
-#Extract all sheet in source excel to separate excel file (a file for each sheet)
+# Usage:
+# https://docs.xlwings.org/en/latest/quickstart.html
 
+
+#Extract all sheet in source excel to separate excel file (a file for each sheet)
 # Prepare
 #   pip install xlwings
-
-# Usage:
+# Usage command:
 #   python .\sheet2Workbook.py .\myexcel.xlsx
 
 import sys
