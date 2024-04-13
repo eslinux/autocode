@@ -12,6 +12,7 @@
 	Desktop app:
 		https://www.geeksforgeeks.org/python-tkinter-tutorial/
 		https://www.plus2net.com/python/tkinter.php
+		https://ttkbootstrap.readthedocs.io/en/latest/gettingstarted/tutorial/
 
 		https://www.tutorialspoint.com/pyqt5/index.htm
 		https://www.geeksforgeeks.org/pyqt5-qtablewidget
