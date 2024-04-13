@@ -4,8 +4,14 @@
 	https://taimienphi.vn/download-qt-creator-33173/-602-phien-ban
 2. Tutorial
 	https://www.w3schools.com/python/default.asp
-	https://www.tutorialspoint.com/pyqt5/index.htm
-	https://www.geeksforgeeks.org/pyqt5-qtablewidget/?ref=lbp
-	
+	https://www.pythontutorial.net/
+
 	Create Application Tutorial:
-	https://www.youtube.com/watch?v=RxGlB9U64fg
+		https://www.youtube.com/watch?v=RxGlB9U64fg
+
+	Desktop app:
+		https://www.geeksforgeeks.org/python-tkinter-tutorial/
+		https://www.plus2net.com/python/tkinter.php
+
+		https://www.tutorialspoint.com/pyqt5/index.htm
+		https://www.geeksforgeeks.org/pyqt5-qtablewidget
