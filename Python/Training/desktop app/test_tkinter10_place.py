@@ -1,0 +1,1 @@
+# https://www.plus2net.com/python/tkinter-place.php
