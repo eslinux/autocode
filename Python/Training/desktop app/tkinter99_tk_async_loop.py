@@ -24,10 +24,12 @@ if __name__ == "__main__":
 
     b1 = ttk.Button(root, text='primary', bootstyle=PRIMARY, command=btn_click)
     b1.pack(side=LEFT, padx=5, pady=5)
+    
 
     lb = ttk.Label(root, text="hihi")
     lb.pack(side=LEFT, padx=5, pady=5)
 
     root.bind("<<event1>>", event_handler)  # event triggered by background thread
+    
     root.mainloop()
 
