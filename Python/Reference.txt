@@ -16,3 +16,7 @@
 
 		https://www.tutorialspoint.com/pyqt5/index.htm
 		https://www.geeksforgeeks.org/pyqt5-qtablewidget
+
+	Selenium:
+		https://www.guru99.com/xpath-selenium.html
+		https://selenium-python.readthedocs.io/locating-elements.html
