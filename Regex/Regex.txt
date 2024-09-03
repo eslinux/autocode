@@ -1,0 +1,24 @@
+Lookahead: Kiểm tra phía sau vị trí hiện tại.
+   (?=abc) có xuất hiện abc 
+   (?!abc) không xuất hiện abc    
+
+Lookbehind: Kiểm tra phía trước vị trí hiện tại.
+   (?<=abc) có xuất hiện abc 
+   (?<!abc) không xuất hiện abc
+   
+   
+[abc] có xuất hiện a hoặc b hoặc c 
+(abc) có xuất hiện abc
+
+^(abc) bắt đầu với abc
+(abc)$ kết thúc với abc
+
+condition1 | condition2 Thỏa mãn condition1 OR condition2
+
+(condition1)(condition2) Thỏa mãn condition1 AND condition2 (khớp từ trái qua)
+
+
+Trong regex, \w đại diện cho "word character", bao gồm các ký tự sau:
+	Chữ cái: a-z, A-Z
+	Số: 0-9
+	Dấu gạch dưới: _
